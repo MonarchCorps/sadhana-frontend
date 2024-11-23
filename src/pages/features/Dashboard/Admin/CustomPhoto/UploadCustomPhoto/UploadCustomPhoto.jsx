@@ -7,7 +7,7 @@ import useAxiosPrivate from '../../../../../../hooks/useAxiosPrivate'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
-function UploadCustomPhoto({ previews, setPreviews }) {
+function UploadCustomPhoto({ previews, setPreviews, isUploading, setIsUploading }) {
 
     const axiosPrivate = useAxiosPrivate();
     const queryClient = useQueryClient()
@@ -50,7 +50,7 @@ function UploadCustomPhoto({ previews, setPreviews }) {
         <>
             <Loading isLoading={handleUpload.isPending} />
             <div className='px-3 pb-3 w-fit sticky top-3'>
-                <UploadCustomPhotoForm setImg={setImg} img={img} handleSubmit={handleSubmit} setPreviews={setPreviews} previews={previews} />
+                <UploadCustomPhotoForm setImg={setImg} img={img} handleSubmit={handleSubmit} setPreviews={setPreviews} previews={previews} isUploading={isUploading} setIsUploading={setIsUploading} />
             </div>
         </>
     )

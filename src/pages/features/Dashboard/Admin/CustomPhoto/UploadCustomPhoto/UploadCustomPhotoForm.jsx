@@ -9,14 +9,15 @@ import ImageKit from "imagekit-javascript"
 import useAxiosPrivate from '../../../../../../hooks/useAxiosPrivate'
 import toast from 'react-hot-toast';
 
-const UploadCustomPhotoForm = ({ setImg, img, handleSubmit, setPreviews, previews }) => {
+const UploadCustomPhotoForm = ({ setImg, img, handleSubmit, setPreviews, previews, isUploading, setIsUploading }) => {
     const axiosPrivate = useAxiosPrivate()
 
     const ikUploadRef = useRef(null)
 
-    const [isUploading, setIsUploading] = useState(false); // State to handle upload status
-    const [error, setError] = useState(''); // State to store uploaded file URLs
+    const [error, setError] = useState('');
     const uploadedUrls = [];
+
+    const [progress, setProgress] = useState({ current: 0, total: previews.length });
 
     const imageKit = new ImageKit({
         publicKey: import.meta.env.VITE_IMAGE_KIT_PUBLIC_KEY,
@@ -42,6 +43,7 @@ const UploadCustomPhotoForm = ({ setImg, img, handleSubmit, setPreviews, preview
                 console.error("Mismatch in the number of files and tokens provided.");
                 return;
             }
+            const toastId = toast.loading(`Uploading 0 of ${previews.length}`);
 
             for (let i = 0; i < previews.length; i++) {
                 const { file } = previews[i];
@@ -56,11 +58,16 @@ const UploadCustomPhotoForm = ({ setImg, img, handleSubmit, setPreviews, preview
                         expire,
                     });
 
-                    console.log("Upload successful! Public URL: " + result.url);
+                    setProgress({ current: i + 1, total: previews.length });
+                    toast.loading(`Uploading ${i + 1} of ${previews.length}`, { id: toastId });
                     uploadedUrls.push(result.url);
+                    if (i == previews.length - 1) {
+                        toast.dismiss(toastId);
+                        toast.success('All files uploaded successfully!');
+                    }
                 } catch (uploadError) {
+                    toast.dismiss(toastId);
                     setError(uploadError.message)
-                    console.error("Upload failed. Error: ", uploadError);
                     toast.error('Network error')
                 }
             }
@@ -77,6 +84,7 @@ const UploadCustomPhotoForm = ({ setImg, img, handleSubmit, setPreviews, preview
     const handleChange = (e) => {
         const { files } = e.target
         if (files && files.length > 0) {
+            setError('')
             const newPreviews = Array.from(files).map((file) => ({
                 blobUrl: URL.createObjectURL(file),
                 file,
