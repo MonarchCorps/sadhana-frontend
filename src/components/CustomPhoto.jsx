@@ -7,7 +7,7 @@ import {
 import { useEffect, useState } from 'react'
 import Masonry from 'react-masonry-css'
 
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { IKImage } from 'imagekitio-react'
 
@@ -30,6 +30,7 @@ function CustomPhoto() {
 
     const [limit, setLimit] = useState(2)
     const axiosPrivate = useAxiosPrivate();
+    const queryClient = useQueryClient()
 
     const navigate = useNavigate();
     const { scrollTop } = useScrollTop()
@@ -71,6 +72,7 @@ function CustomPhoto() {
 
     const deletePhoto = useMutation({
         mutationFn: (id) => {
+            console.log(id)
             return axiosPrivate.delete('/custom-photo', {
                 data: {
                     photoId: id
@@ -78,9 +80,11 @@ function CustomPhoto() {
             });
         },
         onSuccess: () => {
-            toast.error('Deleted successfully')
+            queryClient.invalidateQueries({ queryKey: ['allCustomPhotos'] })
+            toast.success('Deleted successfully')
         },
         onError: (error) => {
+            console.log(error)
             const errorMessage = error?.response?.data?.message || 'Failed to delete';
             toast.error(error.response ? errorMessage : 'No server response');
         }
@@ -98,7 +102,7 @@ function CustomPhoto() {
             {pathAfterSlash === 'custom-photo' && (
                 <Header />
             )}
-            <div className={`${pathAfterSlash === 'custom-photo' ? 'pt-28 pb-20 px-10' : ''}`}>
+            <div className={`${pathAfterSlash === 'custom-photo' ? 'pt-28 pb-20 px-10' : 'pt-14'}`}>
                 {pathAfterSlash === 'manage-custom-photo' && !isLoading && loadedImages?.length > 0 && (
                     <h1 className='text-[1.59rem] font-500 mb-6'>
                         <span>Photo</span>
@@ -149,7 +153,7 @@ function CustomPhoto() {
                                                     {
                                                         <div className='size-full flex justify-center'>
                                                             {
-                                                                pathAfterSlash === 'manage-custom-photo' && (
+                                                                pathAfterSlash === 'view' && (
                                                                     <button
                                                                         className="flex gap-1 items-center border border-solid border-red-600 bg-slate-50 rounded-xl transition-all px-3 py-2 text-red-500 hover:border-current hover:bg-red-500 hover:text-slate-50"
                                                                         onClick={() => {
