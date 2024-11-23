@@ -9,11 +9,11 @@ function ManageCustomPhoto() {
 
     return (
         <section>
-            <div className='grid grid-cols-[auto_300px] relative'>
-                <div className='py-12 w-[50rem]'>
+            <div className='grid grid-cols-[1fr_auto] relative'>
+                <div className='py-12'>
                     <ViewUploadPreview previews={previews} setPreviews={setPreviews} isUploading={isUploading} />
                 </div>
-                <div className='w-[26rem] py-12 pl-7'>
+                <div className=' py-12 pl-7'>
                     <UploadCustomPhoto previews={previews} setPreviews={setPreviews} isUploading={isUploading} setIsUploading={setIsUploading} />
                 </div>
             </div>
