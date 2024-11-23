@@ -12,9 +12,9 @@ function AdminDashboard() {
 
     return (
         <main>
-            <SidebarProvider className="grid grid-cols-[auto_auto_1fr] gap-3">
+            <SidebarProvider className="grid grid-cols-[auto_0px_1fr]">
                 <SideBar />
-                <SidebarTrigger />
+                <SidebarTrigger className="z-[1000]" />
                 <Outlet />
             </SidebarProvider>
         </main>
