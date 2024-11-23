@@ -8,31 +8,11 @@ function Nav() {
     const { auth } = useAuth()
 
     const links = [
-        {
-            id: 1,
-            link: 'Home',
-            path: '/'
-        },
-        {
-            id: 2,
-            link: 'Instructors',
-            path: '/instructor'
-        },
-        {
-            id: 3,
-            link: 'Classes',
-            path: '/class'
-        },
-        {
-            id: 4,
-            link: 'About us',
-            path: '/about'
-        },
-        {
-            id: 5,
-            link: 'Subscribe',
-            path: '/'
-        }
+        { id: 1, link: 'Home', path: '/' },
+        { id: 2, link: 'Instructors', path: '/instructor' },
+        { id: 3, link: 'Classes', path: '/class' },
+        { id: 4, link: 'About us', path: '/about' },
+        { id: 5, link: 'Subscribe', path: '/' }
     ]
 
     return (
@@ -49,13 +29,17 @@ function Nav() {
                     })
                 }
 
-                <Link
-                    className="text-base font-500 text-[#0b0b0b]"
-                    to='/dashboard'
-                    onClick={scrollTop}
-                >
-                    Dashboard
-                </Link>
+                {
+                    auth?.roles && (
+                        <Link
+                            className="text-base font-500 text-[#0b0b0b]"
+                            to='/dashboard'
+                            onClick={scrollTop}
+                        >
+                            Dashboard
+                        </Link>
+                    )
+                }
             </ul>
         </nav>
     )
