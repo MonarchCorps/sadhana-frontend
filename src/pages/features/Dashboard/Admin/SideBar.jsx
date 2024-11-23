@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState, useRef } from 'react'
 import { FaHome, FaUserAlt, FaMoneyBillAlt, FaDiscourse } from 'react-icons/fa'
-import { FaBookBookmark, FaKey } from 'react-icons/fa6'
+import { FaBookBookmark, FaKey, FaPhotoFilm } from 'react-icons/fa6'
 import { CgTrending } from 'react-icons/cg'
 import { GiShadowFollower } from 'react-icons/gi'
 import { RiPassPendingFill } from 'react-icons/ri'
@@ -40,8 +40,9 @@ function SideBar() {
     const getActiveStyles = (path) => {
         if (isActiveFunc(path).isActive) {
             return {
-                backgroundColor: '#010101',
+                backgroundColor: '#1f1e1e',
                 color: '#eee',
+                fontWeight: '700'
             };
         }
         return {}
@@ -60,7 +61,15 @@ function SideBar() {
                 { id: 2, icon: <FaDiscourse />, text: 'Manage course', path: 'manage-course' }
             ]
         },
-        { id: 5, icon: <MdAddAPhoto />, text: 'Custom photo', path: 'manage-custom-photo' }
+        {
+            id: 5,
+            icon: <MdAddAPhoto />,
+            text: 'Custom photo',
+            children: [
+                { id: 1, icon: <MdAddAPhoto />, text: 'Upload photo', path: 'custom-photo/manage' },
+                { id: 2, icon: <FaPhotoFilm />, text: 'View photos', path: 'custom-photo/view' }
+            ]
+        }
     ]
 
     const extraLinks = [
@@ -80,24 +89,21 @@ function SideBar() {
         }));
     };
 
-    const excludedIndices = [1, 2, 3, 5]
-
+    const excludedIndices = [1, 2, 3]
 
     return (
 
-        <Sidebar>
+        <Sidebar >
             <SidebarHeader>
-                <div className='flex justify-between'>
-                    <Link to="/" onClick={scrollTop}>
-                        <img
-                            src={logo}
-                            alt="logo image"
-                            width="150px"
-                            height="150px"
-                            className="object-cover"
-                        />
-                    </Link>
-                </div>
+                <Link to="/" onClick={scrollTop} className='bg-white -m-2 p-2'>
+                    <img
+                        src={logo}
+                        alt="logo image"
+                        width="150px"
+                        height="150px"
+                        className="object-cover mb-2 text-slate-50 bg-blend-lighten"
+                    />
+                </Link>
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
@@ -107,7 +113,10 @@ function SideBar() {
                                 excludedIndices.includes(index + 1) ? (
                                     <SidebarMenuItem key={link.id}>
                                         <SidebarMenuButton asChild isActive={isActiveFunc(link.path).isActive} style={getActiveStyles(link.path)} >
-                                            <Link to={link.path} className="flex justify-between" onClick={scrollTop}>
+                                            <Link to={link.path} className="flex" onClick={scrollTop}>
+                                                <span className='w-fit'>
+                                                    {link?.icon}
+                                                </span>
                                                 <span>{link.text}</span>
                                             </Link>
                                         </SidebarMenuButton>
@@ -135,8 +144,12 @@ function SideBar() {
                                                         {
                                                             link?.children.map(childLink => (
                                                                 <SidebarMenuButton key={childLink.id} asChild isActive={isActiveFunc(link.path).isActive} style={getActiveStyles(childLink.path)} >
-                                                                    <Link to={childLink.path} className="flex justify-between" onClick={scrollTop}>
+                                                                    <Link to={childLink.path} className="flex" onClick={scrollTop}>
+                                                                        <span className='w-fit'>
+                                                                            {childLink.icon}
+                                                                        </span>
                                                                         <span>{childLink.text}</span>
+                                                                        {/* <childLink.icon /> */}
                                                                     </Link>
                                                                 </SidebarMenuButton>
                                                             ))
@@ -151,7 +164,7 @@ function SideBar() {
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
-                <SidebarSeparator />
+                <SidebarSeparator className="bg-slate-200" />
                 <SidebarGroup>
                     <SidebarGroupContent>
                         <SidebarMenu>
