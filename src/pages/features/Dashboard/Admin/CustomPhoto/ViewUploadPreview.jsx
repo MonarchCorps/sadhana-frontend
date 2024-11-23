@@ -1,63 +1,90 @@
 /* eslint-disable react/prop-types */
-import { Fragment } from 'react'
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import PopupState, { bindPopover, bindHover } from 'material-ui-popup-state';
-import HoverPopover from "material-ui-popup-state/HoverPopover";
-import { FaTrash } from 'react-icons/fa';
+import Masonry from 'react-masonry-css'
+import { FaTrash } from 'react-icons/fa'
+import ReactImageMagnify from 'react-image-magnify';
 
-function ViewUploadPreview({ previews, setPreviews }) {
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
+
+function ViewUploadPreview({ previews, setPreviews, isUploading }) {
+
+    const breakpointColumnsObj = {
+        default: 3,
+        1100: 2,
+        700: 1
+    }
+    console.log(isUploading)
 
     return (
-        <div className={`grid gap-2 h-full place-items-center ${previews.length === 1
-            ? 'grid-cols-1'
-            : previews.length === 2
-                ? 'grid-cols-2'
-                : 'grid-cols-3'
-            }`}>
-            {previews && previews.length > 0 && (
-                <Fragment>
-                    {previews.map((preview, i) => (
-                        <div key={i} style={{ position: 'relative' }}>
-                            <PopupState variant="popover" popupId="demo-popup-popover">
-                                {(popupState) => (
-                                    <div>
-                                        <Button variant="contained" {...bindHover(popupState)} sx={{ background: 'transparent', p: 2, cursor: 'default' }}>
-                                            <img src={preview.blobUrl} alt="preview" className="min-w-56" />
-                                        </Button>
-                                        <HoverPopover
-                                            {...bindPopover(popupState)}
-                                            anchorOrigin={{
-                                                vertical: 'bottom',
-                                                horizontal: 'center',
-                                            }}
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'center',
-                                            }}
-                                        >
-                                            <Typography sx={{ p: 2 }}>
-                                                <button
-                                                    className="flex gap-1 items-center border border-solid border-red-600 bg-slate-50 rounded-xl transition-all px-3 py-2 text-red-500 hover:border-current hover:bg-red-500 hover:text-slate-50"
-                                                    onClick={() => {
-                                                        const updated = previews.filter((_, idx) => idx !== i)
-                                                        setPreviews(updated)
-                                                    }}
-                                                >
-                                                    Delete
-                                                    <FaTrash />
-                                                </button>
-                                            </Typography>
-                                        </HoverPopover>
-                                    </div>
-                                )}
-                            </PopupState>
-                        </div>
-                    ))}
-                </Fragment>
-            )}
-        </div>
-    );
+        previews && previews.length > 0 && (
+            <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="flex -ml-[1.875rem] w-auto"
+                columnClassName="pl-[1.875rem]"
+            >
+                {previews.map((preview, i) => (
+                    <div key={i} style={{ position: 'relative' }} className='mb-3'>
+                        <HoverCard
+                            openDelay={0}
+                            closeDelay={0}
+                            style={{
+                                position: 'absolute',
+                                background: isUploading ? 'gray' : 'red',
+                                pointerEvents: isUploading ? 'none' : 'auto',
+                                opacity: isUploading ? 0.5 : 1,
+                            }}
+                        >
+                            <HoverCardTrigger>
+                                <ReactImageMagnify
+                                    {...{
+                                        smallImage: {
+                                            alt: 'Wristwatch by Ted Baker London',
+                                            isFluidWidth: true,
+                                            src: preview.blobUrl,
+                                        },
+                                        largeImage: {
+                                            src: preview.blobUrl,
+                                            width: 1000,
+                                            height: 1000,
+                                            objectFit: 'contain',
+                                        },
+                                        enlargedImageContainerStyle: {
+                                            zIndex: 1000,
+                                            objectFit: 'cover',
+                                        },
+                                        lensStyle: {
+                                            backgroundColor: 'rgba(0,0,0,0.3)', // Optional lens effect
+                                            zIndex: 10,
+                                        },
+                                    }}
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                align="center"
+                                side="bottom"
+                                sideOffset={-80}
+                                avoidCollisions={true}
+                                className={`bg-transparent border-none p-0 grid items-center w-fit ${isUploading ? 'pointer-events-none opacity-50' : ''
+                                    }`}
+                            >
+                                <button
+                                    className="flex gap-1 items-center border border-solid border-red-600 bg-slate-50 rounded-xl transition-all px-3 py-2 text-red-500 hover:border-current hover:bg-red-500 hover:text-slate-50"
+                                    onClick={() => {
+                                        const updated = previews.filter((_, idx) => idx !== i);
+                                        setPreviews(updated);
+                                    }}
+                                    disabled={isUploading}
+                                >
+                                    Delete Photo
+                                    <FaTrash />
+                                </button>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                ))}
+            </Masonry>
+        )
+
+    )
 }
 
 export default ViewUploadPreview;
