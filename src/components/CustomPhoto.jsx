@@ -28,7 +28,7 @@ import { UserAndInstructor, UserOnly } from '../utils/rolePermission'
 
 function CustomPhoto() {
 
-    const [limit, setLimit] = useState(2)
+    const [limit, setLimit] = useState(10)
     const axiosPrivate = useAxiosPrivate();
     const queryClient = useQueryClient()
 
@@ -37,24 +37,24 @@ function CustomPhoto() {
 
     const [loadedImages, setLoadedImages] = useState([]);
 
-    const { data: allPhotos, isLoading } = useQuery({
-        queryKey: ['allCustomPhotos'],
+    const { data: allPhotos, isLoading = true } = useQuery({
+        queryKey: ['allCustomPhotos', { limit }],
         queryFn: () =>
-            axiosPrivate.get(`/custom-photo/${limit}`).then((res) => {
-                return res?.data
-            }),
-    })
+            axiosPrivate.get(`/custom-photo/${limit}`).then((res) => res?.data),
+        enabled: limit > 0,
+        keepPreviousData: true,
+        refetchOnWindowFocus: false,
+    });
 
     const userAndInstructor = UserAndInstructor()
     const userOnly = UserOnly()
-
     const pathAfterSlash = usePathAfterSlash()
 
     const breakpointColumnsObj = {
         default: 3,
         1100: 2,
         700: 1
-    };
+    }
 
     const handleRedirectAddClass = (imageId) => {
         scrollTop()
@@ -67,8 +67,14 @@ function CustomPhoto() {
     }
 
     useEffect(() => {
-        setLoadedImages(allPhotos?.photos)
-    }, [allPhotos])
+        if (allPhotos?.photos) {
+            setLoadedImages((prev) => {
+                const existingIds = prev.map((img) => img._id);
+                const newPhotos = allPhotos.photos.filter((img) => !existingIds.includes(img._id));
+                return [...prev, ...newPhotos];
+            });
+        }
+    }, [allPhotos]);
 
     const deletePhoto = useMutation({
         mutationFn: (id) => {
@@ -90,12 +96,6 @@ function CustomPhoto() {
         }
     })
 
-    useEffect(() => {
-        if (!isLoading) {
-            scrollTop()
-        }
-    }, [isLoading, scrollTop])
-
     return (
         <>
             <Loading isLoading={deletePhoto.isPending} />
@@ -103,7 +103,7 @@ function CustomPhoto() {
                 <Header />
             )}
             <div className={`${pathAfterSlash === 'custom-photo' ? 'pt-28 pb-20 px-10' : 'pt-14'}`}>
-                {pathAfterSlash === 'manage-custom-photo' && !isLoading && loadedImages?.length > 0 && (
+                {pathAfterSlash === 'manage' && !isLoading && loadedImages?.length > 0 && (
                     <h1 className='text-[1.59rem] font-500 mb-6'>
                         <span>Photo</span>
                         &nbsp;
@@ -194,7 +194,7 @@ function CustomPhoto() {
                             <p className='w-full text-center '>No photos available at the moment! Check back later or reload page!</p>
                         )}
                 {
-                    !isLoading && loadedImages?.length > 0 && limit < allPhotos.count ? (
+                    !isLoading && loadedImages?.length > 0 && (limit < allPhotos?.count) ? (
                         <div className='w-full text-center mt-10'>
                             <button
                                 className='text-sm px-6 py-3 text-[#e5759a] rounded-full bg-slate-50 shadow-inner border-[#e5779a] border-solid border-2'
