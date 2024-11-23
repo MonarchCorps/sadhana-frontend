@@ -62,13 +62,7 @@ import AddBankInfo from './pages/features/Dashboard/Instructors/AddBankInfo'
 import Earnings from './pages/features/Dashboard/Instructors/Earnings'
 import { Toaster } from 'react-hot-toast'
 
-import {
-	QueryClient,
-	QueryClientProvider,
-} from '@tanstack/react-query'
 import DashboardRedirect from './components/DashboardRedirect'
-
-const queryClient = new QueryClient()
 
 const ROLES = {
 	User: parseInt(import.meta.env.VITE_USER_CODE),
@@ -134,108 +128,105 @@ function App() {
 
 	return (
 		<div className='app'>
-			<QueryClientProvider client={queryClient}>
-				<Routes>
+			<Routes>
+				{/* Public routes */}
 
-					{/* Public routes */}
+				<Route path='/auth' element={<Login />} />
+				<Route path='/register' element={<Register />} />
+				<Route path='/unauthorized' element={<Unauthorized />} />
 
-					<Route path='/auth' element={<Login />} />
-					<Route path='/register' element={<Register />} />
-					<Route path='/unauthorized' element={<Unauthorized />} />
+				<Route element={<PersistLogin />}>
+					<Route path='/' element={<Layout />}>
 
-					<Route element={<PersistLogin />}>
-						<Route path='/' element={<Layout />}>
+						{/* Redirect dashboard */}
+						<Route path='/dashboard' element={<DashboardRedirect />} />
 
-							{/* Public routes */}
+						{/* Public routes */}
 
-							<Route index element={<Home />} />
+						<Route index element={<Home />} />
 
-							<Route path='/class' element={<HomeClasses />}>
-								<Route index element={<HomeAllClasses />} />
-								<Route path=':id' element={<HomeClassDetails />} />
-							</Route>
-
-							<Route path='/instructor' element={<HomeInstructors />}>
-								<Route index element={<HomeAllInstructors />} />
-							</Route>
-
-							<Route path='/instructor/:userId/all-courses' element={<OtherUploadedCoursesByUser />} />
-
-							<Route path='/custom-photo' element={<CustomPhoto />} />
-
-							{/* Private routes */}
-
-							{/* Admin routes */}
-
-							<Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-								<Route path='dashboard/admin-cp' element={<AdminDashboard />}>
-									<Route index element={<AdminHomeDashboard />} />
-									<Route path='manage-users' element={<ManageUser />} />
-									<Route path='users/edit/:id' element={<EditUser />} />
-									<Route path='user/profile/:id' element={<ViewProfile />} />
-									<Route path='pending-instructors' element={<PendingInstructors />} />
-									<Route path='pending-classes' element={<PendingClasses />} />
-									<Route path='manage-course' element={<ManageClasses />} />
-									<Route path='class/details/:id' element={<CourseDetails />} />
-									<Route path='class/edit/:id' element={<EditClass />} />
-									<Route path='details/edit-profile' element={<EditProfile />} />
-									<Route path='custom-photo/manage' element={<ManageCustomPhoto />} />
-									<Route path='custom-photo/view' element={<CustomPhoto />} />
-								</Route>
-							</Route>
-
-							{/* Instructor routes */}
-
-							<Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />}>
-								<Route path='dashboard/instructor-cp' element={<InstructorDashboard />}>
-									<Route index element={<InstructorHomeDashboard />} />
-									<Route path='add-class' element={<AddClass />} />
-									<Route path='my-classes' element={<MyClass />} />
-									<Route path='pending-classes' element={<PendingClass />} />
-									<Route path='approved-classes' element={<ApprovedClass />} />
-									<Route path='selected' element={<Selected />} />
-									<Route path='class/edit/:id' element={<UpdateClass />} />
-									<Route path='details/edit-profile' element={<EditProfile />} />
-									<Route path='edit-instructor-profile' element={<EditInstructorProfile />} />
-									<Route path='enrolled' element={<Enrolled />} />
-									<Route path='earnings' element={<Earnings />} />
-								</Route>
-							</Route>
-
-							{/* Students routes */}
-
-							<Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-								<Route path='dashboard/student-cp' element={<UserDashboard />}>
-									<Route index element={<UserHomeDashboard />} />
-									<Route path='apply-instructor' element={<ApplyInstructor />} />
-									<Route path='selected' element={<Selected />} />
-									<Route path='details/edit-profile' element={<EditProfile />} />
-									<Route path='enrolled' element={<Enrolled />} />
-								</Route>
-							</Route>
+						<Route path='/class' element={<HomeClasses />}>
+							<Route index element={<HomeAllClasses />} />
+							<Route path=':id' element={<HomeClassDetails />} />
 						</Route>
-						<Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />}>
-							<Route path='/instructor/add-bank-info' element={<AddBankInfo />} />
+
+						<Route path='/instructor' element={<HomeInstructors />}>
+							<Route index element={<HomeAllInstructors />} />
 						</Route>
-					</Route>
 
-					{/* Similar routes */}
+						<Route path='/instructor/:userId/all-courses' element={<OtherUploadedCoursesByUser />} />
 
-					<Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Instructor, ROLES.Admin]} />}>
 						<Route path='/custom-photo' element={<CustomPhoto />} />
-					</Route>
 
+						{/* Private routes */}
+
+						{/* Admin routes */}
+
+						<Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+							<Route path='dashboard/admin-cp' element={<AdminDashboard />}>
+								<Route index element={<AdminHomeDashboard />} />
+								<Route path='manage-users' element={<ManageUser />} />
+								<Route path='users/edit/:id' element={<EditUser />} />
+								<Route path='user/profile/:id' element={<ViewProfile />} />
+								<Route path='pending-instructors' element={<PendingInstructors />} />
+								<Route path='pending-classes' element={<PendingClasses />} />
+								<Route path='manage-course' element={<ManageClasses />} />
+								<Route path='class/details/:id' element={<CourseDetails />} />
+								<Route path='class/edit/:id' element={<EditClass />} />
+								<Route path='details/edit-profile' element={<EditProfile />} />
+								<Route path='custom-photo/manage' element={<ManageCustomPhoto />} />
+								<Route path='custom-photo/view' element={<CustomPhoto />} />
+							</Route>
+						</Route>
+
+						{/* Instructor routes */}
+
+						<Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />}>
+							<Route path='dashboard/instructor-cp' element={<InstructorDashboard />}>
+								<Route index element={<InstructorHomeDashboard />} />
+								<Route path='add-class' element={<AddClass />} />
+								<Route path='my-classes' element={<MyClass />} />
+								<Route path='pending-classes' element={<PendingClass />} />
+								<Route path='approved-classes' element={<ApprovedClass />} />
+								<Route path='selected' element={<Selected />} />
+								<Route path='class/edit/:id' element={<UpdateClass />} />
+								<Route path='details/edit-profile' element={<EditProfile />} />
+								<Route path='edit-instructor-profile' element={<EditInstructorProfile />} />
+								<Route path='enrolled' element={<Enrolled />} />
+								<Route path='earnings' element={<Earnings />} />
+							</Route>
+						</Route>
+
+						{/* Students routes */}
+
+						<Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+							<Route path='dashboard/student-cp' element={<UserDashboard />}>
+								<Route index element={<UserHomeDashboard />} />
+								<Route path='apply-instructor' element={<ApplyInstructor />} />
+								<Route path='selected' element={<Selected />} />
+								<Route path='details/edit-profile' element={<EditProfile />} />
+								<Route path='enrolled' element={<Enrolled />} />
+							</Route>
+						</Route>
+					</Route>
+					<Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />}>
+						<Route path='/instructor/add-bank-info' element={<AddBankInfo />} />
+					</Route>
+				</Route>
+
+				{/* Similar routes */}
+
+				<Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Instructor, ROLES.Admin]} />}>
+					<Route path='/custom-photo' element={<CustomPhoto />} />
 					<Route path='/success' element={<Success />} />
 					<Route path='/cancel' element={<Cancel />} />
-					<Route path='/dashboard' element={<DashboardRedirect />} />
+				</Route>
 
-					{/* Missing  */}
+				{/* Missing  */}
 
-					<Route path='*' element={<Missing />} />
+				<Route path='*' element={<Missing />} />
 
-				</Routes>
-			</QueryClientProvider>
-
+			</Routes>
 			<Toaster position="bottom-center"
 				reverseOrder={false}
 			/>
