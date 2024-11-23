@@ -38,7 +38,7 @@ function AsideBottomNav() {
     }
 
     return (
-        <SidebarFooter>
+        <SidebarFooter className="cursor-pointer">
             <SidebarMenu>
                 <SidebarMenuItem>
                     <DropdownMenu>
