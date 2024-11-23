@@ -179,7 +179,8 @@ function App() {
 									<Route path='class/details/:id' element={<CourseDetails />} />
 									<Route path='class/edit/:id' element={<EditClass />} />
 									<Route path='details/edit-profile' element={<EditProfile />} />
-									<Route path='manage-custom-photo' element={<ManageCustomPhoto />} />
+									<Route path='custom-photo/manage' element={<ManageCustomPhoto />} />
+									<Route path='custom-photo/view' element={<CustomPhoto />} />
 								</Route>
 							</Route>
 
