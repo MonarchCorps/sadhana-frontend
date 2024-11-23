@@ -1,6 +1,10 @@
+import useTitle from '../hooks/useTitle'
 import { Link } from 'react-router-dom'
 
 function Unauthorized() {
+
+    useTitle('Unauthorized');
+
     return (
         <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-md text-center">
