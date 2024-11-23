@@ -80,28 +80,19 @@ function SideBar() {
         { id: 5, icon: <GiShadowFollower />, text: 'Following', path: '' },
     ]
 
-    const [openItems, setOpenItems] = useState({});
-
-    const toggleItem = (id) => {
-        setOpenItems((prev) => ({
-            ...prev,
-            [id]: !prev[id],
-        }));
-    };
-
     const excludedIndices = [1, 2, 3]
 
     return (
 
-        <Sidebar >
+        <Sidebar className="bg-slate-50">
             <SidebarHeader>
-                <Link to="/" onClick={scrollTop} className='bg-white -m-2 p-2'>
+                <Link to="/" onClick={scrollTop} className='-m-2 p-2'>
                     <img
                         src={logo}
                         alt="logo image"
                         width="150px"
                         height="150px"
-                        className="object-cover mb-2 text-slate-50 bg-blend-lighten"
+                        className="object-cover mb-2 text-slate-50 "
                     />
                 </Link>
             </SidebarHeader>
@@ -124,8 +115,6 @@ function SideBar() {
                                 ) : (
                                     <Collapsible
                                         key={link.id}
-                                        open={!!openItems[link.id]}
-                                        onOpenChange={() => toggleItem(link.id)}
                                         className="group/collapsible"
                                         defaultOpen={true}
                                     >
@@ -149,7 +138,6 @@ function SideBar() {
                                                                             {childLink.icon}
                                                                         </span>
                                                                         <span>{childLink.text}</span>
-                                                                        {/* <childLink.icon /> */}
                                                                     </Link>
                                                                 </SidebarMenuButton>
                                                             ))
