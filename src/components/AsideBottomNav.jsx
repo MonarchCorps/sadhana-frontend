@@ -109,22 +109,18 @@ function AsideBottomNav() {
                                         Account
                                     </SidebarMenuButton>
                                 </DropdownMenuItem>
+                                <div onClick={() => handleProfileNavigate()}>
+                                    <DropdownMenuItem >
+                                        <SidebarMenuButton>
+                                            <span>
+                                                <FaUserAltSlash />
+                                            </span>
+                                            <span className='font-sans font-500 text-[0.93rem] text-[#100f0f]'>Edit profile</span>
+                                        </SidebarMenuButton>
+                                    </DropdownMenuItem>
+                                </div>
                                 {
-                                    !userAndInstructor && (
-                                        <div onClick={() => handleProfileNavigate()}>
-                                            <DropdownMenuItem >
-                                                <SidebarMenuButton>
-                                                    <span>
-                                                        <FaUserAltSlash />
-                                                    </span>
-                                                    <span className='font-sans font-500 text-[0.93rem] text-[#100f0f]'>Edit profile</span>
-                                                </SidebarMenuButton>
-                                            </DropdownMenuItem>
-                                        </div>
-                                    )
-                                }
-                                {
-                                    !userAndInstructor && (
+                                    userAndInstructor && (
                                         <div onClick={() => handleInstNavigate()}>
                                             <DropdownMenuItem >
                                                 <SidebarMenuButton>
@@ -138,7 +134,7 @@ function AsideBottomNav() {
                                 }
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={logout}>
+                            <DropdownMenuItem onClick={logout} className="cursor-pointer">
                                 <LogOut />
                                 Log out
                             </DropdownMenuItem>
