@@ -1,11 +1,12 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
-import image1 from '../../assets/images/custom/photo-1527525443983-6e60c75fff46.avif'
-import image2 from '../../assets/images/custom/photo-1529693662653-9d480530a697.avif'
-import image3 from '../../assets/images/custom/photo-1709790056310-c05d29006239.avif'
-import image4 from '../../assets/images/custom/premium_photo-1667520211253-805db754cf22.avif'
-import image5 from '../../assets/images/custom/premium_photo-1682095736688-acd2ae20ffa4 22.47.32.jpeg'
+import image1 from '../../assets/authSwiperImages/photo-1527525443983-6e60c75fff46.avif'
+import image2 from '../../assets/authSwiperImages/photo-1529693662653-9d480530a697.avif'
+import image3 from '../../assets/authSwiperImages/photo-1709790056310-c05d29006239.avif'
+import image4 from '../../assets/authSwiperImages/premium_photo-1667520211253-805db754cf22.avif'
+import image5 from '../../assets/authSwiperImages/premium_photo-1682095736688-acd2ae20ffa4 22.47.32.jpeg'
+
 import SwiperList from './SwiperList'
 
 function AuthSwiper() {
