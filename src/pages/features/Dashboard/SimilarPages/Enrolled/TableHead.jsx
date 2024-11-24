@@ -8,13 +8,13 @@ function TableHead() {
             <p className='text-center ml-5'>
                 <span className='font-300 text-base tracking-tight align-text-top'>Payment ID</span>
             </p>
-            <p className='text-center'>
+            <p className='text-end mr-2'>
                 <span className='font-300 text-base tracking-tight align-text-top'>Amount</span>
             </p>
             <p className='text-center -ml-2'>
                 <span className='font-300 text-base tracking-tight align-text-top'>Type</span>
             </p>
-            <p className='text-start '>
+            <p className='text-center mr-3'>
                 <span className='font-300 text-base tracking-tight '>Status</span>
             </p>
             <p className='text-end'>
