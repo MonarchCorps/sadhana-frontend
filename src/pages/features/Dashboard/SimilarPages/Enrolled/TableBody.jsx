@@ -12,7 +12,7 @@ function TableBody({ filteredDetails }) {
 
     useEffect(() => {
         setFilteredData(
-            filteredDetails.length > 0 && filteredDetails.filter((user, index) => {
+            filteredDetails?.length > 0 && filteredDetails?.filter((user, index) => {
                 return (index >= page * n) & (index < (page + 1) * n)
             })
         )
@@ -21,7 +21,7 @@ function TableBody({ filteredDetails }) {
     return (
         <Fragment>
             {
-                filteredData && filteredData.length > 0 ? (
+                filteredData && filteredData?.length > 0 ? (
                     filteredData.map(details => {
                         return (
                             <EnrolledDetails key={details?._id} details={details} />
