@@ -6,12 +6,11 @@ import trim from '../../utils/trim'
 import { Link } from 'react-router-dom'
 import { IKImage } from 'imagekitio-react';
 
-function Class({ course, handleBookClass, handleUnBookClass }) {
+function Class({ course, handleBookClass, handleUnBookClass, enrolledCourses }) {
 
     const navigate = useNavigate();
     const { auth } = useAuth();
     const { scrollTop } = useScrollTop();
-
     return (
         <div className="rounded-md overflow-hidden shadow-shadow">
             <div>
@@ -41,27 +40,38 @@ function Class({ course, handleBookClass, handleUnBookClass }) {
                 </div>
                 <div className="text-center mb-5 mt-2">
                     {
-                        auth?.selectedCourses?.some(selectedCourse => selectedCourse.courseId == course._id) ? (
-                            <button
-                                className='text-sm h-[2.8rem] w-28 mr-2 bg-[#e5759a] text-slate-50 shadow-inner p-1 transition-all hover:rounded-full'
-                                onClick={() => {
-                                    if (!auth?.username) return navigate('/auth');
-                                    handleUnBookClass.mutate(course?._id);
-                                }}
+                        enrolledCourses?.flatMap(data => {
+                            return (
+                                data.courseDetails
+                            )
+                        })?.some(details => details._id === course._id)
+                            ? <button
+                                disabled
+                                className='text-sm h-[2.8rem] w-28 mr-2 bg-[#e5759a] text-slate-50 shadow-inner p-1 transition-all hover:rounded-full cursor-default'
                             >
-                                Unbook
+                                Enrolled
                             </button>
-                        ) : (
-                            <button
-                                className='text-sm h-[2.8rem] w-28 mr-2 bg-[#e5759a] text-slate-50 shadow-inner p-1 transition-all hover:rounded-full'
-                                onClick={() => {
-                                    if (!auth?.username) return navigate('/auth');
-                                    handleBookClass.mutate(course?._id);
-                                }}
-                            >
-                                Book now
-                            </button>
-                        )
+                            : auth?.selectedCourses?.some(selectedCourse => selectedCourse.courseId == course._id) ? (
+                                <button
+                                    className='text-sm h-[2.8rem] w-28 mr-2 bg-[#e5759a] text-slate-50 shadow-inner p-1 transition-all hover:rounded-full'
+                                    onClick={() => {
+                                        if (!auth?.username) return navigate('/auth');
+                                        handleUnBookClass.mutate(course?._id);
+                                    }}
+                                >
+                                    Unbook
+                                </button>
+                            ) : (
+                                <button
+                                    className='text-sm h-[2.8rem] w-28 mr-2 bg-[#e5759a] text-slate-50 shadow-inner p-1 transition-all hover:rounded-full'
+                                    onClick={() => {
+                                        if (!auth?.username) return navigate('/auth');
+                                        handleBookClass.mutate(course?._id);
+                                    }}
+                                >
+                                    Book now
+                                </button>
+                            )
                     }
 
                     <Link

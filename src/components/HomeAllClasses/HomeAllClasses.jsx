@@ -8,8 +8,13 @@ import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import useClassActions from '../../hooks/useClassActions'
 import axios from '../../api/axios'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
+import useAuth from '@/hooks/useAuth'
 
 function HomeAllClasses() {
+
+    const { auth } = useAuth()
+    const axiosPrivate = useAxiosPrivate()
 
     const { isLoading, data: classes } = useQuery({
         queryKey: ['homePageClasses'],
@@ -18,6 +23,14 @@ function HomeAllClasses() {
                 return res?.data
             }
             ),
+    })
+
+    const { data: enrolledCourses } = useQuery({
+        queryKey: ['enrolledDetails'],
+        queryFn: () =>
+            axiosPrivate.get(`/enrolled/${auth?._id}`).then(res => {
+                return res?.data
+            })
     })
 
     const { handleBookClass, handleUnBookClass } = useClassActions();
@@ -47,7 +60,7 @@ function HomeAllClasses() {
                                 filteredCourse?.length > 0 && !isLoading ? (
                                     filteredCourse.map(course => {
                                         return (
-                                            <Class key={course._id} course={course} handleBookClass={handleBookClass} handleUnBookClass={handleUnBookClass} />
+                                            <Class key={course._id} course={course} handleBookClass={handleBookClass} handleUnBookClass={handleUnBookClass} enrolledCourses={enrolledCourses} />
                                         )
                                     })
                                 ) : (
