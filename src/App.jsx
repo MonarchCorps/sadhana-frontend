@@ -218,10 +218,10 @@ function App() {
 
 				<Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Instructor, ROLES.Admin]} />}>
 					<Route path='/custom-photo' element={<CustomPhoto />} />
-					<Route path='/success' element={<Success />} />
-					<Route path='/cancel' element={<Cancel />} />
 				</Route>
 
+				<Route path='/success' element={<Success />} />
+				<Route path='/cancel' element={<Cancel />} />
 				{/* Missing  */}
 
 				<Route path='*' element={<Missing />} />
