@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { format } from 'date-fns'
 
-function UserDetails({ user, uploadedCourse = [], selectedCourses = [] }) {
+function UserDetails({ user }) {
 
     // I am converting the roles object to an array. In my backend login and register, i am sending the roles as an array but in other places as an obj
     const roles = Array.isArray(user?.roles) ? user?.roles : Object.values(user?.roles).filter(Boolean)
@@ -57,12 +57,12 @@ function UserDetails({ user, uploadedCourse = [], selectedCourses = [] }) {
                 <span>{user?.dateRegistered && format(user?.dateRegistered, "MMMM dd, yyyy")}</span>
             </div>
             <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Number or uploaded courses</span>
-                <span>{uploadedCourse?.length || 0}</span>
+                <span className='font-600 text-base text-[#1f2937]'>Number of uploaded courses</span>
+                <span>{user?.courseCount || 0}</span>
             </div>
             <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Number or selected courses</span>
-                <span>{selectedCourses?.length || 0}</span>
+                <span className='font-600 text-base text-[#1f2937]'>Number of selected courses</span>
+                <span>{user?.selectedCourses?.length || 0}</span>
             </div>
         </div>
     )
