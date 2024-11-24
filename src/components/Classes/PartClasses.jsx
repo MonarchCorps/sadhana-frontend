@@ -10,7 +10,7 @@ import useAuth from '../../hooks/useAuth'
 import { IKImage } from 'imagekitio-react'
 import trim from '../../utils/trim'
 
-function PartClasses({ course, handleBookClass, handleUnBookClass }) {
+function PartClasses({ course, handleBookClass, handleUnBookClass, enrolledCourses }) {
 
     const navigate = useNavigate();
     const { auth } = useAuth()
@@ -63,39 +63,50 @@ function PartClasses({ course, handleBookClass, handleUnBookClass }) {
                 </div>
                 <div className='mt-6'>
                     {
-                        enrolledCourse?.length > 0 && enrolledCourse?.some(enrolledDetails =>
-                            enrolledDetails.courseDetails.some(enrolled =>
-                                enrolled._id === course._id
+                        enrolledCourses?.flatMap(data => {
+                            return (
+                                data.courseDetails
                             )
-                        ) ? (
-                            <button
-                                className='text-sm h-14 w-36 mr-2 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1'
+                        })?.some(details => details._id === course._id)
+                            ? <button
+                                disabled
+                                className='text-sm h-[2.8rem] w-28 mr-2 bg-[#e5759a] text-slate-50 shadow-inner p-1 transition-all hover:rounded-full cursor-default'
                             >
                                 Enrolled
                             </button>
-                        ) : (
-                            auth?.selectedCourses?.some(selectedCourse => selectedCourse.courseId == course._id) ? (
+                            : enrolledCourse?.length > 0 && enrolledCourse?.some(enrolledDetails =>
+                                enrolledDetails.courseDetails.some(enrolled =>
+                                    enrolled._id === course._id
+                                )
+                            ) ? (
                                 <button
                                     className='text-sm h-14 w-36 mr-2 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1'
-                                    onClick={() => {
-                                        if (!auth?.username) return navigate('/auth');
-                                        handleUnBookClass.mutate(course?._id);
-                                    }}
                                 >
-                                    UnBook
+                                    Enrolled
                                 </button>
                             ) : (
-                                <button
-                                    className='text-sm h-14 w-36 mr-2 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1'
-                                    onClick={() => {
-                                        if (!auth?.username) return navigate('/auth');
-                                        handleBookClass.mutate(course?._id);
-                                    }}
-                                >
-                                    Book now
-                                </button>
+                                auth?.selectedCourses?.some(selectedCourse => selectedCourse.courseId == course._id) ? (
+                                    <button
+                                        className='text-sm h-14 w-36 mr-2 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1'
+                                        onClick={() => {
+                                            if (!auth?.username) return navigate('/auth');
+                                            handleUnBookClass.mutate(course?._id);
+                                        }}
+                                    >
+                                        UnBook
+                                    </button>
+                                ) : (
+                                    <button
+                                        className='text-sm h-14 w-36 mr-2 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1'
+                                        onClick={() => {
+                                            if (!auth?.username) return navigate('/auth');
+                                            handleBookClass.mutate(course?._id);
+                                        }}
+                                    >
+                                        Book now
+                                    </button>
+                                )
                             )
-                        )
                     }
                     <Link
                         to={`/class/${course?._id}`}

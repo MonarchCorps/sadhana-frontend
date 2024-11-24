@@ -8,9 +8,13 @@ import axios from '../../api/axios'
 
 import CustomizedProgressBars from '../Loaders/Loading4'
 import useClassActions from '../../hooks/useClassActions'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
+import useAuth from '@/hooks/useAuth'
 
 function Classes() {
 
+    const { auth } = useAuth()
+    const axiosPrivate = useAxiosPrivate()
     const { handleBookClass, handleUnBookClass } = useClassActions()
 
     const { isLoading, data: classes } = useQuery({
@@ -19,6 +23,14 @@ function Classes() {
             axios.get('/public/class').then((res) => {
                 return res?.data
             }),
+    })
+
+    const { data: enrolledCourses } = useQuery({
+        queryKey: ['enrolledDetails'],
+        queryFn: () =>
+            axiosPrivate.get(`/enrolled/${auth?._id}`).then(res => {
+                return res?.data
+            })
     })
 
     const [filteredCourses, setFilteredCourses] = useState([]);
@@ -51,6 +63,7 @@ function Classes() {
                                 course={course}
                                 handleBookClass={handleBookClass}
                                 handleUnBookClass={handleUnBookClass}
+                                enrolledCourses={enrolledCourses}
                             />
                         ))
                     ) : (
