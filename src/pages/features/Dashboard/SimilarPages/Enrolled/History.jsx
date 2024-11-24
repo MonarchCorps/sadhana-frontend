@@ -46,7 +46,7 @@ function History({ enrolledCourse }) {
                                                 <span className='font-600 text-sm'>{course.courseDetails[0]?.classname}</span>
                                                 <div className='ml-5'>
                                                     <span className='font-600 text-sm'>Price: </span>
-                                                    <span className='text-sm'>{`NGN ${course.courseDetails[0]?.paidPrice}`}</span>
+                                                    <span className='text-sm'>{`NGN ${course.courseDetails[0]?.paidPrice.toLocaleString()}`}</span>
                                                 </div>
                                                 <span className='text-sm font-500'>{format(course?.createdAt, 'MMM, dd yyyy pp')} </span>
                                             </div>

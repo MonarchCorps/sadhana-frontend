@@ -1,16 +1,26 @@
 import { Fragment, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+
 import useAuth from '../../../../../hooks/useAuth'
-import useGetDataPrivate from '../../../../../hooks/useGetDataPrivate'
 import EnrolledCourse from './EnrolledCourse'
 import History from './History'
 import PaymentSummary from './PaymentSummary'
 import PaymentHead from './PaymentHead'
 import AskQuestion from './AskQuestion'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 
 function Enrolled() {
 
     const { auth } = useAuth();
-    const { data: enrolledCourse, isLoading } = useGetDataPrivate(`/enrolled/${auth?._id}`)
+    const axiosPrivate = useAxiosPrivate()
+
+    const { data: enrolledCourse, isPending } = useQuery({
+        queryKey: ['enrolledDetails'],
+        queryFn: () =>
+            axiosPrivate.get(`/enrolled/${auth?._id}`).then(res => {
+                return res?.data
+            })
+    })
 
     const [filteredDetails, setFilteredDetails] = useState(enrolledCourse);
 
@@ -23,10 +33,10 @@ function Enrolled() {
                             My <span className="text-[#27554a]">Enrolled course</span>
                         </h1>
                         <p className="text-base">Here you can see how many enrolled course you current have</p>
-                        <p className="text-sm">{`${enrolledCourse?.flatMap(data => { return data?.courseDetails })?.length} ${enrolledCourse?.length <= 1 ? 'class' : 'classes'}`}</p>
+                        <p className="text-sm">{`${enrolledCourse?.flatMap(data => { return data?.courseDetails })?.length || 0} ${enrolledCourse?.length <= 1 ? 'class' : 'classes'}`}</p>
                     </div>
                     <>
-                        <EnrolledCourse enrolledCourse={enrolledCourse} isLoading={isLoading} />
+                        <EnrolledCourse enrolledCourse={enrolledCourse} isLoading={isPending} />
                         {
                             enrolledCourse?.length > 0 && (
                                 <div className='flex gap-5'>
@@ -36,7 +46,7 @@ function Enrolled() {
                             )
                         }
                         {
-                            !isLoading && enrolledCourse?.length > 0 && (
+                            !isPending && enrolledCourse?.length > 0 && (
                                 <Fragment>
                                     <PaymentHead enrolledCourse={enrolledCourse} setFilteredDetails={setFilteredDetails} />
                                     <PaymentSummary filteredDetails={filteredDetails} />

@@ -33,7 +33,7 @@ function EnrolledCourse({ enrolledCourse, isLoading }) {
             {
                 !isLoading && filteredData && filteredData?.length !== 0 ? (
                     // Flatten the courseDetails to one array and map through the array
-                    filteredData.flatMap(data => {
+                    filteredData?.flatMap(data => {
                         return (
                             data.courseDetails
                         )

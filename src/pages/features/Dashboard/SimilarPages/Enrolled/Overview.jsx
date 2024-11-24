@@ -47,14 +47,6 @@ function Overview({ enrolledDetails }) {
                             })
                         }
                     </ul>
-                    <div className="mt-3 grid grid-flow-col justify-between items-center text-sm">
-                        <span>Fees</span>
-                        <span>
-                            <span># </span>
-                            <span className='text-green-900 text-[0.9rem]'>{getTotalPrice(enrolledDetails, 'fees')}</span>
-                        </span>
-
-                    </div>
                     <div className="grid justify-end mt-3 mb-1">
                         <span className='h-[0.1rem] w-14 bg-black'></span>
                     </div>
@@ -77,7 +69,5 @@ function Overview({ enrolledDetails }) {
         </div>
     )
 }
-
-// Part classes and the selected payment summary
 
 export default Overview
