@@ -16,6 +16,7 @@ function Success() {
     const refresh = useRefreshToken();
     const [isLoading, setIsLoading] = useState(false)
     const { auth } = useAuth()
+    const queryParams = new URLSearchParams(location.search);
 
     const navigateToEnrolledPage = () => {
         const navigatePage =
@@ -29,6 +30,11 @@ function Success() {
     }
 
     useEffect(() => {
+        const redirectUrl = queryParams.get('redirectUrl')
+        if (redirectUrl !== 'paymentGateway') {
+            return navigate('/')
+        }
+
         let isMounted = true;
 
         const verifyRefreshToken = async () => {
