@@ -1,6 +1,6 @@
 const getTotalPrice = (totalData, calc) => {
     const sumPrices = (items) => {
-        return items.reduce((sum, item) => {
+        return items?.reduce((sum, item) => {
             // Check for different price-related properties
             const price =
                 calc === 'fees'
