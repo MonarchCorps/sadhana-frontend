@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import useScrollTop from '../../../../../hooks/useScrollTop'
 import trim from '../../../../../utils/trim'
+import { IKImage } from 'imagekitio-react'
 
 //At least other component is using this Class component
 function Class({ course }) {
@@ -14,7 +15,18 @@ function Class({ course }) {
     return (
         <div className='shadow-shadow rounded-lg overflow-hidden flex mb-6 h-80'>
             <div className='w-[35%]'>
-                <img src={course?.thumbnailPhoto} alt="Course image" className='size-full object-cover -mb-56' />
+                <IKImage
+                    key={course?.thumbnailPhoto}
+                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                    path={course?.thumbnailPhoto}
+                    className='size-full object-cover -mb-56'
+                    loading='lazy'
+                    lqip={{
+                        active: true,
+                        quality: 20
+                    }}
+                    alt={`${course?.thumbnailPhoto} image`}
+                />
             </div>
             <div className='pt-6 px-2 ml-8 w-1/2'>
                 <h1 className='font-500 text-2xl mb-3'>{course?.classname}</h1>

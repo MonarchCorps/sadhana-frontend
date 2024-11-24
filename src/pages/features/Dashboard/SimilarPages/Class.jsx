@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import useScrollTop from '../../../../hooks/useScrollTop'
 import trim from '../../../../utils/trim'
+import { IKImage } from 'imagekitio-react'
 
 //At least other component is using this Class component
 function Class({ course, handleUnBookClass }) {
@@ -12,11 +13,22 @@ function Class({ course, handleUnBookClass }) {
     const { scrollTop } = useScrollTop();
 
     return (
-        <div className='shadow-shadow rounded-lg overflow-hidden flex mb-6 h-80'>
-            <div className='w-[35%]'>
-                <img src={course?.thumbnailPhoto} alt="Course image" className='size-full object-cover -mb-56' />
+        <div className='shadow-shadow rounded-lg overflow-hidden flex w-full mb-6 h-80'>
+            <div className='w-[40%]'>
+                <IKImage
+                    key={course?.thumbnailPhoto}
+                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                    path={course?.thumbnailPhoto}
+                    className='size-full object-cover -mb-56'
+                    loading='lazy'
+                    lqip={{
+                        active: true,
+                        quality: 20
+                    }}
+                    alt={`${course?.classname} image`}
+                />
             </div>
-            <div className='pt-6 px-2 ml-8 w-1/2'>
+            <div className='pt-6 px-2 ml-8 w-3/5'>
                 <h1 className='font-500 text-2xl mb-3'>{trim(course?.classname, 24)}</h1>
                 <div className='grid mb-3 grid-cols-2 w-fit gap-y-2 gap-x-6'>
                     <span>
@@ -47,7 +59,7 @@ function Class({ course, handleUnBookClass }) {
                     </span>
                 </div>
                 <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 ">
-                    {trim(course?.description, 70)}
+                    {trim(course?.description, 80)}
                 </p>
                 <div className='flex gap-3 items-center'>
                     <Link
