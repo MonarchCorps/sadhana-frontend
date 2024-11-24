@@ -5,9 +5,11 @@ import SkeletonLoader2 from '../../../../../components/SkeletonLoaders/SkeletonL
 import ReactPagination from '../../../../../components/ReactPagination'
 import { useEffect, useState } from 'react'
 import Loading from '../../../../../components/Loaders/Loading'
-import toast from 'react-hot-toast'
+import useClassActions from '@/hooks/useClassActions'
 
-function SelectedCourses({ selectedCourses, isLoading, isFetching, isFetched, handleUnBookClass }) {
+function SelectedCourses({ selectedCourses, isLoading }) {
+
+    const { handleUnBookClass } = useClassActions()
 
     const [page, setPage] = useState(0);
     // this filteredData is for the pagination on page
@@ -22,15 +24,9 @@ function SelectedCourses({ selectedCourses, isLoading, isFetching, isFetched, ha
         )
     }, [page, selectedCourses])
 
-    useEffect(() => {
-        if (isFetched) {
-            toast.success('Fetched successfully')
-        }
-    }, [isFetched])
-
     return (
         <div className="grid grid-flow-row gap-2">
-            <Loading isLoading={isFetching} text='refetching class' />
+            <Loading isLoading={isLoading} />
             {
                 isLoading &&
                 <div className='grid grid-cols-4 gap-3'>

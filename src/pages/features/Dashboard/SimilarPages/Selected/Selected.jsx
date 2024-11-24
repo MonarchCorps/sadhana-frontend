@@ -5,7 +5,6 @@ import useAuth from '../../../../../hooks/useAuth'
 
 import SelectedCourses from './SelectedCourses'
 import PaymentSummary from './PaymentSummary'
-import useClassActions from '../../../../../hooks/useClassActions'
 import axios from '../../../../../api/axios'
 
 function Selected() {
@@ -13,7 +12,7 @@ function Selected() {
     const { auth } = useAuth();
     const [selectedCourses, setSelectedCourses] = useState([])
 
-    const { isFetching, isLoading, isFetched, data: classes } = useQuery({
+    const { isLoading, data: classes } = useQuery({
         queryKey: ['homePageClasses'],
         queryFn: () =>
             axios.get('/public/class').then((res) => {
@@ -28,12 +27,11 @@ function Selected() {
         setSelectedCourses(data, auth?.selectedCourses)
     }, [classes, auth?.selectedCourses])
 
-    const { handleUnBookClass } = useClassActions()
 
     return (
         <>
             <section>
-                <div className='max-w-[66rem] mx-auto py-10 pr-5 h-full relative'>
+                <div className='max-w-[69rem] mx-auto py-10 pr-5 h-full relative'>
                     <div className="mb-10 text-center">
                         <h1 className='text-[2.3rem] mb-2 font-500 font-sans text-center'>
                             My <span className="text-[#27554a]">Selected classes</span>
@@ -42,7 +40,7 @@ function Selected() {
                         <p className="text-sm">{`${selectedCourses?.length || 0} class(es)`}</p>
                     </div>
                     <div className='w-full grid grid-flow-col gap-4'>
-                        <SelectedCourses selectedCourses={selectedCourses} isLoading={isLoading} isFetching={isFetching} isFetched={isFetched} handleUnBookClass={handleUnBookClass} />
+                        <SelectedCourses selectedCourses={selectedCourses} isLoading={isLoading} />
                         {
                             !isLoading && selectedCourses?.length > 0 && (
                                 <PaymentSummary selectedCourses={selectedCourses} />
