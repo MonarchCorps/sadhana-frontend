@@ -144,6 +144,11 @@ function AddClass() {
             setPreview(null);
             setDayArray([]);
             setTime({});
+            setImg({
+                isLoading: false,
+                error: '',
+                dbData: {},
+            })
 
             toast.success('Created successfully')
         },
