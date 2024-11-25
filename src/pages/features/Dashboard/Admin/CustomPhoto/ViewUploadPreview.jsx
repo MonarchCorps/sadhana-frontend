@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Masonry from 'react-masonry-css'
 import { FaTrash } from 'react-icons/fa'
-import ReactImageMagnify from 'react-image-magnify';
+// import ReactImageMagnify from 'react-image-magnify';
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 
@@ -34,7 +34,7 @@ function ViewUploadPreview({ previews, setPreviews, isUploading }) {
                             }}
                         >
                             <HoverCardTrigger>
-                                <ReactImageMagnify
+                                {/* <ReactImageMagnify
                                     {...{
                                         smallImage: {
                                             alt: 'Wristwatch by Ted Baker London',
@@ -56,7 +56,8 @@ function ViewUploadPreview({ previews, setPreviews, isUploading }) {
                                             zIndex: 10,
                                         },
                                     }}
-                                />
+                                /> */}
+                                <img src={preview.blobUrl} alt="Preview" />
                             </HoverCardTrigger>
                             <HoverCardContent
                                 align="center"
