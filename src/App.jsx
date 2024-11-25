@@ -63,6 +63,7 @@ import Earnings from './pages/features/Dashboard/Instructors/Earnings'
 import { Toaster } from 'react-hot-toast'
 
 import DashboardRedirect from './components/DashboardRedirect'
+import ChatPage from './chat/home/ChatPage'
 
 const ROLES = {
 	User: parseInt(import.meta.env.VITE_USER_CODE),
@@ -219,6 +220,8 @@ function App() {
 				<Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Instructor, ROLES.Admin]} />}>
 					<Route path='/custom-photo' element={<CustomPhoto />} />
 				</Route>
+
+				<Route path='/chat' element={<ChatPage />} />
 
 				<Route path='/success' element={<Success />} />
 				<Route path='/cancel' element={<Cancel />} />
