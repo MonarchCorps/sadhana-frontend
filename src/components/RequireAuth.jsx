@@ -20,6 +20,14 @@ const RequireAuth = ({ allowedRoles }) => {
     const hasInstructorRole = auth?.roles?.includes(ROLES.Instructor);
     const hasUserRole = auth?.roles?.includes(ROLES.User);
 
+    if (allowedRoles.includes(ROLES.Admin) && allowedRoles.includes(ROLES.Instructor) && allowedRoles.includes(ROLES.User)) {
+        if (auth?.roles) {
+            return <Outlet />
+        } else {
+            return <Navigate to='/auth' state={{ from: location }} replace />
+        }
+    }
+
     if (allowedRoles.includes(ROLES.Admin)) {
         if (hasUserRole && hasInstructorRole && hasAdminRole) {
             return <Outlet />
