@@ -71,7 +71,7 @@ function NewPrompt({
                 }
             }
         } catch (error) {
-            setErrMsg('Error udating chat!')
+            setErrMsg('Error updating chat!')
             console.log(error)
         }
         setQuestion('')
