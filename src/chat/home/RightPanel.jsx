@@ -34,7 +34,6 @@ const RightPanel = () => {
                         />
                         <div className='flex flex-col'>
                             <p className='text-sm'>{conversationName}</p>
-                            {console.log(auth?.roles)}
                             {isGroup && <GroupMembersDialog />}
                             {!isGroup && (auth?.roles?.includes(parseInt(import.meta.env.VITE_ADMIN_CODE))
                                 ?

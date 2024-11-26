@@ -19,9 +19,9 @@ const Conversation = ({ conversation }) => {
         <>
             <div className={`flex gap-2 items-center p-3 hover:bg-[#f4f5f5] cursor-pointer`}>
                 <div className={`${conversation?.isOnline && 'border border-gray-900 overflow-visible relative rounded-full'}`}>
-                    {conversation?.isOnline && (
-                        <div className='absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-solid border-[#020817] z-50' />
-                    )}
+                    {/* {conversation?.isOnline && ( */}
+                    {/* // <div className='absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-solid border-[#020817] z-50' /> */}
+                    {/* // )} */}
                     <IKImage
                         key={auth?.profileImage}
                         urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}

@@ -1,7 +1,8 @@
 import { Input } from "@/components/ui/input";
-import { ListFilter, LogOut, MessageSquareDiff, Search, User } from "lucide-react"
+import { ListFilter, LogOut, Search, User } from "lucide-react"
 import { conversations } from '../dummyData/db'
 import Conversation from "./Conversation";
+import UserListDialog from "./UserListDialog";
 
 const LeftPanel = () => {
 
@@ -12,8 +13,7 @@ const LeftPanel = () => {
                     <User size={24} />
 
                     <div className='flex items-center gap-3'>
-                        <MessageSquareDiff size={20} />
-
+                        <UserListDialog />
                         <LogOut size={20} className='cursor-pointer' />
                     </div>
                 </div>
