@@ -1,10 +1,24 @@
-import { Input } from "@/components/ui/input";
-import { ListFilter, LogOut, Search, User } from "lucide-react"
-import { conversations } from '../dummyData/db'
-import Conversation from "./Conversation";
-import UserListDialog from "./UserListDialog";
+import { Input } from '@/components/ui/input'
+import { ListFilter, LogOut, Search, User } from 'lucide-react'
+import Conversation from './Conversation'
+import UserListDialog from './UserListDialog'
+import { useQuery } from '@tanstack/react-query'
+import useAuth from '@/hooks/useAuth'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
+import Loading4 from '@/components/Loaders/Loading4'
 
 const LeftPanel = () => {
+
+    const { auth } = useAuth()
+    const axiosPrivate = useAxiosPrivate()
+    const { data: conversations, isPending } = useQuery({
+        queryKey: ['fetchConversations', auth?._id],
+        queryFn: () =>
+            axiosPrivate.get(`/conversation/${auth?._id}`).then((res) => {
+                return res?.data
+            }),
+        enabled: !!auth?._id
+    })
 
     return (
         <div className='w-1/4 border-slate-600 border-r'>
@@ -34,14 +48,17 @@ const LeftPanel = () => {
             </div>
 
             <div className='my-3 flex flex-col gap-0 max-h-[80%] overflow-auto'>
-                {conversations?.map(conversation => (
-                    <Conversation key={conversation?._id} conversation={conversation} />
-                ))}
+                {isPending
+                    ? <Loading4 size={30} bgColor='#000' />
+                    : !isPending && (conversations?.map(conversation => (
+                        <Conversation key={conversation?._id} conversation={conversation} />
+                    )))
+                }
                 {conversations?.length === 0 && (
                     <>
                         <p className='text-center text-gray-500 text-sm mt-3'>No conversations yet</p>
                         <p className='text-center text-gray-500 text-sm mt-3 '>
-                            We understand {"you're"} an introvert, but {"you've"} got to start somewhere 😊
+                            We understand you&apos;re an introvert, but you&apos;ve got to start somewhere 😊
                         </p>
                     </>
                 )}

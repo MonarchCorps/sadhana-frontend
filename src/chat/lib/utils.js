@@ -1,13 +1,26 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+import { parseISO } from 'date-fns';
+
 
 export function cn(...inputs) {
     return twMerge(clsx(inputs));
 }
 
 export function formatDate(date_ms) {
+
+    const convertToTimestamp = (date_ms) => {
+        // Parse the ISO string to a Date object
+        const date = parseISO(date_ms);
+
+        // Get the timestamp in milliseconds
+        return date.getTime();
+    }
+
+    let formatDatedDate = convertToTimestamp(date_ms)
+
     // Convert milliseconds to seconds
-    let date_seconds = date_ms / 1000;
+    let date_seconds = formatDatedDate / 1000;
 
     // Convert to Date object
     let date_obj = new Date(date_seconds * 1000);

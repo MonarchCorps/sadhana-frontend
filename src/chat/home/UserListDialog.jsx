@@ -9,7 +9,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { ImageIcon, MessageSquareDiff } from "lucide-react"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import useAxiosPrivate from "@/hooks/useAxiosPrivate"
 import { IKImage } from "imagekitio-react"
 import { Input } from "@/components/ui/input"
@@ -25,6 +25,7 @@ const UserListDialog = () => {
 
     const axiosPrivate = useAxiosPrivate()
     const { auth } = useAuth()
+    const queryClient = useQueryClient()
 
     const [selectedUsers, setSelectedUsers] = useState([])
     const [groupName, setGroupName] = useState("")
@@ -75,6 +76,7 @@ const UserListDialog = () => {
             }
         },
         onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["fetchConversations", auth?._id] })
             dialogCloseRef.current?.click()
             setSelectedUsers([]);
             setGroupName('')

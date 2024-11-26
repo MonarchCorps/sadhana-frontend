@@ -25,7 +25,8 @@ const RightPanel = () => {
                             key={auth?.profileImage}
                             urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
                             path={auth?.profileImage}
-                            className='animate-pulse w-10 h-10 rounded-full object-cover' loading='lazy'
+                            className='animate-pulse w-10 h-10 rounded-full object-cover'
+                            loading='lazy'
                             lqip={{
                                 active: true,
                                 quality: 20
