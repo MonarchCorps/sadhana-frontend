@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
     Dialog,
     DialogContent,
@@ -9,11 +10,21 @@ import {
 import { Crown } from 'lucide-react'
 import { IKImage } from 'imagekitio-react'
 import useAuth from '@/hooks/useAuth'
-import { users } from '../dummyData/db';
+import { useQuery } from '@tanstack/react-query'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 
-const GroupMembersDialog = () => {
+const GroupMembersDialog = ({ selectedConversation }) => {
 
     const { auth } = useAuth()
+    const axiosPrivate = useAxiosPrivate()
+
+    const { data: users } = useQuery({
+        queryKey: ['groupMembersDialog', auth?._id],
+        queryFn: () =>
+            axiosPrivate.get(`/conversation/group-members/${selectedConversation?._id}`, { conversationId: selectedConversation?._id }).then((res) => {
+                return res?.data
+            }),
+    })
 
     return (
         <Dialog>
@@ -32,23 +43,24 @@ const GroupMembersDialog = () => {
                                             <div className='absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-solid border-[#020817] z-50' />
                                         )}
                                         <IKImage
-                                            key={auth?.profileImage}
+                                            key={user?.profileImage}
                                             urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
-                                            path={auth?.profileImage}
-                                            className='w-10 h-8 bg-gray-tertiary object-cover rounded-full' loading='lazy'
+                                            path={user?.profileImage}
+                                            className='w-10 h-8 bg-gray-tertiary object-cover rounded-full'
+                                            loading='lazy'
                                             lqip={{
                                                 active: true,
                                                 quality: 20
                                             }}
-                                            alt={`${auth?.username} image`}
+                                            alt={`${user?.username} image`}
                                         />
                                     </div>
                                     <div className='w-full '>
                                         <div className='flex items-center gap-2'>
                                             <h3 className='text-md font-medium text-slate-400'>
-                                                {user.name || user.email.split('@')[0]}
+                                                {user?.username}
                                             </h3>
-                                            {user.admin && <Crown size={16} className='text-yellow-400' />}
+                                            {user?._id === selectedConversation?.admin && <Crown size={16} className='text-yellow-400' />}
                                         </div>
                                     </div>
                                 </div>

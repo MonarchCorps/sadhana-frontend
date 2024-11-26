@@ -5,6 +5,7 @@ import { formatDate } from '../lib/utils'
 import { IKImage } from 'imagekitio-react'
 import trim from '@/utils/trim'
 import useAuth from '@/hooks/useAuth'
+import { useConversationStore } from '../store/chatStore'
 
 const Conversation = ({ conversation }) => {
     const { auth } = useAuth()
@@ -13,9 +14,14 @@ const Conversation = ({ conversation }) => {
     const lastMessage = conversation?.lastMessage
     const lastMessageType = lastMessage?.messageType
 
+    const { selectedConversation, setSelectedConversation } = useConversationStore()
+    const activeBgClass = selectedConversation?._id === conversation?._id
+
     return (
         <>
-            <div className={`flex gap-3 p-3 hover:bg-[#f4f5f5] cursor-pointer`}>
+            <div className={`flex gap-3 p-3 hover:bg-[#f4f5f5] cursor-pointer ${activeBgClass ? 'bg-[#eff0f0]' : ''}`}
+                onClick={() => setSelectedConversation(conversation)}
+            >
                 <div className={`w-12 ${conversation?.isOnline ? 'border border-gray-900 overflow-visible relative rounded-full' : ''}`}>
                     {/* {conversation?.isOnline && ( */}
                     {/* // <div className='absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-solid border-[#020817] z-50' /> */}

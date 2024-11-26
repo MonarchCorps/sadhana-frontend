@@ -1,11 +1,12 @@
 import { Input } from '@/components/ui/input'
-import { ListFilter, LogOut, Search, User } from 'lucide-react'
+import { ListFilter, LogOut, Search } from 'lucide-react'
 import Conversation from './Conversation'
 import UserListDialog from './UserListDialog'
 import { useQuery } from '@tanstack/react-query'
 import useAuth from '@/hooks/useAuth'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import Loading4 from '@/components/Loaders/Loading4'
+import { IKImage } from 'imagekitio-react'
 
 const LeftPanel = () => {
 
@@ -23,8 +24,19 @@ const LeftPanel = () => {
     return (
         <div className='w-1/4 border-slate-600 border-r'>
             <div className='sticky top-0 bg-[#ffffff] z-10'>
-                <div className='flex justify-between bg-[#f0f2f5] px-3 py-5 items-center'>
-                    <User size={24} />
+                <div className='flex justify-between bg-[#f0f2f5] p-3 items-center'>
+                    <IKImage
+                        key={auth?.profileImage}
+                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                        path={auth?.profileImage}
+                        className='w-10 h-10 object-cover rounded-full'
+                        loading='lazy'
+                        lqip={{
+                            active: true,
+                            quality: 20
+                        }}
+                        alt={`${auth?.username || 'User'} image`}
+                    />
 
                     <div className='flex items-center gap-3'>
                         <UserListDialog />
@@ -49,7 +61,9 @@ const LeftPanel = () => {
 
             <div className='my-3 flex flex-col gap-0 max-h-[80%] overflow-auto'>
                 {isPending
-                    ? <Loading4 size={30} bgColor='#000' />
+                    ? <div className='size-full grid place-content-center text-center h-[60vh]'>
+                        <Loading4 size={30} bgColor='#000' />
+                    </div>
                     : !isPending && (conversations?.map(conversation => (
                         <Conversation key={conversation?._id} conversation={conversation} />
                     )))

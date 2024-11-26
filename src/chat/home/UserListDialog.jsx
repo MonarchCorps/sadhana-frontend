@@ -71,7 +71,8 @@ const UserListDialog = () => {
                     participants: [...selectedUsers, auth?._id],
                     isGroup: true,
                     groupName,
-                    groupImage: img.dbData?.filePath
+                    groupImage: img.dbData?.filePath,
+                    admin: auth?._id
                 })
             }
         },
