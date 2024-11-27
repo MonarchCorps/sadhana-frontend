@@ -9,6 +9,7 @@ import AuthSwiper from '../../../../components/AuthSwiper/AuthSwiper'
 import toast from 'react-hot-toast'
 import { useMutation } from '@tanstack/react-query'
 import AuthHeader from '../AuthHeader'
+import useSocket from '@/hooks/useSocket'
 
 function Register() {
 
@@ -19,6 +20,8 @@ function Register() {
 
     const from = location.state?.from?.pathname || '/';
     const screenHeight = screen.height
+
+    const { connectSocket } = useSocket()
 
     const queryParams = new URLSearchParams(location.search);
     const initialParams = {
@@ -78,6 +81,8 @@ function Register() {
                 gender: '',
                 profileImage: null,
             })
+
+            connectSocket(response.data._id)
         },
         onError: (error) => {
             if (!error?.response) {

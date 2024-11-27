@@ -1,9 +1,11 @@
 import axios from '../api/axios'
 import useAuth from './useAuth'
+import useSocket from './useSocket';
 
 function useRefreshToken() {
 
     const { setAuth } = useAuth();
+    const { connectSocket } = useSocket()
 
     const refresh = async () => {
         const response = await axios.get('/auth/refresh', {
@@ -28,7 +30,7 @@ function useRefreshToken() {
                 account: response.data?.instructor?.account
             }
         });
-
+        connectSocket(response.data._id)
         return response.data.accessToken;
     }
 

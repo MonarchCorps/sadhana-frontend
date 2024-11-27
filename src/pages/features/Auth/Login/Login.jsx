@@ -9,6 +9,7 @@ import AuthSwiper from '../../../../components/AuthSwiper/AuthSwiper'
 import toast from 'react-hot-toast'
 import { useMutation } from '@tanstack/react-query'
 import AuthHeader from '../AuthHeader'
+import useSocket from '@/hooks/useSocket'
 
 function Login() {
 
@@ -19,6 +20,8 @@ function Login() {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
+
+    const { connectSocket } = useSocket()
 
     const screenHeight = screen.height
 
@@ -49,6 +52,8 @@ function Login() {
             toast.success('Logged in successfully')
             setUser('');
             setPassword('');
+
+            connectSocket(response.data._id)
         },
         onError: (error) => {
             const errorMessage = error?.response?.data?.message || 'Failed to login';
