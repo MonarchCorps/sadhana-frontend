@@ -3,17 +3,25 @@ import Subscribe from '../Subscribe/Subscribe'
 import Footer from '../partials/Footer/Footer'
 import SkeletonLoader2 from '../SkeletonLoaders/SkeletonLoader2'
 import { useParams } from 'react-router-dom'
-import useGetDataPublic from '../../hooks/useGetDataPublic'
 import Class from '../HomeAllClasses/Class'
 import useClassActions from '../../hooks/useClassActions'
+import { useQuery } from '@tanstack/react-query'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 
 
 function OtherUploadedCoursesByUser() {
 
     const { userId } = useParams();
+    const axiosPrivate = useAxiosPrivate()
     const { handleBookClass, handleUnBookClass } = useClassActions()
 
-    const { data: instructorUploadedCourse, isLoading } = useGetDataPublic(`/dashboard/instructor/${userId}/all-classes`)
+    const { isLoading, data: instructorUploadedCourse } = useQuery({
+        queryKey: ['instructorUploadedCourse', userId],
+        queryFn: () =>
+            axiosPrivate.get(`/public/instructor/${userId}/all-classes`).then((res) => {
+                return res?.data
+            }),
+    })
 
     return (
         <>
