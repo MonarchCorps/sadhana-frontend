@@ -1,5 +1,5 @@
 import { Laugh, Mic, Plus, Send } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -9,14 +9,20 @@ import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import toast from 'react-hot-toast'
 import useComponentVisible from '@/hooks/useComponentVisible'
 import EmojiPicker, { Theme } from 'emoji-picker-react'
+import useSocket from '@/hooks/useSocket'
 
 const MessageInput = () => {
 
     const { auth } = useAuth()
     const axiosPrivate = useAxiosPrivate()
     const queryClient = useQueryClient()
+    const { connectSocket } = useSocket()
+
+    const socket = connectSocket(auth?._id)
 
     const [msgText, setMsgText] = useState('')
+    const [typingTimeout, setTypingTimeout] = useState(null);
+
     const { selectedConversation } = useConversationStore()
     const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
 
@@ -41,6 +47,22 @@ const MessageInput = () => {
         },
     })
 
+    useEffect(() => {
+        if (!socket || !selectedConversation?._id) return;
+
+        if (msgText.length > 0) {
+            socket.emit('activity', { conversationId: selectedConversation._id, status: 'typing' });
+            clearTimeout(typingTimeout);
+
+            setTypingTimeout(setTimeout(() => {
+                socket.emit('activity', { conversationId: selectedConversation._id, status: 'stopped' });
+            }, 2000));
+        } else {
+            socket.emit('activity', { conversationId: selectedConversation._id, status: 'stopped' });
+        }
+
+        return () => clearTimeout(typingTimeout);
+    }, [msgText, selectedConversation?._id, socket]);
 
     return (
         <div className='bg-[#f0f2f5] p-2 flex gap-4 items-center'>
