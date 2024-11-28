@@ -213,6 +213,11 @@ function App() {
 					<Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />}>
 						<Route path='/instructor/add-bank-info' element={<AddBankInfo />} />
 					</Route>
+
+					<Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Instructor, ROLES.Admin]} />}>
+						<Route path='/chat' element={<ChatPage />} />
+					</Route>
+
 				</Route>
 
 				{/* Similar routes */}
@@ -221,7 +226,6 @@ function App() {
 					<Route path='/custom-photo' element={<CustomPhoto />} />
 				</Route>
 
-				<Route path='/chat' element={<ChatPage />} />
 
 				<Route path='/success' element={<Success />} />
 				<Route path='/cancel' element={<Cancel />} />
