@@ -182,10 +182,11 @@ const UserListDialog = () => {
                     ))}
                 </div>
                 <div className='flex justify-between'>
-                    <Button variant='secondary'>Cancel</Button>
+                    <Button onClick={() => dialogCloseRef.current?.click()}>Cancel</Button>
                     <Button
+                        variant='secondary'
                         onClick={() => handleCreateConversation.mutate()}
-                        disabled={selectedUsers.length === 0 || (selectedUsers.length > 1 && !groupName) || handleCreateConversation.isPending || img.dbData?.isLoading || img.error}
+                        disabled={selectedUsers.length === 0 || (selectedUsers.length > 1 && !groupName) || handleCreateConversation.isPending || img.isLoading || img.error || !img.dbData}
                     >
                         {/* spinner */}
                         {handleCreateConversation.isPending ? (
