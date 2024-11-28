@@ -32,7 +32,6 @@ function useSocket() {
         });
 
         socket.on('getOnlineUsers', (userIds) => {
-            console.log('Online users:', userIds);
             setOnlineUsers(userIds);
         });
 

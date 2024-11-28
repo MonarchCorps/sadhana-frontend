@@ -7,15 +7,15 @@ export function cn(...inputs) {
     return twMerge(clsx(inputs));
 }
 
+export const convertToTimestamp = (date_ms) => {
+    // Parse the ISO string to a Date object
+    const date = parseISO(date_ms);
+
+    // Get the timestamp in milliseconds
+    return date.getTime();
+}
+
 export function formatDate(date_ms) {
-
-    const convertToTimestamp = (date_ms) => {
-        // Parse the ISO string to a Date object
-        const date = parseISO(date_ms);
-
-        // Get the timestamp in milliseconds
-        return date.getTime();
-    }
 
     let formatDatedDate = convertToTimestamp(date_ms)
 
@@ -75,9 +75,9 @@ export const getRelativeDateTime = (message, previousMessage) => {
     const lastWeek = new Date(today);
     lastWeek.setDate(lastWeek.getDate() - 7);
 
-    const messageDate = new Date(message._creationTime);
+    const messageDate = new Date(message.createdAt);
 
-    if (!previousMessage || !isSameDay(previousMessage._creationTime, messageDate.getTime())) {
+    if (!previousMessage || !isSameDay(previousMessage.createdAt, messageDate.getTime())) {
         if (isSameDay(messageDate.getTime(), today.getTime())) {
             return "Today";
         } else if (isSameDay(messageDate.getTime(), yesterday.getTime())) {

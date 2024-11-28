@@ -82,7 +82,8 @@ const UserListDialog = () => {
             setSelectedUsers([]);
             setGroupName('')
         },
-        onError: () => {
+        onError: (error) => {
+            console.log(error)
             toast.error('Network error')
         }
     })

@@ -1,21 +1,22 @@
-import useAuth from '@/hooks/useAuth'
 import ChatPlaceHolder from './ChatPlaceholder'
 import { IKImage } from 'imagekitio-react'
 import { Phone, Video, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import MessageContainer from './MessageContainer'
 import MessageInput from './MessageInput'
-import GroupMembersDialog from './GroupMemebersDialog'
+import GroupMembersDialog from './GroupMembersDialog'
 import { useConversationStore } from '../store/chatStore'
+import TypingUsers from './TypingUsers'
+import { useState } from 'react'
 
 const RightPanel = () => {
-    const { auth } = useAuth()
     const { selectedConversation, setSelectedConversation } = useConversationStore()
+    const [showName, setShowName] = useState('')
+
     if (!selectedConversation) return <ChatPlaceHolder />
 
     const conversationName = selectedConversation?.groupName || selectedConversation?.userDetails?.username
     const conversationImage = selectedConversation?.groupImage || selectedConversation?.userDetails?.profileImage
-
     const isGroup = selectedConversation?.isGroup
 
     return (
@@ -38,24 +39,8 @@ const RightPanel = () => {
                         />
                         <div className='flex flex-col'>
                             <p className='text-sm'>{conversationName}</p>
-                            {isGroup && <GroupMembersDialog selectedConversation={selectedConversation} />}
-                            {!isGroup && (auth?.roles?.includes(parseInt(import.meta.env.VITE_ADMIN_CODE))
-                                ?
-                                <span className='border border-solid border-[#15433c] bg-[#45837a1a] text-[#15433c] rounded-2xl text-center p-0 h-5 grid place-items-center'>
-                                    <span className='text-[0.65rem] tracking-tight leading-none pt-[0.15rem]'>Admin </span>
-                                </span>
-                                :
-                                auth?.roles?.includes(parseInt(import.meta.env.VITE_INSTRUCTOR_CODE)) ?
-                                    <span className='border border-solid border-[#4358d1] bg-[#2e387122] text-[#4358d1] rounded-2xl text-center p-0 h-5 grid place-items-center'>
-                                        <span className='text-[0.65rem] tracking-tight leading-none pt-[0.15rem]'>Instructor </span>
-                                    </span>
-
-                                    :
-                                    < span className='border border-solid border-[#d143ab] bg-[#2e387122] text-[#d143ab] rounded-2xl text-center p-0 h-5 grid place-items-center'>
-                                        <span className='text-[0.65rem] tracking-tight leading-none pt-[0.15rem]'>User </span>
-                                    </span>
-                            )}
-
+                            <TypingUsers showName={showName} setShowName={setShowName} />
+                            {isGroup && !showName && <GroupMembersDialog selectedConversation={selectedConversation} />}
                         </div>
                     </div>
 
