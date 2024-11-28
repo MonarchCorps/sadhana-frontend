@@ -39,7 +39,7 @@ const RightPanel = () => {
                         />
                         <div className='flex flex-col'>
                             <p className='text-sm'>{conversationName}</p>
-                            <TypingUsers showName={showName} setShowName={setShowName} />
+                            <TypingUsers showName={showName} setShowName={setShowName} currentConversationId={selectedConversation?._id} />
                             {isGroup && !showName && <GroupMembersDialog selectedConversation={selectedConversation} />}
                         </div>
                     </div>

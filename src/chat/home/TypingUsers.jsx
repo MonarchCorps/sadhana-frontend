@@ -1,32 +1,33 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect, useRef } from "react"
-import useSocket from "@/hooks/useSocket"
-import useFetchUsername from "@/hooks/useFetchUsername"
-import useAuth from "@/hooks/useAuth"
+import { useState, useEffect, useRef } from 'react';
+import useSocket from '@/hooks/useSocket';
+import useFetchUsername from '@/hooks/useFetchUsername';
+import useAuth from '@/hooks/useAuth';
 
-const TypingUsers = ({ showName, setShowName }) => {
+const TypingUsers = ({ showName, setShowName, currentConversationId }) => {
     const { auth } = useAuth();
-    const { connectSocket } = useSocket()
-    const socket = connectSocket(auth?._id)
+    const { connectSocket } = useSocket();
+    const socket = connectSocket(auth?._id);
 
     const [typingUsers, setTypingUsers] = useState([]);
     const [currentUserIndex, setCurrentUserIndex] = useState(0);
-    const typingTimers = useRef({})
+    const typingTimers = useRef({});
 
     const { fetchName } = useFetchUsername();
 
-    const userNames = typingUsers.map((userId) => {
-        const username = fetchName(userId);
-        return username;
-    })
+    const userNames = typingUsers.map(({ userId }) => fetchName(userId));
 
     useEffect(() => {
         if (!socket) return;
 
         const handleActivity = ({ userId, conversationId, status }) => {
+            console.log(conversationId !== currentConversationId)
+            if (conversationId !== currentConversationId) return;
+
             if (status === 'typing') {
                 setTypingUsers((prev) => {
-                    if (!prev.includes(userId)) return [...prev, userId];
+                    const userExists = prev.some((user) => user.userId === userId);
+                    if (!userExists) return [...prev, { userId, conversationId }];
                     return prev;
                 });
 
@@ -34,11 +35,15 @@ const TypingUsers = ({ showName, setShowName }) => {
                     clearTimeout(typingTimers.current[userId]);
                 }
                 typingTimers.current[userId] = setTimeout(() => {
-                    setTypingUsers((prev) => prev.filter((id) => id !== userId));
+                    setTypingUsers((prev) =>
+                        prev.filter((user) => user.userId !== userId)
+                    );
                     delete typingTimers.current[userId];
                 }, 3000);
             } else if (status === 'stopped') {
-                setTypingUsers((prev) => prev.filter((id) => id !== userId));
+                setTypingUsers((prev) =>
+                    prev.filter((user) => user.userId !== userId)
+                );
                 if (typingTimers.current[userId]) {
                     clearTimeout(typingTimers.current[userId]);
                     delete typingTimers.current[userId];
@@ -53,7 +58,7 @@ const TypingUsers = ({ showName, setShowName }) => {
             Object.values(typingTimers.current).forEach(clearTimeout);
             typingTimers.current = {};
         };
-    }, [socket]);
+    }, [socket, currentConversationId]);
 
     useEffect(() => {
         if (typingUsers.length === 0) {
@@ -63,20 +68,19 @@ const TypingUsers = ({ showName, setShowName }) => {
 
         const interval = setInterval(() => {
             setShowName(userNames[currentUserIndex] || '')
-            setCurrentUserIndex((prevIndex) => (prevIndex + 1) % typingUsers.length)
+            setCurrentUserIndex((prevIndex) => (prevIndex + 1) % typingUsers.length);
         }, 3000)
 
-        return () => clearInterval(interval)
-    }, [typingUsers, currentUserIndex, userNames])
+        return () => clearInterval(interval);
+    }, [typingUsers, currentUserIndex, userNames, setShowName]);
 
     return (
         <div>
             {showName && (
-                <span className="text-sm text-slate-500">{showName} is typing...</span>
+                <span className='text-sm text-slate-500'>{showName} is typing...</span>
             )}
-
         </div>
     );
 };
 
-export default TypingUsers;
+export default TypingUsers

@@ -7,15 +7,18 @@ import useAuth from '@/hooks/useAuth'
 import useOnlineUsers from '@/hooks/useOnlineUsers'
 
 import { useConversationStore } from '../store/chatStore'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import useSocket from '@/hooks/useSocket'
 import { useQueryClient } from '@tanstack/react-query'
+import TypingUsers from './TypingUsers'
 
 const Conversation = ({ conversation }) => {
     const { auth } = useAuth()
     const { onlineUsers } = useOnlineUsers()
     const { connectSocket } = useSocket()
     const queryClient = useQueryClient()
+
+    const [showName, setShowName] = useState('')
 
     const conversationImage = conversation?.groupImage || conversation?.userDetails?.profileImage
     const conversationName = conversation?.groupName || conversation?.userDetails?.username
@@ -86,21 +89,22 @@ const Conversation = ({ conversation }) => {
                     </div>
                     <p className='text-[12px] mt-1 text-gray-500 flex items-center gap-1 '>
                         {lastMessage?.sender === auth?._id && <CheckCheck size={15} />}
+                        <TypingUsers showName={showName} setShowName={setShowName} currentConversationId={conversation?._id} />
                         {conversation?.isGroup && <Users size={16} />}
-                        {!lastMessage && 'Say Hi!'}
-                        {lastMessageType === 'text' ? (
+                        {!showName && !lastMessage && 'Say Hi!'}
+                        {!showName && lastMessageType === 'text' ? (
                             <span className='text-xs'>
                                 {lastMessage?.content.length > 30
                                     ? trim(lastMessage?.content, 30)
                                     : lastMessage?.content}
                             </span>
                         ) : null}
-                        {lastMessageType === 'image' && (
+                        {!showName && lastMessageType === 'image' && (
                             <>
                                 <span className='text-xs'>Photo</span> <ImageIcon size={16} />
                             </>
                         )}
-                        {lastMessageType === 'video' && (
+                        {!showName && lastMessageType === 'video' && (
                             <>
                                 <span className='text-xs'>Video</span> <VideoIcon size={16} />
                             </>
