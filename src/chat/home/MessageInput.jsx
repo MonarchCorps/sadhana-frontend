@@ -64,6 +64,10 @@ const MessageInput = () => {
         return () => clearTimeout(typingTimeout);
     }, [msgText, selectedConversation?._id, socket]);
 
+    useEffect(() => {
+        setMsgText('')
+    }, [selectedConversation?._id])
+
     return (
         <div className='bg-[#f0f2f5] p-2 flex gap-4 items-center'>
             <div className='relative flex gap-2 ml-2'>
@@ -81,7 +85,7 @@ const MessageInput = () => {
                 </div>
                 <Plus className='text-gray-600' />
             </div>
-            <form className='w-full flex gap-3'>
+            <form onSubmit={(e) => e.preventDefault()} className='w-full flex gap-3'>
                 <div className='flex-1'>
                     <Input
                         type='text'
