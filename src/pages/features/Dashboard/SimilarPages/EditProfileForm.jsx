@@ -10,7 +10,8 @@ function EditProfileForm({ handleChange, preview, formData, handleSubmit, img, s
 
     const [isOpen, setIsOpen] = useState(false)
     const { auth } = useAuth()
-    const valid = formData.username && formData.email && formData.gender && formData.phoneNumber && formData.address && !img?.isLoading && !img?.error
+
+    const valid = formData.username && formData.email && formData.gender && formData.phoneNumber && !img?.isLoading && !img?.error
 
     return (
         <>
