@@ -9,13 +9,14 @@ import Loading4 from '@/components/Loaders/Loading4'
 import { IKImage } from 'imagekitio-react'
 import useSocket from '@/hooks/useSocket'
 import { useEffect } from 'react'
+import { useConversationStore } from '../store/chatStore'
 
 const LeftPanel = () => {
     const { auth } = useAuth()
     const axiosPrivate = useAxiosPrivate()
     const queryClient = useQueryClient()
     const { connectSocket } = useSocket()
-
+    const { selectedConversation } = useConversationStore()
     const socket = connectSocket(auth?._id)
 
     const { data: conversations, isPending } = useQuery({
@@ -26,15 +27,12 @@ const LeftPanel = () => {
     })
 
     useEffect(() => {
-        if (!socket) return
-
         const handleNewMessage = (newMessage) => {
             queryClient.setQueryData(['fetchConversations', auth?._id], (oldConversations) => {
                 if (!oldConversations) return []
 
                 return oldConversations.map((conversation) => {
                     if (conversation?._id === newMessage?.conversation) {
-                        console.log(newMessage)
                         return {
                             ...conversation,
                             lastMessage: {
@@ -55,7 +53,7 @@ const LeftPanel = () => {
         return () => {
             socket.off('newMessage', handleNewMessage)
         }
-    }, [auth?._id, queryClient, socket])
+    }, [auth?._id, queryClient, socket, selectedConversation?._id])
 
     return (
         <div className="w-1/4 border-slate-600 border-r">
