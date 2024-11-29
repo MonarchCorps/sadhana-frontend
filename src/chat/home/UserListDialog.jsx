@@ -20,6 +20,7 @@ import UploadImageKitImg from "@/components/UploadImageKit/UploadImageKitImg"
 import { FaInfoCircle } from "react-icons/fa"
 import { ModalContent } from "@/components/Modals/ImageModal"
 import toast from "react-hot-toast"
+import { useConversationStore } from "../store/chatStore"
 
 const UserListDialog = () => {
 
@@ -38,6 +39,8 @@ const UserListDialog = () => {
     const [isOpen, setIsOpen] = useState(false);
     const ikUploadRef = useRef(null)
     const dialogCloseRef = useRef(null)
+
+    const { setSelectedConversation } = useConversationStore()
 
     const { isLoading: userLoading, data: allChatUsers } = useQuery({
         queryKey: ['allChatUsers'],
@@ -76,9 +79,21 @@ const UserListDialog = () => {
                 })
             }
         },
-        onSuccess: () => {
+        onSuccess: async (response) => {
+            const createdConversationId = response.data
             queryClient.invalidateQueries({ queryKey: ["fetchConversations", auth?._id] })
             dialogCloseRef.current?.click()
+
+            if (createdConversationId) {
+                try {
+                    const { data } = await axiosPrivate.get(`/conversation/${auth?._id}`);
+                    const newConversation = data.find(conversation => conversation?._id === createdConversationId)
+                    setSelectedConversation(newConversation)
+                } catch (error) {
+                    console.error("Failed to fetch the new conversation:", error);
+                }
+            }
+
             setSelectedUsers([]);
             setGroupName('')
         },
@@ -156,10 +171,6 @@ const UserListDialog = () => {
                                 }
                             }}
                         >
-                            {/* {user.isOnline && ( */}
-                            {/* <div className='absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-foreground' /> */}
-                            {/* )} */}
-
                             <IKImage
                                 key={user?.profileImage}
                                 urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
@@ -188,7 +199,6 @@ const UserListDialog = () => {
                         onClick={() => handleCreateConversation.mutate()}
                         disabled={selectedUsers.length === 0 || (selectedUsers.length > 1 && !groupName) || handleCreateConversation.isPending || img.isLoading || img.error || !img.dbData}
                     >
-                        {/* spinner */}
                         {handleCreateConversation.isPending ? (
                             <div className='w-5 h-5 border-t-2 border-b-2 rounded-full animate-spin' />
                         ) : (

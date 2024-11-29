@@ -1,4 +1,4 @@
-import { Laugh, Mic, Plus, Send } from 'lucide-react'
+import { Laugh, Mic, Send } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 import useComponentVisible from '@/hooks/useComponentVisible'
 import EmojiPicker, { Theme } from 'emoji-picker-react'
 import useSocket from '@/hooks/useSocket'
+import MediaDropdown from './MediaDropdown'
 
 const MessageInput = () => {
 
@@ -31,7 +32,8 @@ const MessageInput = () => {
             return axiosPrivate.post(`/message/${auth?._id}`,
                 {
                     content: msgText,
-                    conversation: selectedConversation?._id
+                    conversation: selectedConversation?._id,
+                    messageType: 'text'
                 }, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
@@ -83,7 +85,7 @@ const MessageInput = () => {
                     )}
                     <Laugh className='text-gray-600 cursor-pointer' />
                 </div>
-                <Plus className='text-gray-600' />
+                <MediaDropdown conversationId={selectedConversation?._id} />
             </div>
             <form onSubmit={(e) => e.preventDefault()} className='w-full flex gap-3'>
                 <div className='flex-1'>

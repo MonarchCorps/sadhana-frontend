@@ -25,7 +25,7 @@ function UploadImageKitImg({ img, setImg, setPreview, ikUploadRef, children }) {
 
     }
     const onError = err => {
-        toast.error('Reload page, network error')
+        toast.error('Network error')
         setImg(prev => ({ ...prev, isLoading: false, error: err }))
     }
 
