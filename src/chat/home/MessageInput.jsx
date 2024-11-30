@@ -44,8 +44,8 @@ const MessageInput = () => {
             setMsgText('')
         },
         onError: (error) => {
-            console.log(error)
-            toast.error('Error sending message')
+            const errorMessage = error?.response?.data?.message || 'Failed to login';
+            toast.error(error.response ? errorMessage : 'No server response');
         },
     })
 

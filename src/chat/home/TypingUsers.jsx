@@ -21,7 +21,6 @@ const TypingUsers = ({ showName, setShowName, currentConversationId }) => {
         if (!socket) return;
 
         const handleActivity = ({ userId, conversationId, status }) => {
-            console.log(conversationId !== currentConversationId)
             if (conversationId !== currentConversationId) return;
 
             if (status === 'typing') {

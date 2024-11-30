@@ -31,7 +31,7 @@ const MessageContainer = () => {
         }
     }, [auth?._id, selectedConversation?._id, queryClient, socket])
 
-    const { data: messages } = useQuery({
+    const { data: messages = [] } = useQuery({
         queryKey: ['fetchMessages', auth?._id, selectedConversation?._id],
         queryFn: () =>
             axiosPrivate.get(`/message/${auth?._id}?conversation=${selectedConversation?._id}`)
@@ -45,12 +45,41 @@ const MessageContainer = () => {
         }, 100)
     }, [messages, selectedConversation?._id])
 
+    const preprocessMessages = (messages) => {
+        if (!Array.isArray(messages)) return []; // Ensure it's an array
+
+        const lastOccurrenceMap = {};
+        const processedMessages = [...messages];
+
+        for (let i = messages.length - 1; i >= 0; i--) {
+            const senderId = messages[i]?.sender?._id;
+
+            if (!lastOccurrenceMap[senderId]) {
+                lastOccurrenceMap[senderId] = true;
+                processedMessages[i] = {
+                    ...messages[i],
+                    isLastOccurrence: true,
+                };
+            } else {
+                processedMessages[i] = {
+                    ...messages[i],
+                    isLastOccurrence: false,
+                };
+            }
+        }
+
+        return processedMessages;
+    };
+
+
+    const processedMessages = preprocessMessages(messages)
+
     return (
         <div className="relative p-3 flex-1 overflow-auto h-full bg-light-img">
-            <div className="mx-12 flex flex-col gap-3 h-full">
-                {messages?.map((msg, idx) => (
+            <div className="mx-12 flex flex-col gap-2 h-full">
+                {processedMessages?.map((msg, idx) => (
                     <div key={msg._id}>
-                        <ChatBubble message={msg} previousMessage={idx > 0 ? messages[idx - 1] : undefined} lastIdx={idx == messages?.length - 1} endRef={endRef} />
+                        <ChatBubble message={msg} previousMessage={idx > 0 ? processedMessages[idx - 1] : 0} lastIdx={idx == processedMessages?.length - 1} endRef={endRef} />
                     </div>
                 ))}
             </div>

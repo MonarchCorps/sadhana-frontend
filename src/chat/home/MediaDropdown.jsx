@@ -147,7 +147,7 @@ const MediaDialog = ({ isOpen, onClose, isLoading, preview, selectedMedia, handl
                     {isVideo ? (
                         <ReactPlayer url={preview} controls width="100%" />
                     ) : (
-                        <img src={preview} alt="Preview" className="w-full h-full object-cover" />
+                        <img src={preview} alt="Preview" className="w-full h-60 object-cover" />
                     )}
                 </DialogDescription>
                 <Button

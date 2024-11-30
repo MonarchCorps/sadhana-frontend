@@ -4,14 +4,15 @@ import { useConversationStore } from '../store/chatStore'
 import applyCustomStyles from '@/utils/applyCustomStyles'
 import ChatBubbleAvatar from './ChatBubbleAvatar'
 import DateIndicator from './DateIndicator'
-import { CheckCheck } from 'lucide-react'
+import { Ban, CheckCheck } from 'lucide-react'
 import ReactPlayer from 'react-player'
 import { useState } from 'react'
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog'
+import ChatAvatarAction from './ChatAvatarAction'
 
 const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
     const { auth } = useAuth()
-    console.log(message)
+
     const date = new Date(message?.createdAt)
     const hour = date.getHours().toString().padStart(2, '0')
     const minute = date.getMinutes().toString().padStart(2, '0')
@@ -23,6 +24,7 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
     const fromMe = message?.sender?._id === auth?._id
     const bgClass = fromMe ? 'bg-[#d9fdd3]' : 'bg-[#1f2b32] text-[#dddbdb]'
 
+    const checkPreviousSender = previousMessage?.sender?._id !== message?.sender?._id
     const [open, setOpen] = useState(false)
 
     const renderMessageContent = () => {
@@ -44,22 +46,41 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
                 <DateIndicator message={message} previousMessage={previousMessage} />
                 <div className={`flex gap-1 w-2/3 ${lastIdx && 'mb-1'}`}>
                     <ChatBubbleAvatar isGroup={isGroup} isMember={isMember} message={message} previousMessage={previousMessage} />
-                    <div className={`flex z-20 max-w-fit px-2 pt-1 rounded-md shadow-md relative ${bgClass}`}>
-                        <OtherMessageIndicator />
+                    <div className={`flex flex-col z-20 max-w-fit px-2 pt-1 rounded-md shadow-md relative group ${bgClass}`}>
+                        {checkPreviousSender && <OtherMessageIndicator />}
+                        {isGroup && checkPreviousSender && (<div>
+                            <span className='text-xs block font-600 w-full '>{message.sender?.username}</span>
+                        </div>
+                        )}
                         {renderMessageContent()}
+                        {isGroup && <ChatAvatarAction message={message} conversationId={selectedConversation?._id} />}
                         {open && <ImageDialog src={message?.content} open={open} onClose={() => setOpen(false)} />}
                         <MessageTime time={time} fromMe={fromMe} message={message} />
                     </div>
                 </div>
                 {lastIdx && <div ref={endRef}></div>}
+                {isGroup &&
+                    !isMember &&
+                    !selectedConversation?.participants?.includes(message?.sender?._id) &&
+                    message.isLastOccurrence && (
+                        <div className="w-full flex items-center justify-center mt-10 mb-3">
+                            <p
+                                className="flex gap-1 bg-[#808080] text-white p-2 rounded-md"
+                                style={{ fontStyle: "italic" }}
+                            >
+                                <Ban /> <span>{message?.sender?.username}</span>{" "}
+                                <span>has been removed</span>
+                            </p>
+                        </div>
+                    )}
             </>
-        );
+        )
     }
 
     return (
         <>
             <DateIndicator message={message} previousMessage={previousMessage} />
-            <div className='flex gap-1 w-2/3 ml-auto'>
+            <div className={`flex gap-1 w-2/3 ml-auto ${lastIdx && 'mb-1'}`}>
                 <div className={`flex z-20 max-w-fit px-2 py-1 rounded-md shadow-md ml-auto relative ${bgClass}`}>
                     <SelfMessageIndicator />
                     {renderMessageContent()}
@@ -140,7 +161,7 @@ const TextMessage = ({ message }) => {
                     {message.content}
                 </a>
             ) : (
-                <p className={`mr-2 mb-2 text-sm font-light`}>{applyCustomStyles(message.content)}</p>
+                <p className={`mr-2 text-sm font-light`}>{applyCustomStyles(message.content)}</p>
             )}
         </div>
     )
