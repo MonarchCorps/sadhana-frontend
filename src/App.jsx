@@ -64,6 +64,7 @@ import { Toaster } from 'react-hot-toast'
 
 import DashboardRedirect from './components/DashboardRedirect'
 import ChatPage from './chat/home/ChatPage'
+import VideoCall from './chat/home/VideoCall'
 
 const ROLES = {
 	User: parseInt(import.meta.env.VITE_USER_CODE),
@@ -216,6 +217,7 @@ function App() {
 
 					<Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Instructor, ROLES.Admin]} />}>
 						<Route path='/chat' element={<ChatPage />} />
+						<Route path='/chat/video-call' element={<VideoCall />} />
 					</Route>
 
 				</Route>

@@ -1,6 +1,6 @@
 import ChatPlaceHolder from './ChatPlaceholder'
 import { IKImage } from 'imagekitio-react'
-import { Phone, Video, X } from 'lucide-react'
+import { Video, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import MessageContainer from './MessageContainer'
 import MessageInput from './MessageInput'
@@ -22,7 +22,6 @@ const RightPanel = () => {
     return (
         <div className='w-3/4 flex flex-col'>
             <div className='w-full sticky top-0 z-50'>
-                {/* Header */}
                 <div className='flex justify-between bg-[#f0f2f5] p-3'>
                     <div className='flex gap-3 items-center'>
                         <IKImage
@@ -45,11 +44,8 @@ const RightPanel = () => {
                     </div>
 
                     <div className='flex items-center gap-7 mr-5'>
-                        <Link to='/video-call' target='_blank' rel='noopener noreferrer'>
+                        <Link to='video-call' target='_blank' rel='noopener noreferrer'>
                             <Video size={23} />
-                        </Link>
-                        <Link to='/voice-call' target='_blank' rel='noopener noreferrer'>
-                            <Phone size={23} />
                         </Link>
                         <X size={16} className='cursor-pointer' onClick={() => setSelectedConversation(null)} />
                     </div>
