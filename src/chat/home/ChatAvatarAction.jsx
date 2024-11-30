@@ -9,7 +9,7 @@ import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import { useEffect } from 'react'
 import useSocket from '@/hooks/useSocket'
 
-function ChatAvatarAction({ message, conversationId }) {
+function ChatAvatarAction({ message, conversationId, handleCreateConversation }) {
 
     const { auth } = useAuth()
     const axiosPrivate = useAxiosPrivate()
@@ -61,42 +61,43 @@ function ChatAvatarAction({ message, conversationId }) {
     return (
         <>
             {
-                selectedConversation?.admin === auth?._id && (
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <div className='absolute top-0 right-0 opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 cursor-pointer z-50 bg-[#1f2b32]'>
-                                <ChevronDown className='w-[27px] font-900 text-white shadow-md' />
-                            </div>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className='w-30' >
-                            <DropdownMenuItem className='cursor-pointer'>
-                                <span className='text-nowrap'>Message Privately</span>
-                            </DropdownMenuItem>
-                            {
-                                message?.messageType === 'text'
-                                && <DropdownMenuItem className='cursor-pointer'>
-                                    <span >Edit Message</span>
-                                </DropdownMenuItem>
-                            }
-                            <DropdownMenuItem className='cursor-pointer'>
-                                <span >Delete Message</span>
-                            </DropdownMenuItem>
-                            {
-                                isMember ? (
-                                    <DropdownMenuItem className='cursor-pointer text-red-500' onClick={() => handleRemoveUser.mutate({ id: message.sender?._id, conversationId })}>
-                                        <LogOut />
-                                        <span >Remove user</span>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <div className='absolute top-0 right-0 opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 cursor-pointer z-50 bg-[#1f2b32]'>
+                            <ChevronDown className='w-[27px] font-900 text-white shadow-md' />
+                        </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className='w-30' >
+                        <DropdownMenuItem className='cursor-pointer' onClick={() => handleCreateConversation.mutate({ userId: message.sender?._id })}>
+                            <span className='text-nowrap'>Message Privately</span>
+                        </DropdownMenuItem>
+                        {
+                            selectedConversation?.admin === auth?._id && (
+                                <>
+                                    {message?.messageType === 'text'
+                                        && <DropdownMenuItem className='cursor-pointer'>
+                                            <span >Edit Message</span>
+                                        </DropdownMenuItem>}
+                                    <DropdownMenuItem className='cursor-pointer'>
+                                        <span >Delete Message</span>
                                     </DropdownMenuItem>
-                                ) : (
-                                    <DropdownMenuItem className='text-red-500'>
-                                        <Ban />
-                                        <span >Not a member</span>
-                                    </DropdownMenuItem>
-                                )
-                            }
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                )
+                                    {
+                                        isMember ? (
+                                            <DropdownMenuItem className='cursor-pointer text-red-500' onClick={() => handleRemoveUser.mutate({ id: message.sender?._id, conversationId })}>
+                                                <LogOut />
+                                                <span >Remove user</span>
+                                            </DropdownMenuItem>
+                                        ) : (
+                                            <DropdownMenuItem className='text-red-500'>
+                                                <Ban />
+                                                <span >Not a member</span>
+                                            </DropdownMenuItem>
+                                        )}
+                                </>
+                            )
+                        }
+                    </DropdownMenuContent>
+                </DropdownMenu>
             }
         </>
     )

@@ -9,16 +9,21 @@ import ReactPlayer from 'react-player'
 import { useState } from 'react'
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog'
 import ChatAvatarAction from './ChatAvatarAction'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
+import toast from 'react-hot-toast'
 
 const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
     const { auth } = useAuth()
+    const axiosPrivate = useAxiosPrivate()
+    const queryClient = useQueryClient()
 
     const date = new Date(message?.createdAt)
     const hour = date.getHours().toString().padStart(2, '0')
     const minute = date.getMinutes().toString().padStart(2, '0')
     const time = `${hour}:${minute}`
 
-    const { selectedConversation } = useConversationStore()
+    const { selectedConversation, setSelectedConversation } = useConversationStore()
     const isMember = selectedConversation?.participants?.includes(message?.sender?._id) || false
     const isGroup = selectedConversation?.isGroup
     const fromMe = message?.sender?._id === auth?._id
@@ -40,6 +45,32 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
         }
     }
 
+    const handleCreateConversation = useMutation({
+        mutationFn: ({ userId }) => {
+            return axiosPrivate.post(`/conversation/${auth?._id}`, {
+                participants: [userId, auth?._id],
+                isGroup: false,
+            })
+        },
+        onSuccess: async (response) => {
+            const createdConversationId = response.data
+            queryClient.invalidateQueries({ queryKey: ["fetchConversations", auth?._id] })
+            if (createdConversationId) {
+                try {
+                    const { data } = await axiosPrivate.get(`/conversation/${auth?._id}`);
+                    const newConversation = data.find(conversation => conversation?._id === createdConversationId)
+                    setSelectedConversation(newConversation)
+                } catch (error) {
+                    console.error("Failed to fetch the new conversation:", error);
+                }
+            }
+        },
+        onError: (error) => {
+            console.log(error)
+            toast.error('Network error')
+        }
+    })
+
     if (!fromMe) {
         return (
             <>
@@ -49,11 +80,11 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
                     <div className={`flex flex-col z-20 max-w-fit px-2 pt-1 rounded-md shadow-md relative group ${bgClass}`}>
                         {checkPreviousSender && <OtherMessageIndicator />}
                         {isGroup && checkPreviousSender && (<div>
-                            <span className='text-xs block font-600 w-full '>{message.sender?.username}</span>
+                            <span className='text-xs block font-600 w-full' onClick={() => handleCreateConversation.mutate({ userId: message.sender?._id })}>{message.sender?.username}</span>
                         </div>
                         )}
                         {renderMessageContent()}
-                        {isGroup && <ChatAvatarAction message={message} conversationId={selectedConversation?._id} />}
+                        {isGroup && <ChatAvatarAction message={message} conversationId={selectedConversation?._id} handleCreateConversation={handleCreateConversation} />}
                         {open && <ImageDialog src={message?.content} open={open} onClose={() => setOpen(false)} />}
                         <MessageTime time={time} fromMe={fromMe} message={message} />
                     </div>

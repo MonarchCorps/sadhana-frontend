@@ -40,7 +40,6 @@ const Conversation = ({ conversation }) => {
 
     useEffect(() => {
         const handleNewConversation = (newConversation) => {
-            console.log('Received new conversation:', newConversation);
             if (newConversation) {
                 queryClient.invalidateQueries({ queryKey: ['fetchConversations', auth?._id] });
             }
