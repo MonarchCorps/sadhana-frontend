@@ -16,7 +16,7 @@ const LeftPanel = () => {
     const axiosPrivate = useAxiosPrivate()
     const queryClient = useQueryClient()
     const { connectSocket } = useSocket()
-    const { selectedConversation } = useConversationStore()
+    const { selectedConversation, setSelectedConversation } = useConversationStore()
     const socket = connectSocket(auth?._id)
 
     const { data: conversations, isPending } = useQuery({
@@ -54,6 +54,13 @@ const LeftPanel = () => {
             socket.off('newMessage', handleNewMessage)
         }
     }, [auth?._id, queryClient, socket, selectedConversation?._id])
+
+    useEffect(() => {
+        const conversationIds = conversations?.map(conversation => conversation?._id)
+        if (selectedConversation && conversationIds && !conversationIds.includes(selectedConversation?._id)) {
+            setSelectedConversation(null)
+        }
+    }, [conversations, selectedConversation, setSelectedConversation])
 
     return (
         <div className="w-1/4 border-slate-600 border-r">

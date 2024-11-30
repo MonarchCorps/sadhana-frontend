@@ -197,7 +197,7 @@ const UserListDialog = () => {
                     <Button
                         variant='secondary'
                         onClick={() => handleCreateConversation.mutate()}
-                        disabled={selectedUsers.length === 0 || (selectedUsers.length > 1 && !groupName) || handleCreateConversation.isPending || img.isLoading || img.error || !img.dbData}
+                        disabled={selectedUsers.length === 0 || (selectedUsers.length > 1 && !groupName) || handleCreateConversation.isPending || img.isLoading || img.error || (selectedUsers.length > 1 && !img.dbData?.filePath)}
                     >
                         {handleCreateConversation.isPending ? (
                             <div className='w-5 h-5 border-t-2 border-b-2 rounded-full animate-spin' />
