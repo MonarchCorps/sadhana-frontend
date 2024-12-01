@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Input } from '@/components/ui/input'
 import { ListFilter, LogOut, Search } from 'lucide-react'
 import Conversation from './Conversation'
@@ -8,7 +10,6 @@ import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import Loading4 from '@/components/Loaders/Loading4'
 import { IKImage } from 'imagekitio-react'
 import useSocket from '@/hooks/useSocket'
-import { useEffect } from 'react'
 import { useConversationStore } from '../store/chatStore'
 
 const LeftPanel = () => {
@@ -66,19 +67,21 @@ const LeftPanel = () => {
         <div className="w-1/4 border-slate-600 border-r">
             <div className="sticky top-0 bg-[#ffffff] z-10">
                 <div className="flex justify-between bg-[#f0f2f5] p-3 items-center">
-                    <IKImage
-                        key={auth?.profileImage}
-                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
-                        path={auth?.profileImage}
-                        className="w-10 h-10 object-cover rounded-full"
-                        loading="lazy"
-                        lqip={{
-                            active: true,
-                            quality: 20,
-                        }}
-                        alt={`${auth?.username || 'User'} image`}
-                    />
+                    <Link to='/dashboard'>
+                        <IKImage
+                            key={auth?.profileImage}
+                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            path={auth?.profileImage}
+                            className="w-10 h-10 object-cover rounded-full"
+                            loading="lazy"
+                            lqip={{
+                                active: true,
+                                quality: 20,
+                            }}
+                            alt={`${auth?.username || 'User'} image`}
+                        />
 
+                    </Link>
                     <div className="flex items-center gap-3">
                         <UserListDialog />
                         <LogOut size={20} className="cursor-pointer" />

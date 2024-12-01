@@ -40,7 +40,9 @@ function Trainer({ trainer }) {
                     See Profile
                 </Link>
                 <span className='text-[1.35rem] border border-solid p-2 rounded-md bg-[#b1dbbba6] text-[#659771ba] cursor-pointer'>
-                    <FaRegCommentDots />
+                    <Link to='/chat'>
+                        <FaRegCommentDots />
+                    </Link>
                 </span>
             </div>
         </div>
