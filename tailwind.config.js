@@ -119,6 +119,8 @@ export default {
 		screens: {
 			'xl': { 'max': '1279px' },
 			'lg': { 'max': '1023px' },
+			'hrmd': { 'max': '986px' },
+			'hrmd2': { 'max': '825px' },
 			'hmd': { 'max': '854px' },
 			'md': { 'max': '767px' },
 			'sm': { 'max': '639px' }
