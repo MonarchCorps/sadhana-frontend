@@ -3,7 +3,7 @@ import { FaQuoteRight } from 'react-icons/fa'
 
 function BottomWelcome() {
     return (
-        <div className='grid grid-cols-2 mt-10 gap-14 items-center'>
+        <div className='grid grid-cols-2 hrmd:flex hrmd:flex-col-reverse  mt-10 gap-14 items-center'>
             <div className='border border-solid border-[#dfdfdf] p-4 rounded-xl'>
                 <img src={peopleLovingYoga} alt="People loving yoga image" className='w-full' />
             </div>
