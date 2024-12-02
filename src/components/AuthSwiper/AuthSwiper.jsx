@@ -1,5 +1,6 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper/modules'
+import 'swiper/swiper-bundle.css'
 
 import image1 from '../../assets/authSwiperImages/photo-1527525443983-6e60c75fff46.avif'
 import image2 from '../../assets/authSwiperImages/photo-1529693662653-9d480530a697.avif'
@@ -42,10 +43,10 @@ function AuthSwiper() {
 
     return (
         <Swiper
+            modules={[Autoplay]}
             spaceBetween={10}
             slidesPerView={1}
-            navigation
-            autoplay={{ delay: 4000 }}
+            autoplay={{ delay: 3000 }}
             loop
         >
             {swiperContent.map((content) => (

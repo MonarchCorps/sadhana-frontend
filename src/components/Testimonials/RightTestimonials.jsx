@@ -2,66 +2,31 @@ import { FaQuoteRight } from 'react-icons/fa'
 import profileImage1 from '../../assets/images/Staff-7-1.jpg'
 import profileImage2 from '../../assets/images/Staff-4-1.jpg'
 import profileImage3 from '../../assets/images/Staff-2-1.jpg'
-import { useEffect, useRef } from 'react'
 import Testimonial from './Testimonial'
-import { register } from 'swiper/element/bundle'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper/modules'
+import 'swiper/swiper-bundle.css'
 
 function RightTestimonials() {
-
-    const swiperRef = useRef(null);
-
-    useEffect(() => {
-        const swiperContainer = swiperRef.current;
-        register(); // Registers Swiper elements like 'swiper-container'
-
-        const params = {
-            navigation: true,
-            injectStyles: [
-                `
-					.swiper-button-next,
-					 .swiper-button-prev {
-						position: absolute;
-						padding: 4 6px;
-						color: #fff;
-						top: 94%;
-						width: 0px;
-					}
-					.swiper-button-next::after {
-						content: '\\2192';
-						font-size: 30px;
-						margin-right: 40px;
-					}
-					.swiper-button-prev::before {
-						content: '\\27F5';
-						font-size: 20px;
-						margin-left: 40px;
-					}
-				`
-            ]
-        };
-        Object.assign(swiperContainer, params);
-        swiperContainer.initialize();
-    }, []);
-
     const reviews = [
         {
             id: 1,
             name: 'Selena Gomez',
             image: profileImage1,
-            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.'
+            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.',
         },
         {
             id: 2,
             name: 'Bruce Gate',
             image: profileImage2,
-            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.'
+            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.',
         },
         {
             id: 3,
             name: 'John Wayne',
             image: profileImage3,
-            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.'
-        }
+            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.',
+        },
     ]
 
     return (
@@ -79,16 +44,19 @@ function RightTestimonials() {
                 </div>
             </div>
             <div className='cursor-grab mt-10'>
-                <swiper-container ref={swiperRef} init="false" space-between="10" slides-per-view="2" >
-                    {
-                        reviews.map((review, i) => {
-                            return (
-                                <Testimonial key={i} review={review} />
-                            )
-                        })
-                    }
-
-                </swiper-container>
+                <Swiper
+                    modules={[Autoplay]}
+                    spaceBetween={10}
+                    slidesPerView={2}
+                    autoplay={{ delay: 3000 }}
+                    loop
+                >
+                    {reviews.map((review) => (
+                        <SwiperSlide key={review.id}>
+                            <Testimonial review={review} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
         </div>
     )
