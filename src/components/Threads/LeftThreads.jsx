@@ -1,16 +1,16 @@
 function LeftThreads() {
     return (
         <div className="relative">
-            <h3 className="font-crimson text-[26px] mb-4 tracking-wide">
+            <h3 className="font-crimson text-[26px] mb-4 tracking-wide md:text-xl sm:text-base">
                 Join Us
             </h3>
-            <h1 className="text-[2.8rem] leading-[1.18] font-500 font-sans mb-6">
+            <h1 className="text-[2.4rem] leading-[1.18] font-500 font-sans mb-6 md:text-3xl sm:text-2xl">
                 Let the threads of life get connected with yoga
             </h1>
-            <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 ">
+            <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 md:text-base sm:text-sm sm:leading-[1.72]">
                 At posuere potenti montes ligula risus. Metus suspendisse ornare senectus taciti molestie dis arcu duis. Fusce mus sit eget nibh curae id montes finibus venenatis hendrerit.
             </p>
-            <button className='text-sm h-14 w-36 mr-2 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1'>Contact Us</button>
+            <button className='text-sm h-14 w-36 mr-2 sm:w-32 sm:h-12 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1'>Contact Us</button>
             <div className='absolute left-0 -bottom-72 -z-10'>
                 <svg width="150" height="200" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="5" cy="5" r="3" fill="#ffc0c0" fillOpacity="0.2" />
