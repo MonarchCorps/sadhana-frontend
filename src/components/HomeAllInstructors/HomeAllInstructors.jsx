@@ -30,7 +30,7 @@ function HomeAllInstructors() {
                                 <SkeletonLoader2 value={4} />
                             </div>
                         }
-                        <div className='max-w-[96%] mx-auto grid grid-cols-4 gap-7'>
+                        <div className='max-w-[96%] mx-auto grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 gap-7'>
                             {
                                 instructors?.length > 0 && !isLoading ? (
                                     instructors.map(instructor => {

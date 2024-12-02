@@ -1,6 +1,6 @@
 const trim = (content, value) => {
     return (
-        content?.length < Number(value) ? content : `${(content)?.slice(0, Number(value))}...`
+        content?.length < parseInt(value) ? content : `${(content)?.slice(0, parseInt(value))}...`
 
     )
 }

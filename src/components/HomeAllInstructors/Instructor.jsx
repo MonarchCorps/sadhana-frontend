@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import { IKImage } from "imagekitio-react"
 import trim from "../../utils/trim"
 
@@ -20,25 +19,25 @@ function Instructor({ instructor }) {
                 />
             </div>
             <div className="text-center mt-3">
-                <h1 className="font-bold">{instructor?.username}</h1>
-                <p className="text-sm">Instructor</p>
+                <h1 className="font-bold ism:text-sm">{instructor?.username}</h1>
+                <p className="text-sm break-words">Instructor</p>
             </div>
             <div>
                 <div>
-                    <h3 className="font-bold">Address: </h3>
-                    <p>{trim(instructor?.address, 20) || 'Not available'}</p>
+                    <h3 className="font-bold ism:text-sm">Address: </h3>
+                    <p className="ism:text-sm">{trim(instructor?.address, 20) || 'Not available'}</p>
                 </div>
                 <div>
-                    <h3 className="font-bold">Phone number: </h3>
-                    <p>{instructor?.phoneNumber}</p>
+                    <h3 className="font-bold ism:text-sm">Phone number: </h3>
+                    <p className="ism:text-sm">{instructor?.phoneNumber}</p>
                 </div>
                 <div>
-                    <h3 className="font-bold">Email: </h3>
-                    <p>{instructor?.email}</p>
+                    <h3 className="font-bold ism:text-sm">Email: </h3>
+                    <p className="ism:text-sm break-words">{trim(instructor?.email, 20)}</p>
                 </div>
                 <div>
-                    <h3 className="font-bold">Total course uploaded: </h3>
-                    <p>{`${instructor?.courseCount} ${instructor?.courseCount <= 1 ? 'course' : 'courses'}`}</p>
+                    <h3 className="font-bold ism:text-sm">Total course uploaded: </h3>
+                    <p className="ism:text-sm">{`${instructor?.courseCount} ${instructor?.courseCount <= 1 ? 'course' : 'courses'}`}</p>
                 </div>
             </div>
         </div>

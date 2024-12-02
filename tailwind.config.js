@@ -119,14 +119,18 @@ export default {
 		screens: {
 			'xl': { 'max': '1279px' },
 			'lg': { 'max': '1023px' },
+			'ilg': { 'max': '1199px' },
 			'clg': { 'min': '987px' },
 			'hrmd': { 'max': '986px' },
+			'imd': { 'max': '852px' },
 			'hrmd2': { 'max': '825px' },
 			'hmd': { 'max': '854px' },
 			'md': { 'max': '767px' },
 			'tmd': { 'max': '658px' },
 			'fmd': { 'max': '605px' },
 			'sm': { 'max': '639px' },
+			'ism': { 'max': '585px' },
+			'ixsm': { 'max': '473px' },
 			'xsm': { 'max': '393px' }
 		}
 	},
