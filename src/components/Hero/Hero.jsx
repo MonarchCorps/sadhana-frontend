@@ -11,7 +11,7 @@ function Hero() {
     const screenHeight = screen.height
 
     return (
-        <section className="w-screen relative bg-[#eff6f6]" style={{ height: `${screenHeight - 50}px` }}>
+        <section className="w-screen relative bg-[#eff6f6]" style={{ height: `${screenHeight}px` }}>
             <div className='max-w-[90%] mx-auto'>
                 <div className='pt-40 hrmd2:max-w-[80%] sm:max-w-[96%] lg:max-w-[50%] max-w-[46%] h-full p-3 z-50 relative'>
                     <div className='mb-4 flex items-center'>
@@ -53,7 +53,7 @@ function Hero() {
                     <img src={bgOrnament} alt="logo" className='select-none' />
                 </div>
                 <div className='absolute w-full top-0 right-0 hrmd:right-40 left-0 z-10 bg-[#eff6f6]'>
-                    <img src={heroImg} alt="logo" className=' object-cover w-full' style={{ height: `${screenHeight - 50}px` }} />
+                    <img src={heroImg} alt="logo" className=' object-cover w-full' style={{ height: `${screenHeight}px` }} />
                 </div>
             </div>
         </section>
