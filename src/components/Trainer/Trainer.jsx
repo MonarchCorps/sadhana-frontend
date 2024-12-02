@@ -7,7 +7,7 @@ function Trainer() {
     const { scrollTop } = useScrollTop();
 
     return (
-        <section>
+        <section id='trainers'>
             <div className="max-w-[90%] mx-auto pt-24 grid grid-cols-3 hrmd:flex hrmd:flex-col gap-10">
                 <div className="bg-[url('./assets/images/Orn-1.png')] bg-no-repeat hrmd:text-center hrmd:bg-[center_top_-20px]">
                     <div>

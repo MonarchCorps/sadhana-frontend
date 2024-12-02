@@ -3,7 +3,7 @@ import ServicesCard from './ServicesCard'
 
 function Services() {
     return (
-        <section className='relative service-bg'>
+        <section className='relative service-bg' id='services'>
             <div className='absolute top-14 left-1/2 -translate-x-1/2 sm:left-[-30rem] z-20 opacity-75'>
                 <img src={bgOrnament} alt='logo' className='select-none' />
             </div>

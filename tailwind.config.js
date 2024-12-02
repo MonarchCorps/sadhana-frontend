@@ -125,6 +125,7 @@ export default {
 			'hmd': { 'max': '854px' },
 			'md': { 'max': '767px' },
 			'tmd': { 'max': '658px' },
+			'fmd': { 'max': '605px' },
 			'sm': { 'max': '639px' },
 			'xsm': { 'max': '393px' }
 		}
