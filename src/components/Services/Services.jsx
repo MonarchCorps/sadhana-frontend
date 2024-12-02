@@ -11,7 +11,7 @@ function Services() {
                 <h3 className='font-crimson text-[26px] mb-4 tracking-wide'>
                     Our Services
                 </h3>
-                <h1 className='text-[2.8rem] leading-[1.18] font-500 font-sans mb-6 '>
+                <h1 className='text-[2.8rem] leading-[1.18] font-500 font-sans mb-6 sm:text-3xl'>
                     Discover yourself, discover yoga
                 </h1>
                 <div className='text-center w-full flex'>
