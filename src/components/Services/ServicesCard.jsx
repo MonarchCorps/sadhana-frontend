@@ -4,7 +4,6 @@ import cardImage3 from '../../assets/images/yoga.png'
 import cardImage4 from '../../assets/images/pilates.png'
 import cardImage5 from '../../assets/images/book.png'
 import cardImage6 from '../../assets/images/meditation-1.png'
-// import { FaArrowRightFromBracket } from 'react-icons/fa6'
 import { FaArrowRight } from 'react-icons/fa6'
 
 function ServicesCard() {
@@ -74,20 +73,20 @@ function ServicesCard() {
     ]
 
     return (
-        <div className='grid grid-cols-3 gap-6 mt-9 p-1'>
+        <div className='grid grid-cols-3 hrmd:grid-cols-2 sm:grid-cols-1 gap-6 mt-9 p-1'>
             {
                 cardsContent.map(content => {
                     return (
-                        <div key={content.id} className='rounded-xl shadow-lg py-11 px-[1.9rem]' style={{ background: `${content.cardBg}` }}>
+                        <div key={content.id} className='rounded-xl shadow-lg py-11 px-[1.9rem] z-30' style={{ background: `${content.cardBg}` }}>
                             <div className='mb-4'>
                                 <div className='w-14 h-14 rounded-full text-center grid place-items-center max-w-prose mx-auto p-2' style={{ background: `${content.imageBg}` }}>
                                     <img src={content.image} alt={`${content.heading} image`} className='w-9' />
                                 </div>
                             </div>
-                            <h1 className='text-3xl mb-3 font-500' style={{ color: `${content?.color || '#000'}` }}>{content.heading}</h1>
-                            <p className='text-base mb-3' style={{ color: `${content?.color || '#000'}`, fontWeight: '300' }}>{content.text}</p>
+                            <h1 className='text-3xl mb-3 font-500 lg:text-2xl' style={{ color: `${content?.color || '#000'}` }}>{content.heading}</h1>
+                            <p className='text-base mb-3 lg:text-sm' style={{ color: `${content?.color || '#000'}`, fontWeight: '300' }}>{content.text}</p>
                             <div className='w-full grid place-items-center'>
-                                <div className='text-base relative w-fit cursor-pointer pb-1' style={{ color: `${content.linkColor}` }}>
+                                <div className='text-base relative w-fit cursor-pointer pb-1 lg:text-sm' style={{ color: `${content.linkColor}` }}>
                                     Learn more <FaArrowRight className='inline-block align-text-middle -mt-1' />
                                     <div className='absolute w-full h-[0.095rem] bottom-0' style={{ background: `${content.linkColor}` }}></div>
                                 </div>
