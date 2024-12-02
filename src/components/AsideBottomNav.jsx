@@ -4,33 +4,41 @@ import useAuth from '../hooks/useAuth'
 import useLogout from '../hooks/useLogout'
 import useScrollTop from '../hooks/useScrollTop'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserAndInstructor } from '../utils/rolePermission'
+import { AdminOnly, UserAndInstructor, UserOnly } from '../utils/rolePermission'
 import { IKImage } from 'imagekitio-react'
-import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from './ui/sidebar'
+import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from './ui/sidebar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { BadgeCheck, ChevronsUpDown, LogOut, Sparkles } from 'lucide-react'
 
 function AsideBottomNav() {
 
-    const { auth } = useAuth();
-    const { logout } = useLogout();
-    const { scrollTop } = useScrollTop();
-
-    const userAndInstructor = UserAndInstructor()
-    const { isMobile } = useSidebar()
-
+    const { auth } = useAuth()
+    const { logout } = useLogout()
+    const { scrollTop } = useScrollTop()
     const navigate = useNavigate()
+
+    const userOnly = UserOnly()
+    const userAndInstructor = UserAndInstructor()
+    const adminOnly = AdminOnly()
 
     const handleProfileNavigate = () => {
         setTimeout(() => {
-            navigate('details/edit-profile')
+            if (userOnly) {
+                return navigate('/dashboard/student-cp/details/edit-profile')
+            } else if (userAndInstructor) {
+                return navigate('/dashboard/instructor-cp/details/edit-profile')
+            } else if (adminOnly) {
+                return navigate('/dashboard/admin-cp/details/edit-profile')
+            } else {
+                navigate('/dashboard')
+            }
             scrollTop();
         }, 200)
     }
 
     const handleInstNavigate = () => {
         setTimeout(() => {
-            navigate('edit-instructor-profile')
+            navigate('/dashboard/instructor-cp/edit-instructor-profile')
             scrollTop();
         }, 200)
 
@@ -68,7 +76,7 @@ function AsideBottomNav() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                            side={isMobile ? "bottom" : "right"}
+                            side={"right"}
                             align="end"
                             sideOffset={4}
                         >
