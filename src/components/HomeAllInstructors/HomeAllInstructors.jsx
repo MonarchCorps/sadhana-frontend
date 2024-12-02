@@ -6,8 +6,23 @@ import { useQuery } from '@tanstack/react-query'
 import axios from '../../api/axios'
 
 import Instructor from './Instructor'
+import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 
 function HomeAllInstructors() {
+
+    const { screenWidth } = useGetScreenWidth()
+
+    const noOfSkeletons = () => {
+        if (screenWidth <= 473) {
+            return 2
+        } else if (screenWidth <= 852) {
+            return 2
+        } else if (screenWidth <= 1199) {
+            return 3
+        } else {
+            return 4
+        }
+    }
 
     const { isLoading, data: instructors } = useQuery({
         queryKey: ['homeAllInstructors'],
@@ -25,9 +40,9 @@ function HomeAllInstructors() {
                 <section>
                     <div className='py-28 px-10'>
                         {
-                            isLoading &&
-                            <div className='max-w-[96%] mx-auto grid grid-cols-4 gap-10'>
-                                <SkeletonLoader2 value={4} />
+                            !isLoading &&
+                            <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 gap-2'>
+                                <SkeletonLoader2 value={noOfSkeletons()} />
                             </div>
                         }
                         <div className='max-w-[96%] mx-auto grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 gap-7'>

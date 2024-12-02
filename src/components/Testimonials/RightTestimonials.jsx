@@ -6,18 +6,10 @@ import Testimonial from './Testimonial'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
-import { useEffect, useState } from 'react'
+import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 
 function RightTestimonials() {
-    const [screenWidth, setScreenWidth] = useState()
-
-    useEffect(() => {
-        const handleResize = () => setScreenWidth(window.innerWidth);
-
-        window.addEventListener("resize", handleResize);
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    const { screenWidth } = useGetScreenWidth()
 
     const reviews = [
         {
