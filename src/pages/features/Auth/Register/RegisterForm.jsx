@@ -26,7 +26,10 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
     const submitValid = formData.password && formData.gender && formData.profileImage && !img.error && !isPending
     const deployValid = formData.username && formData.email && formData.phoneNumber && !deploying
 
-    const deploySubmit = () => {
+    const queryParams = new URLSearchParams(location.search).get('redirectUrl')
+
+    const deploySubmit = (e) => {
+        e.preventDefault()
         if (!formData.email.includes('@') || formData.email.length < 6) {
             return toast.error('Enter valid email')
         }
@@ -38,7 +41,7 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
             setDeploying(false)
             if (!deploying) {
                 setStep(2)
-                navigate(`/register?username=${formData.username}&email=${formData.email}&phoneNumber=${formData.phoneNumber}&redirectUrl=web`);
+                navigate(`/register?username=${formData.username}&email=${formData.email}&phoneNumber=${formData.phoneNumber}&redirectUrl=${queryParams || 'web'}`);
             }
             setTimeout(() => {
                 toast.dismiss();
@@ -47,7 +50,7 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
     }
 
     return (
-        <form className="flex flex-col place-items-center w-full gap-x-4 gap-y-3" encType='multipart/form-data'>
+        <form className="flex flex-col place-items-center w-full gap-x-4 gap-y-3 amd:px-6" encType='multipart/form-data'>
             {
                 step === 1 ? (
                     <Fragment>
@@ -104,7 +107,7 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
                 ) : (
                     <Fragment>
                         <UploadImageKitImg img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef}>
-                            <label htmlFor='profileImage' className={`flex flex-col items-center justify-center w-[150px] h-[150px] border-2 rounded-md overflow-hidden border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ${img?.isLoading ? 'cursor-default' : 'cursor-pointer'}`} onClick={() => ikUploadRef.current.click()}>
+                            <label htmlFor='profileImage' className={`flex flex-col items-center justify-center w-[150px] h-[150px] border-2 rounded-md overflow-hidden border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 animate-scaleIn transition-all ${img?.isLoading ? 'cursor-default' : 'cursor-pointer'}`} onClick={() => ikUploadRef.current.click()}>
                                 {
                                     preview ? (
                                         <div className='relative'>
@@ -135,7 +138,7 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
                                 }
                             </label>
                         </UploadImageKitImg>
-                        <div className='flex flex-col w-full relative'>
+                        <div className='flex flex-col w-full relative animate-scaleIn transition-all'>
                             <label htmlFor="password" className='text-sm mb-2 font-500'>Password</label>
                             <input
                                 type={`${open ? 'text' : 'password'}`}
@@ -152,7 +155,7 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
                                 {open ? <FaEyeSlash onClick={() => setOpen(false)} /> : <FaEye onClick={() => setOpen(true)} />}
                             </span>
                         </div>
-                        <div className='flex flex-col w-full relative'>
+                        <div className='flex flex-col w-full relative animate-scaleIn transition-all'>
                             <p className='text-sm mb-2 font-500'>Gender</p>
                             <select
                                 name="gender"

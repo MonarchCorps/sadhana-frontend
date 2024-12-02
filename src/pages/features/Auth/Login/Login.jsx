@@ -10,6 +10,8 @@ import toast from 'react-hot-toast'
 import { useMutation } from '@tanstack/react-query'
 import AuthHeader from '../AuthHeader'
 import useSocket from '@/hooks/useSocket'
+import useGetScreenWidth from '@/hooks/useGetScreenWidth'
+import botLogo from '../../../../assets/images/9c7d37cd-ba05-4987-8a75-c5376ac4990d.png'
 
 function Login() {
 
@@ -23,7 +25,8 @@ function Login() {
 
     const { connectSocket } = useSocket()
 
-    const screenHeight = screen.height
+    const { screenWidth } = useGetScreenWidth()
+    const screenHeight = screenWidth <= 986 ? `100vh` : `${screen.height}px` // Check if (hrmd) media is on then display that width
 
     const { isPending, mutate } = useMutation({
         mutationFn: () => {
@@ -82,8 +85,14 @@ function Login() {
             <Loading isLoading={isPending} />
             <section>
                 <AuthHeader />
-                <div className="grid grid-cols-2 place-items-center w-[75%] mx-auto" style={{ height: `${screenHeight}px` }}>
-                    <div className="form-container flex flex-col justify-center place-items-center w-full p-3 mr-10">
+                <div className="grid grid-cols-2 w-[75%] amd:grid-cols-1 clg:place-items-center ilg:w-[85%] hrmd:w-full mx-auto" style={{ height: `${screenHeight}` }}>
+                    <div className="form-container flex flex-col justify-center place-items-center w-full p-3 hrmd:mx-5 amd:max-w-[500px] amd:mx-auto amd:mt-9">
+                        {screenWidth <= 710 && (
+                            <div className='text-4xl font-serif mb-6 self-start ml-5 max-w-[500px] xsm:text-3xl'>
+                                Login to Sadhana
+                                <img src={botLogo} alt="bot logo" className='w-7 ml-3 inline mb-2' />
+                            </div>
+                        )}
                         <LoginForm isPending={isPending} user={user} setUser={setUser} password={password} setPassword={setPassword} handleSubmit={handleSubmit} />
                         <div className='mt-5 text-sm'>
                             <input
@@ -101,7 +110,7 @@ function Login() {
                             <span>Forget password?</span>
                         </div>
                     </div>
-                    <div className='h-[35rem] w-full rounded-xl overflow-hidden ml-10 relative'>
+                    <div className='hrmd:h-screen w-full rounded-xl hrmd:rounded-none amd:hidden overflow-hidden ml-10 relative'>
                         <AuthSwiper />
                     </div>
                 </div>

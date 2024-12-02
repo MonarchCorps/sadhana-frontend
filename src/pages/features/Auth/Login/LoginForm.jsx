@@ -7,7 +7,7 @@ function LoginForm({ isPending, user, setUser, password, setPassword, handleSubm
 
     return (
         <>
-            <form className="grid place-items-center w-[90%] gap-x-4 gap-y-3">
+            <form className="grid place-items-center w-[90%] hrmd:w-full amd:px-6 gap-x-4 gap-y-3">
                 <div className='flex flex-col w-full'>
                     <label htmlFor="email" className='text-sm mb-2 font-500'>Username</label>
                     <input
