@@ -10,7 +10,8 @@ function Instructor({ instructor }) {
                 <IKImage
                     urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
                     path={instructor?.profileImage}
-                    className="w-32 h-32 rounded-full object-cover" loading='lazy'
+                    className="w-32 h-32 rounded-full object-cover"
+                    loading='lazy'
                     lqip={{
                         active: true,
                         quality: 20

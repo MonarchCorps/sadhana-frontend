@@ -124,7 +124,9 @@ export default {
 			'hrmd2': { 'max': '825px' },
 			'hmd': { 'max': '854px' },
 			'md': { 'max': '767px' },
-			'sm': { 'max': '639px' }
+			'tmd': { 'max': '658px' },
+			'sm': { 'max': '639px' },
+			'xsm': { 'max': '393px' }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
