@@ -9,6 +9,7 @@ import { IKImage } from 'imagekitio-react'
 import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from './ui/sidebar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { BadgeCheck, ChevronsUpDown, LogOut, Sparkles } from 'lucide-react'
+import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 
 function AsideBottomNav() {
 
@@ -16,6 +17,8 @@ function AsideBottomNav() {
     const { logout } = useLogout()
     const { scrollTop } = useScrollTop()
     const navigate = useNavigate()
+
+    const { screenWidth } = useGetScreenWidth()
 
     const userOnly = UserOnly()
     const userAndInstructor = UserAndInstructor()
@@ -34,6 +37,24 @@ function AsideBottomNav() {
             }
             scrollTop();
         }, 200)
+    }
+
+    const getOffset = () => {
+        if (screenWidth <= 333) {
+            return -230
+        } else if (screenWidth <= 357) {
+            return -200
+        } else if (screenWidth <= 406) {
+            return -170
+        } else if (screenWidth <= 455) {
+            return -130
+        } else if (screenWidth <= 547) {
+            return -30
+        } else if (screenWidth <= 504) {
+            return -80
+        } else {
+            return -4
+        }
     }
 
     const handleInstNavigate = () => {
@@ -75,10 +96,9 @@ function AsideBottomNav() {
                             </SidebarMenuButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
-                            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg z-[1000] relative"
                             side={"right"}
-                            align="end"
-                            sideOffset={4}
+                            sideOffset={getOffset()}
                         >
                             <DropdownMenuLabel className="p-0 font-normal">
                                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">

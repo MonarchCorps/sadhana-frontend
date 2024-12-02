@@ -40,7 +40,7 @@ function HomeAllInstructors() {
                 <section>
                     <div className='py-28 px-10'>
                         {
-                            !isLoading &&
+                            isLoading &&
                             <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 gap-2'>
                                 <SkeletonLoader2 value={noOfSkeletons()} />
                             </div>
