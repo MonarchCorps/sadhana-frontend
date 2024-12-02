@@ -119,6 +119,7 @@ export default {
 		screens: {
 			'xl': { 'max': '1279px' },
 			'lg': { 'max': '1023px' },
+			'clg': { 'min': '987px' },
 			'hrmd': { 'max': '986px' },
 			'hrmd2': { 'max': '825px' },
 			'hmd': { 'max': '854px' },
