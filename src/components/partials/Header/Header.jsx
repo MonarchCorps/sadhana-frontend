@@ -38,7 +38,7 @@ function Header() {
                                 </div>
                             </div>
                         ) : (
-                            <div className='hrmd:mr-8'>
+                            <div className='hmd:mr-8'>
                                 <DropDownDetails />
                             </div>
                         )
