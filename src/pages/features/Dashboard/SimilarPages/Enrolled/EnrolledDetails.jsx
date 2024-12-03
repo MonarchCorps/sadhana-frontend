@@ -11,7 +11,7 @@ function EnrolledDetails({ details }) {
 
     return (
         <AccordionItem value={details?._id} className='border-b-0' key={details?._id}>
-            <AccordionTrigger className='grid grid-cols-12 ilg:grid-cols-9 amd:grid-cols-7 esm:grid-cols-4 esm:gap-y-2 items-center w-full px-3 py-2 rounded-xl mb-1 border border-solid cursor-default' style={{ textDecoration: 'none' }}>
+            <AccordionTrigger className='grid grid-cols-12 ilg:grid-cols-9 amd:grid-cols-7 esm:grid-cols-4 esm:gap-y-2 items-center w-full px-3 py-2 rounded-xl mb-1 border border-solid cursor-default accordionWrapper' style={{ textDecoration: 'none' }}>
                 <div className="grid grid-flow-col items-center gap-3 w-fit col-span-5 amd:col-span-4 esm:col-span-3">
                     <div className="w-12 h-12 rounded overflow-hidden">
                         <IKImage

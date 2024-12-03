@@ -123,8 +123,7 @@ body {
   width: 50%;
   height: 150%;
   background: #000000;
-  transform: rotate(calc(var(--rotation) * 1deg))
-    translate(0, calc(var(--translation) * 1%));
+  transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
   animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
 }
 
@@ -189,6 +188,7 @@ body {
 }
 
 @keyframes spinner-fzua35 {
+
   0%,
   10%,
   20%,
@@ -199,13 +199,11 @@ body {
   80%,
   90%,
   100% {
-    transform: rotate(calc(var(--rotation) * 1deg))
-      translate(0, calc(var(--translation) * 1%));
+    transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
   }
 
   50% {
-    transform: rotate(calc(var(--rotation) * 1deg))
-      translate(0, calc(var(--translation) * 1.5%));
+    transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1.5%));
   }
 }
 
@@ -309,12 +307,10 @@ body {
 .skeleton-loader {
   max-width: 300px;
   height: 12px;
-  background: linear-gradient(
-    90deg,
-    var(--loader-background-color) 25%,
-    var(--loader-highlight-color) 50%,
-    var(--loader-background-color) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--loader-background-color) 25%,
+      var(--loader-highlight-color) 50%,
+      var(--loader-background-color) 75%);
   background-size: 200% 100%;
   animation: loading 2s infinite ease-in-out;
   border-radius: 8px;
@@ -324,12 +320,10 @@ body {
 .avatar-skeleton {
   width: 70px;
   height: 70px;
-  background: linear-gradient(
-    90deg,
-    var(--loader-background-color) 25%,
-    var(--loader-highlight-color) 50%,
-    var(--loader-background-color) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--loader-background-color) 25%,
+      var(--loader-highlight-color) 50%,
+      var(--loader-background-color) 75%);
   background-size: 200% 100%;
   animation: loading 2s infinite ease-in-out;
   border-radius: 50%;
@@ -340,12 +334,10 @@ body {
 .cover-image-skeleton {
   max-width: 300px;
   height: 150px;
-  background: linear-gradient(
-    90deg,
-    var(--loader-background-color) 25%,
-    var(--loader-highlight-color) 50%,
-    var(--loader-background-color) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--loader-background-color) 25%,
+      var(--loader-highlight-color) 50%,
+      var(--loader-background-color) 75%);
   background-size: 200% 100%;
   animation: loading 2s infinite ease-in-out;
   border-radius: 8px;
@@ -492,6 +484,7 @@ svg.loading-3-svg {
 }
 
 @keyframes leaf {
+
   0%,
   100% {
     transform-origin: 100% 100%;
@@ -520,6 +513,7 @@ svg.loading-3-svg {
 }
 
 @keyframes chat1 {
+
   0%,
   90% {
     transform: translateY(0);
@@ -557,6 +551,7 @@ svg.loading-3-svg {
 }
 
 @keyframes chat2 {
+
   0%,
   90% {
     transform: translateY(0);
@@ -594,6 +589,7 @@ svg.loading-3-svg {
 }
 
 @keyframes chat3 {
+
   0%,
   90% {
     transform: translateY(0);
@@ -631,6 +627,7 @@ svg.loading-3-svg {
 }
 
 @keyframes chat4 {
+
   0%,
   100% {
     transform: translateY(-704px);
@@ -742,6 +739,6 @@ svg.loading-3-svg {
 /* *******   Accordion svg  ******** */
 /* ******************************** */
 
-[data-radix-collection-item] svg {
+button.accordionWrapper>svg {
   display: none !important;
 }
