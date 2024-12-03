@@ -14,7 +14,6 @@ import OtherCourseDetails from '../Admin/OtherCourseDetails'
 import axios from '../../../../api/axios'
 import { IKImage } from 'imagekitio-react'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
-import SkeletonLoader from '@/components/SkeletonLoaders/SkeletonLoader'
 import Trainer from '@/components/Trainer'
 import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 

@@ -4,7 +4,7 @@ import useAuth from '../../../../hooks/useAuth'
 import useTitle from '../../../../hooks/useTitle'
 import BotChat from '../../../../components/Bot/BotChat'
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
 
 function UserDashboard() {
 
@@ -15,7 +15,6 @@ function UserDashboard() {
         <main>
             <SidebarProvider className="grid grid-cols-[auto_0px_1fr] md:grid-cols-[0px_0px_1fr]">
                 <SideBar />
-                <SidebarTrigger className="z-[1000]" />
                 <Outlet />
                 <div className='fixed bottom-20 right-10 w-fit z-[400]'>
                     <BotChat />

@@ -46,7 +46,7 @@ function PaymentSummary({ selectedCourses }) {
 
     return (
         <Fragment>
-            <div className="w-[20rem]">
+            <div className="w-[20rem] ilg:w-full ilg:max-w-[30rem] ilg:mt-7">
                 <div className="sticky top-3">
                     <h1 className="font-sans text-[1.05rem] text-slate-900 bg-[#f5f5dc] px-3 py-2 rounded-sm">
                         Payment Summary

@@ -2,8 +2,12 @@
 import ReactPaginate from 'react-paginate' // for pagination
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai' // icons form react-icons
 import { IconContext } from 'react-icons' // for customizing icons
+import useScrollTop from '@/hooks/useScrollTop'
 
 function ReactPagination({ data, setPage, n, isLoading = false, filteredData }) {
+
+    const { scrollTop } = useScrollTop()
+
     return (
         !isLoading && filteredData && filteredData.length > 0 && (
             <div className='w-full text-center mt-5'>
@@ -24,6 +28,7 @@ function ReactPagination({ data, setPage, n, isLoading = false, filteredData }) 
                             <AiFillRightCircle />
                         </IconContext.Provider>
                     }
+                    onClick={scrollTop}
                 />
             </div>
         )
