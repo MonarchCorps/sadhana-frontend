@@ -14,7 +14,7 @@ const ApplyInstructorForm = ({
 
     return (
         <>
-            <form className='grid grid-cols-2 gap-6 place-items-center w-full' encType='multipart/form-data' >
+            <form className='grid grid-cols-2 gap-6 place-items-center w-full' >
                 <div className='col-span-2 w-full'>
                     <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} isLoading={isLoading} imgName='bgImage' />
                 </div>
