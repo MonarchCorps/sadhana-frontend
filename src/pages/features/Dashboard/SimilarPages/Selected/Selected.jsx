@@ -24,7 +24,7 @@ function Selected() {
         const idsInArray2 = new Set(auth?.selectedCourses.map(obj => obj.courseId));
         const data = classes?.filter(obj => idsInArray2.has(obj._id));
 
-        setSelectedCourses(data, auth?.selectedCourses)
+        setSelectedCourses(data)
     }, [classes, auth?.selectedCourses])
 
 

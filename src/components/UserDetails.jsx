@@ -7,62 +7,62 @@ function UserDetails({ user }) {
     const roles = Array.isArray(user?.roles) ? user?.roles : Object.values(user?.roles).filter(Boolean)
 
     return (
-        <div className='grid grid-cols-3 gap-4 p-5 bg-[#8786861e] rounded'>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>User id: </span>
-                <span>{user?._id}</span>
+        <div className='grid grid-cols-3 md:grid-cols-2 xsm:grid-cols-1 gap-4 ism:gap-5 p-5 bg-[#8786861e] rounded'>
+            <div className='flex flex-col gap-1 break-words border-b border-solid border-slate-300 pb-2'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>User id: </span>
+                <span className='sm:text-xs'>{user?._id}</span>
             </div>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Address: </span>
-                <span>{user?.address}</span>
+            <div className='flex flex-col gap-1 border-b border-solid border-slate-300 pb-2'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Address: </span>
+                <span className='sm:text-xs'>{user?.address || 'Not available'}</span>
             </div>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Email: </span>
-                <span>{user?.email}</span>
+            <div className='flex flex-col gap-1 border-b border-solid border-slate-300 pb-2'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Email: </span>
+                <span className='sm:text-xs'>{user?.email}</span>
             </div>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Phone Number</span>
-                <span>{user?.phoneNumber}</span>
+            <div className='flex flex-col gap-1 border-b border-solid border-slate-300 pb-2'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Phone Number</span>
+                <span className='sm:text-xs'>{user?.phoneNumber}</span>
             </div>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Gender</span>
-                <span>
+            <div className='flex flex-col gap-1 border-b border-solid border-slate-300 pb-2 sm:hidden'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Gender</span>
+                <span className='sm:text-xs'>
                     {user?.gender && (user?.gender.charAt(0).toUpperCase() + user?.gender.slice(1))}
                 </span>
             </div>
-            <div className='flex flex-col gap-2'>
-                <span className='font-600 text-base text-[#1f2937]'>Roles</span>
+            <div className='flex flex-col gap-2 border-b border-solid border-slate-300 pb-2 sm:hidden'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Roles</span>
                 <span className='font-500 text-base tracking-tight align-text-top -mb-1'>
-                    <span>
+                    <span className='sm:text-xs'>
                         {roles?.includes(parseInt(import.meta.env.VITE_ADMIN_CODE)) && (
                             <span className='border border-solid border-[#15433c] bg-[#45837a1a] text-[#15433c] px-4 mr-1 rounded-2xl'>
-                                <span className='text-[0.8rem]'>Admin </span>
+                                <span className='text-[0.8rem] sm:text-xs'>Admin </span>
                             </span>
                         )}
                         {roles?.includes(parseInt(import.meta.env.VITE_INSTRUCTOR_CODE)) && (
                             <span className='border border-solid border-[#4358d1] bg-[#2e387122] text-[#4358d1] px-4 mr-1 rounded-2xl'>
-                                <span className='text-[0.8rem]'>Instructor </span>
+                                <span className='text-[0.8rem] sm:text-xs'>Instructor </span>
                             </span>
                         )}
                         {roles?.includes(parseInt(import.meta.env.VITE_USER_CODE)) && (
                             <span className='border border-solid border-[#d143ab] bg-[#2e387122] text-[#d143ab] px-4 rounded-2xl'>
-                                <span className='text-[0.8rem]'>User </span>
+                                <span className='text-[0.8rem] sm:text-xs'>User </span>
                             </span>
                         )}
                     </span>
                 </span>
             </div>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Date Registered</span>
-                <span>{user?.dateRegistered && format(user?.dateRegistered, "MMMM dd, yyyy")}</span>
+            <div className='flex flex-col gap-1 border-b border-solid border-slate-300 pb-2 sm:hidden'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Date Registered</span>
+                <span className='sm:text-xs'>{user?.dateRegistered && format(user?.dateRegistered, "MMMM dd, yyyy")}</span>
             </div>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Number of uploaded courses</span>
-                <span>{user?.courseCount || 0}</span>
+            <div className='flex flex-col gap-1 border-b border-solid border-slate-300 pb-2 sm:hidden'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Number of uploaded courses</span>
+                <span className='sm:text-xs'>{user?.courseCount || 0}</span>
             </div>
-            <div className='flex flex-col gap-1'>
-                <span className='font-600 text-base text-[#1f2937]'>Number of selected courses</span>
-                <span>{user?.selectedCourses?.length || 0}</span>
+            <div className='flex flex-col gap-1 sm:hidden'>
+                <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Number of selected courses</span>
+                <span className='sm:text-xs'>{user?.selectedCourses?.length || 0}</span>
             </div>
         </div>
     )

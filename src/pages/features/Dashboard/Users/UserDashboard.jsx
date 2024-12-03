@@ -13,7 +13,7 @@ function UserDashboard() {
 
     return (
         <main>
-            <SidebarProvider className="grid grid-cols-[auto_0px_1fr]">
+            <SidebarProvider className="grid grid-cols-[auto_0px_1fr] md:grid-cols-[0px_0px_1fr]">
                 <SideBar />
                 <SidebarTrigger className="z-[1000]" />
                 <Outlet />

@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 
 import Home from './pages/Home'
 import Missing from './pages/Missing'
@@ -129,7 +129,7 @@ function App() {
 	}, [navigate, location, path, auth?.roles])
 
 	return (
-		<div className='app'>
+		<Fragment>
 			<Routes>
 				{/* Public routes */}
 
@@ -236,10 +236,12 @@ function App() {
 				<Route path='*' element={<Missing />} />
 
 			</Routes>
+
 			<Toaster position="bottom-center"
 				reverseOrder={false}
 			/>
-		</div >
+		</Fragment>
+
 	)
 }
 

@@ -5,6 +5,7 @@ import { FaRegCommentDots } from 'react-icons/fa6'
 
 import useScrollTop from '../hooks/useScrollTop'
 import { IKImage } from 'imagekitio-react'
+import trim from '@/utils/trim'
 
 function Trainer({ trainer }) {
 
@@ -25,21 +26,21 @@ function Trainer({ trainer }) {
                     alt={`${trainer?.username} image`} />
                 <div>
                     <h1 className="font-500 text-base tracking-tight text-[#55765C]">
-                        {trainer?.username}
+                        {trim(trainer?.username, 10)}
                     </h1>
                     <div className='grid grid-flow-col place-items-center'>
-                        <p className='text-sm text-[#181616c4]'>Yoga Expert</p>
-                        <span className='flex text-[0.7rem] ml-3 gap-1 text-[#181616c4] items-center'>
+                        <p className='text-sm text-[#181616c4] sm:text-xs whitespace-nowrap'>Yoga Expert</p>
+                        <span className='flex sm:flex-col-reverse text-[0.7rem] ml-3 gap-1 text-[#181616c4] items-center'>
                             <span><FaUserAlt /></span> <span className='align-middle -mb-[1px]'>40</span>
                         </span>
                     </div>
                 </div>
             </div>
-            <div className='mt-6 flex justify-between items-center'>
-                <Link to={`/dashboard/admin-cp/user/profile/${trainer?.userId}`} className='border-[#3a6043] border-solid border text-[#3a6043] px-3 py-2 rounded-md w-4/5 text-center transition-all hover:text-slate-50 hover:bg-[#3a6043]' onClick={scrollTop}>
+            <div className='mt-6 flex ism:gap-2 ism:justify-center ixsm:flex-nowrap flex-wrap justify-between items-center'>
+                <Link to={`/dashboard/admin-cp/user/profile/${trainer?.userId}`} className='border-[#3a6043] border-solid border text-[#3a6043] px-3 py-2 rounded-md w-4/5 text-center transition-all hover:text-slate-50 hover:bg-[#3a6043] xsm:text-sm' onClick={scrollTop}>
                     See Profile
                 </Link>
-                <span className='text-[1.35rem] border border-solid p-2 rounded-md bg-[#b1dbbba6] text-[#659771ba] cursor-pointer'>
+                <span className='text-[1.35rem] border border-solid p-2 rounded-md bg-[#b1dbbba6] text-[#659771ba] cursor-pointer ism:w-4/5 ism:grid ism:place-items-center'>
                     <Link to='/chat'>
                         <FaRegCommentDots />
                     </Link>

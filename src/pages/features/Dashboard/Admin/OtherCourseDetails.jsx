@@ -14,23 +14,21 @@ function OtherCourseDetails({ course }) {
     return (
         <figure className='flex flex-col justify-between'>
             <div>
-                <div>
-                    <IKImage
-                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
-                        path={course?.thumbnailPhoto}
-                        className='w-72 h-52 object-cover rounded'
-                        loading='lazy'
-                        lqip={{
-                            active: true,
-                            quality: 20
-                        }}
-                        alt={`${course?.classname} image`}
-                    />
-                </div>
-                <div className='mt-3 text-sm'>
+                <IKImage
+                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                    path={course?.thumbnailPhoto}
+                    className='w-72 h-52 object-cover rounded ilg:w-full'
+                    loading='lazy'
+                    lqip={{
+                        active: true,
+                        quality: 20
+                    }}
+                    alt={`${course?.classname} image`}
+                />
+                <div className='mt-3 text-sm font-mono ism:text-xs ism:font-sans'>
                     Duration: {convertTime(course?.time?.startTime, course?.time?.endTime)}
                 </div>
-                <div className='mt-2 font-500 font-sans leading-5'>
+                <div className='mt-2 font-500 font-sans leading-5 ism:text-sm'>
                     {trim(course.description, 60)}
                 </div>
             </div>
