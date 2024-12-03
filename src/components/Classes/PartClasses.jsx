@@ -7,11 +7,14 @@ import { useNavigate, Link } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 import { IKImage } from 'imagekitio-react'
 import trim from '../../utils/trim'
+import useScrollTop from '@/hooks/useScrollTop'
 
 function PartClasses({ course, handleBookClass, handleUnBookClass, enrolledCourses }) {
 
     const navigate = useNavigate();
     const { auth } = useAuth()
+
+    const { scrollTop } = useScrollTop();
 
     return (
         <div className='w-full shadow-shadow rounded-lg overflow-hidden mb-6 grid grid-cols-3 clg:max-h-80 hrmd:flex hrmd:flex-col hrmd:h-full gap-4'>
@@ -91,12 +94,7 @@ function PartClasses({ course, handleBookClass, handleUnBookClass, enrolledCours
                     <Link
                         to={`/class/${course?._id}`}
                         className='text-sm py-[0.6rem] px-7 text-[#e5759a] rounded-full bg-slate-50 shadow-inner border-[#e5779a] border-solid border-2'
-                        onClick={() => {
-                            window.scrollTo({
-                                top: 0,
-                                behavior: 'smooth'
-                            })
-                        }}
+                        onClick={scrollTop}
                     >
                         Read More
                     </Link>

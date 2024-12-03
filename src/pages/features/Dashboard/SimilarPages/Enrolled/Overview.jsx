@@ -12,7 +12,7 @@ function Overview({ enrolledDetails }) {
     )
 
     return (
-        <div className="mt-12 w-96">
+        <div className="mt-12 w-96 ixsm:w-full ixsm:max-w-[30rem]">
             <h1 className="underline decoration-[#a3410c] decoration-wavy font-500 text-[1.2rem]">Overview</h1>
             <div>
                 <div className='min-h-64 border border-solid border-slate-50 shadow-sm mt-3 p-3'>
@@ -20,7 +20,7 @@ function Overview({ enrolledDetails }) {
                         <li className="grid grid-flow-col justify-between border-b border-solid border-b-slate-100 pb-2 mb-3">
                             <h1>
                                 <span className="font-500">Courses </span>
-                                <span>{`(${totalEnrolledCourse})`}</span>
+                                <span>{`(${totalEnrolledCourse || 0})`}</span>
                             </h1>
                             <h1>
                             </h1>
@@ -38,7 +38,7 @@ function Overview({ enrolledDetails }) {
                                                 <span>
                                                     <span>#</span>
                                                     &nbsp;
-                                                    <span className='text-green-900'>{course?.paidPrice}</span>
+                                                    <span className='text-green-900 break-words'>{course?.paidPrice.toLocaleString()}</span>
                                                 </span>
                                             </div>
                                         </li>

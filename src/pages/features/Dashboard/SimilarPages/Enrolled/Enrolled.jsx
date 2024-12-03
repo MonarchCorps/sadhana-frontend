@@ -26,8 +26,8 @@ function Enrolled() {
 
     return (
         <Fragment>
-            <section>
-                <div className="max-w-[66rem] mx-auto py-10 pr-5 h-full relative">
+            <section className='w-screen'>
+                <div className="max-w-[95%] mx-auto py-10 h-full relative">
                     <div className="mb-10 text-center">
                         <h1 className='text-[2.3rem] mb-2 font-500 font-sans text-center'>
                             My <span className="text-[#27554a]">Enrolled course</span>
@@ -39,7 +39,7 @@ function Enrolled() {
                         <EnrolledCourse enrolledCourse={enrolledCourse} isLoading={isPending} />
                         {
                             enrolledCourse?.length > 0 && (
-                                <div className='flex gap-5'>
+                                <div className='max-w-[90%] hrmd:max-w-[94%] mx-auto flex imd:flex-col ixsm:max-w-[100%] gap-5 mt-6'>
                                     <History enrolledCourse={enrolledCourse} />
                                     <AskQuestion />
                                 </div>

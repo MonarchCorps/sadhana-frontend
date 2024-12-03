@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactPagination from '../../../../../components/ReactPagination'
 import EnrolledDetails from './EnrolledDetails'
+import { Accordion } from '@/components/ui/accordion'
 
 function TableBody({ filteredDetails }) {
 
@@ -19,20 +20,27 @@ function TableBody({ filteredDetails }) {
     }, [page, filteredDetails])
 
     return (
-        <Fragment>
+        <Accordion type="single" collapsible>
             {
-                filteredData && filteredData?.length > 0 ? (
-                    filteredData.map(details => {
-                        return (
-                            <EnrolledDetails key={details?._id} details={details} />
+                filteredData?.length > 0 ? (
+                    filteredData?.length > 0 &&
+                    filteredDetails
+                        ?.flatMap(e =>
+                            e?.courseDetails.map(c => ({
+                                ...c,
+                                createdAt: e.createdAt,
+                                paymentDetails: e.paymentDetails,
+                                shipping_options: e.shipping_options,
+                                totalAmount: e.totalAmount,
+                            }))
                         )
-                    })
+                        ?.map(details => <EnrolledDetails key={details?._id} details={details} />)
                 ) : (
                     <p className='w-full text-center mt-20'>No details found! Check back later or reload page!</p>
                 )
             }
             <ReactPagination data={filteredDetails} setPage={setPage} n={n} filteredData={filteredData} />
-        </Fragment>
+        </Accordion>
     )
 }
 

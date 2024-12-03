@@ -11,7 +11,7 @@ const Filter = ({ isOpen, handleInputChange, searchItem, handleSelect, selection
 
     return (
         isOpen && (
-            <div className="absolute right-0 top-16 bg-[#fff] shadow-shadow border border-solid border-[#33222219] rounded-md z-10 w-fit" ref={dropDownRef}>
+            <div className="absolute right-0 esm:left-0 top-16 bg-[#fff] shadow-shadow border border-solid border-[#33222219] rounded-md z-10 w-fit" ref={dropDownRef}>
                 <p className='font-500 px-4 py-2 text-[0.93rem] border-b border-solid border-b-[#33222219] text-[#100f0f] mb-3'>Filter</p>
                 <div>
                     <div className='flex justify-between text-[0.90rem] mb-2 px-3'>
@@ -28,6 +28,7 @@ const Filter = ({ isOpen, handleInputChange, searchItem, handleSelect, selection
                             onChange={handleSelect}
                             editableDateInputs={true}
                             moveRangeOnFirstSelection={true}
+                            className='w-fit'
                         />
                     </div>
                 </div>

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import {
     Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubItem, SidebarSeparator,
     SidebarTrigger,
-    useSidebar
 } from '@/components/ui/sidebar'
 import { ChevronDown } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
@@ -20,7 +19,6 @@ function SidebarState({ navLinks, extraLinks, excludedIndices, comparePath }) {
 
     const { scrollTop } = useScrollTop();
     const pathAfterSlash = usePathAfterSlash();
-    const { isMobile } = useSidebar()
 
     const isActiveFunc = (path) => {
         const isAdminPath = pathAfterSlash === comparePath && path === '';
@@ -55,7 +53,7 @@ function SidebarState({ navLinks, extraLinks, excludedIndices, comparePath }) {
                             className='object-cover mb-2 text-slate-50 '
                         />
                     </Link>
-                    {!isMobile && <SidebarTrigger className="z-[1000]" />}
+                    <SidebarTrigger className="z-[1000]" />
                 </SidebarHeader>
                 <SidebarContent>
                     <SidebarGroup>
