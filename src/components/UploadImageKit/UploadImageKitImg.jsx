@@ -71,7 +71,7 @@ function UploadImageKitImg({ img, setImg, setPreview, ikUploadRef, children }) {
                 authenticator={authenticator}
             >
                 <IKUpload
-                    accept='images/*'
+                    accept='image/*'
                     fileName="yoga-master.png"
                     onError={onError}
                     onSuccess={onSuccess}
