@@ -1,23 +1,20 @@
 /* eslint-disable react/prop-types */
 import { format } from 'date-fns'
-import { useState } from 'react'
-import { ModalContent } from '../../../../components/Modals/ImageModal'
 import SubmitButton from '../../../../components/SubmitButton/SubmitButton'
 import UploadImageKit from '../../../../components/UploadImageKit/UploadImageKit'
 import useAuth from '../../../../hooks/useAuth'
 
 function EditProfileForm({ handleChange, preview, formData, handleSubmit, img, setImg, setPreview, ikUploadRef }) {
 
-    const [isOpen, setIsOpen] = useState(false)
     const { auth } = useAuth()
 
     const valid = formData.username && formData.email && formData.gender && formData.phoneNumber && !img?.isLoading && !img?.error
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3 w-[40rem] mx-auto mt-4" encType='multipart/form-data'>
+            <form onSubmit={handleSubmit} className="grid grid-cols-2 ixsm:flex ixsm:flex-col gap-3 mx-auto mt-4">
                 <div className='col-span-2 mb-3'>
-                    <UploadImageKit imgUrl={auth?.profileImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} imgName='profileImage' />
+                    <UploadImageKit imgUrl={auth?.profileImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} imgName='profileImage' />
                 </div >
 
                 <div className='flex flex-col w-full'>
@@ -57,7 +54,6 @@ function EditProfileForm({ handleChange, preview, formData, handleSubmit, img, s
 
                     </div>
                 </div>
-
 
                 <div className='flex flex-col w-full'>
                     <label className='text-sm mb-2 font-500' htmlFor="userId">User id</label>
@@ -112,13 +108,11 @@ function EditProfileForm({ handleChange, preview, formData, handleSubmit, img, s
                     >
 
                     </textarea>
-
                 </div>
                 <SubmitButton divStyle='col-span-2 w-full mt-3' valid={valid} action={handleSubmit}>
                     Submit
                 </SubmitButton>
             </form >
-            <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} imgUrl={auth?.profileImage} />
         </>
     )
 }
