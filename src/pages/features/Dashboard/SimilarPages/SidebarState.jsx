@@ -42,7 +42,7 @@ function SidebarState({ navLinks, extraLinks, excludedIndices, comparePath }) {
     return (
         <Fragment>
             <SidebarTrigger className="z-[500] fixed top-0" />
-            <Sidebar className='bg-slate-50 z-[800]'>
+            <Sidebar className='bg-slate-50 z-[800] h-full'>
                 <SidebarHeader className='flex flex-row p-0 justify-between'>
                     <Link to='/' onClick={scrollTop} className='p-2'>
                         <img
