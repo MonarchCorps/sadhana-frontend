@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
 
 import useAuth from '../../../../../hooks/useAuth'
-import { ModalContent } from '../../../../../components/Modals/ImageModal'
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit'
 
@@ -11,7 +9,6 @@ const ApplyInstructorForm = ({
     img, setImg, setPreview, ikUploadRef
 }) => {
     const { auth } = useAuth();
-    const [isOpen, setIsOpen] = useState(false);
 
     const valid = formData.experience && formData.bgImage && !img.error && !img?.isLoading && !isLoading
 
@@ -19,9 +16,9 @@ const ApplyInstructorForm = ({
         <>
             <form className='grid grid-cols-2 gap-6 place-items-center w-full' encType='multipart/form-data' >
                 <div className='col-span-2 w-full'>
-                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} isLoading={isLoading} imgName='bgImage' />
+                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} isLoading={isLoading} imgName='bgImage' />
                 </div>
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full ixsm:col-span-2'>
                     <label htmlFor="username" className='text-sm mb-2 font-500'>Username</label>
                     <input
                         type="text"
@@ -32,7 +29,7 @@ const ApplyInstructorForm = ({
                         className='border-[1px] border-solid border-[#aeacac] h-[40px] p-2 rounded w-full bg-[#d4e9fc82] outline-none cursor-default'
                     />
                 </div>
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full ixsm:col-span-2'>
                     <label htmlFor="email" className='text-sm mb-2 font-500'>Email</label>
                     <input
                         type="text"
@@ -59,7 +56,6 @@ const ApplyInstructorForm = ({
                     Submit
                 </SubmitButton>
             </form >
-            <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} />
         </>
 
     )

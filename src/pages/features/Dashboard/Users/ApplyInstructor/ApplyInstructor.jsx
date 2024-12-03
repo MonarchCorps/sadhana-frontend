@@ -104,12 +104,12 @@ function ApplyInstructor() {
         <>
             <Loading isLoading={isPending} />
             <section>
-                <div className='pt-14 px-3 pb-3 w-full h-full place-items-center grid max-w-[38.8rem] mx-auto'>
-                    <div>
-                        <h1 className='text-[2rem] mb-4 font-500 font-sans text-center'>
+                <div className='pt-14 px-3 pb-3 w-full h-full place-items-center grid max-w-[38.8rem] amd:max-w-[34rem] esm:px-5 mx-auto'>
+                    <div className='text-center'>
+                        <h1 className='text-[2rem] amd:text-2xl ixsm:text-xl mb-4 font-500 font-sans'>
                             Hello 👋🏻 👋🏻 <span className='text-[#27554a]'>{auth?.username}</span> and welcome to Sadhana
                         </h1>
-                        <p className='mb-4 font-500'>Let's get you started as an instructor, all we need is a few details 😊</p>
+                        <p className='mb-4 font-500 amd:text-sm ixsm:text-xs'>Let's get you started as an instructor, all we need is a few details 😊</p>
                     </div>
                     <div className='w-full'>
                         <ApplyInstructorForm isLoading={isLoading} preview={preview} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}
