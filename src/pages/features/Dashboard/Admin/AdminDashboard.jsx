@@ -2,7 +2,8 @@ import { Outlet } from 'react-router-dom'
 import SideBar from './SideBar'
 import useTitle from '../../../../hooks/useTitle'
 import useAuth from '../../../../hooks/useAuth'
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
+import BotChat from '@/components/Bot/BotChat'
 
 function AdminDashboard() {
 
@@ -12,10 +13,12 @@ function AdminDashboard() {
 
     return (
         <main>
-            <SidebarProvider className="grid grid-cols-[auto_0px_1fr]">
+            <SidebarProvider className="grid grid-cols-[auto_1fr] md:grid-cols-1">
                 <SideBar />
-                <SidebarTrigger className="z-[1000]" />
                 <Outlet />
+                <div className='fixed bottom-20 right-10 w-fit'>
+                    <BotChat />
+                </div>
             </SidebarProvider>
         </main>
     )

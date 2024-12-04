@@ -135,75 +135,31 @@ export default {
 			}
 		},
 		screens: {
-			xl: {
-				max: '1279px'
-			},
-			ilg: {
-				max: '1199px'
-			},
-			lg: {
-				max: '1023px'
-			},
-			clg: {
-				min: '987px'
-			},
-			hrmd: {
-				max: '986px'
-			},
-			ermd: {
-				max: '910px'
-			},
-			imd: {
-				max: '852px'
-			},
-			hrmd2: {
-				max: '825px'
-			},
-			hmd: {
-				max: '854px'
-			},
-			md: {
-				max: '767px'
-			},
-			amd: {
-				max: '710px'
-			},
-			tmd: {
-				max: '658px'
-			},
-			fmd: {
-				max: '605px'
-			},
-			sm: {
-				max: '639px'
-			},
-			ism: {
-				max: '585px'
-			},
-			csm: {
-				max: '578px'
-			},
-			aism: {
-				max: '525px'
-			},
-			esm: {
-				max: '510px'
-			},
-			ixsm: {
-				max: '473px'
-			},
-			casm: {
-				max: '402px'
-			},
-			xsm: {
-				max: '393px'
-			},
-			axsm: {
-				max: '377px'
-			},
-			asm: {
-				max: '365px'
-			},
+			xl: { max: '1279px' },
+			ilg: { max: '1199px' },
+			lg: { max: '1023px' },
+			clg: { min: '987px' },
+			hrmd: { max: '986px' },
+			umd: { max: '916px' },
+			ermd: { max: '910px' },
+			eumd: { max: '905px' },
+			imd: { max: '852px' },
+			hrmd2: { max: '825px' },
+			hmd: { max: '854px' },
+			md: { max: '767px' },
+			amd: { max: '710px' },
+			tmd: { max: '658px' },
+			fmd: { max: '605px' },
+			sm: { max: '639px' },
+			ism: { max: '585px' },
+			csm: { max: '578px' },
+			aism: { max: '525px' },
+			esm: { max: '510px' },
+			ixsm: { max: '473px' },
+			casm: { max: '402px' },
+			xsm: { max: '393px' },
+			axsm: { max: '377px' },
+			asm: { max: '365px' },
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
