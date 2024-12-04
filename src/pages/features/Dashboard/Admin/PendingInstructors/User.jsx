@@ -79,7 +79,7 @@ function User({ user, handleApproval, index }) {
                 </div>
                 {screenWidth <= 973 && (
                     <div className='col-span-full'>
-                        <AccordionContent className='flex gap-3 mt-1 pt-4 pb-1 amd:justify-between esm:flex-col esm:items-start esm:gap-0 esm:pt-2'>
+                        <AccordionContent className='flex gap-3 mt-1 pt-4 pb-1 amd:justify-between esm:flex-col esm:items-start esm:gap-0 esm:pt-2 mr-2'>
                             <p className='hidden pmd:block text-start'>
                                 <span className='esm:inline-block text-sm  font-bold'>Applied on: &nbsp;</span>
                                 <span> {user?.dateApplied && formatDate(user?.dateApplied)}</span>

@@ -191,8 +191,8 @@ function User({ user, handleCheckedState, deleteUser, setUsersToDelete, usersToD
                     </div>
                     {screenWidth <= 905 && (
                         <div className='col-span-full'>
-                            <AccordionContent className='flex gap-3 pt-4 pb-1 amd:justify-between esm:flex-col esm:items-start esm:gap-0 esm:pt-2'>
-                                <p className='hidden ilg:block text-start'>
+                            <AccordionContent className='flex gap-3 pt-4 pb-1 amd:justify-between esm:flex-wrap esm:items-start esm:gap-0 esm:pt-2'>
+                                <p className='hidden ilg:block text-start mr-2'>
                                     <span className='esm:inline-block text-sm amd:text-xs font-bold'>Registered on: &nbsp;</span>
                                     <span className='amd:text-xs'>{user?.dateRegistered && formatDate(user?.dateRegistered)}</span>
                                 </p>
