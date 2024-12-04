@@ -14,7 +14,7 @@ const ApplyInstructorForm = ({ preview, formData, handleChange, handleSubmit, im
 
     return (
         <>
-            <form className='grid grid-cols-2 gap-6 place-items-center w-full' >
+            <form onSubmit={handleSubmit} className="grid grid-cols-2 ixsm:flex ixsm:flex-col gap-3 mx-auto mt-4">
                 <div className='col-span-2 w-full'>
                     <UploadImageKit imgUrl={auth?.bgImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} imgName='bgImage' />
                 </div>

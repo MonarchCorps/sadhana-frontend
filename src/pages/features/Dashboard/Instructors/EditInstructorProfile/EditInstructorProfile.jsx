@@ -90,12 +90,11 @@ function EditInstructorProfile() {
         <>
             <Loading isLoading={isPending} />
             <section>
-                <div className='pt-14 px-3 pb-3 w-full h-full place-items-center grid max-w-[38.8rem] mx-auto'>
-                    <div>
-                        <h1 className='text-[2rem] mb-4 font-500 font-sans text-center'>
-                            Hello 👋🏻 👋🏻 <span className='text-[#27554a]'>{auth?.username}</span> and welcome to Sadhana
-                        </h1>
-                        <p className='mb-10 font-500 text-center w-full'>Let's update your profile as an instructor 😊</p>
+                <div className='pt-14 px-3 pb-3 w-full h-full flex flex-col justify-center max-w-[38.8rem] amd:max-w-[34rem] esm:px-5 mx-auto'>
+                    <div className='w-full text-start'>
+                        <h1 className='text-[2rem] amd:text-2xl ixsm:text-xl mb-4 font-500 font-serif text-center'>
+                            Hello 👋🏻 👋🏻 <span className='text-[#27554a] font-sans'>{auth?.username}</span> and welcome to Sadhana</h1>
+                        <p className='mb-3 font-500 text-center w-full'>Let's update your profile as an instructor 😊</p>
                     </div>
                     <div className='w-full'>
                         <EditInstructorProfileForm preview={preview} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
