@@ -3,7 +3,6 @@ import { useState } from 'react'
 import Select from 'react-select'
 
 import useAuth from '../../../../../hooks/useAuth'
-import { ModalContent } from '../../../../../components/Modals/ImageModal'
 
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit'
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton'
@@ -88,7 +87,7 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
                     />
                 </div>
 
-                <div>
+                <div className='aism:col-span-2'>
                     <p className='text-sm mb-2 font-500'>Day</p>
                     <Select
                         id="days"
@@ -102,7 +101,7 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
                     />
                 </div>
 
-                <div>
+                <div className='aism:col-span-2'>
                     <div className='flex justify-between mb-1'>
                         <p className='text-sm font-500'>Start Time</p>
                         <p className='text-sm font-500'>End Time</p>
@@ -129,7 +128,7 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
                     </div>
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col axsm:col-span-2 w-full'>
                     <label className='text-sm mb-2 font-500' htmlFor="instructorName">Instructor name</label>
                     <input
                         type="text"
@@ -141,7 +140,7 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
                     />
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col axsm:col-span-2 w-full'>
                     <label className='text-sm mb-2 font-500' htmlFor="instructorEmail">Instructor email</label>
                     <input
                         type="email"
@@ -200,7 +199,6 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
                     Submit
                 </SubmitButton>
             </form >
-            <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} />
         </>
     )
 

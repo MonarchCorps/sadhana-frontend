@@ -34,7 +34,7 @@ function InstructorDashboard() {
                     isLoading,
                     isFetching,
                 }} />
-                <div className='fixed bottom-20 right-10 w-fit z-[400]'>
+                <div className='fixed bottom-20 right-10 w-fit '>
                     <BotChat />
                 </div>
             </SidebarProvider>

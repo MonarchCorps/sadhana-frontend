@@ -164,12 +164,12 @@ function AddClass() {
         <>
             <Loading isLoading={isPending} />
             <section>
-                <div className='pt-14 px-3 pb-3 w-full h-full place-items-center grid'>
-                    <div className="text-center max-w-[58rem] mx-auto">
-                        <h1 className='text-[1.7rem] mb-4 font-500 font-sans text-center'>
-                            🤔 Willing to help and improve the stability, growth 📊 and development of the human body 👀 and earn some real <span className='text-[#27554a]'>Cash 😉</span>
+                <div className='pt-14 px-3 pb-3 size-full max-w-[58rem] hrmd:max-w-[85%] aism:max-w-[94%] mx-auto place-items-center grid'>
+                    <div className="text-center  mx-auto">
+                        <h1 className='text-3xl hrmd:text-2xl axsm:text-xl mb-4 font-500 font-sans'>
+                            Want to earn some real <span className='text-[#27554a]'>Cash 😉</span>
                         </h1>
-                        <p className='mb-4 font-500'>Alright off we go! Add a class 😊 and we&apos;ll get you started</p>
+                        <p className='mb-4 font-500 hrmd:text-sm axsm:text-xs'>Alright off we go! Add a class 😊 and we&apos;ll get you started</p>
                     </div>
                     <div className="w-full">
                         <AddClassForm preview={preview} handleChange={handleChange} formData={formData} handleSubmit={handleSubmit} handleTimeChange={handleTimeChange} dayArray={dayArray} setDayArray={setDayArray} isLoading={isLoading} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
