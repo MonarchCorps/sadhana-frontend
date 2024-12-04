@@ -2,7 +2,6 @@
 import { useState } from 'react'
 
 import useAuth from '../../../../../hooks/useAuth'
-import { ModalContent } from '../../../../../components/Modals/ImageModal'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit';
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton';
 
@@ -57,7 +56,6 @@ const ApplyInstructorForm = ({ preview, formData, handleChange, handleSubmit, im
                     Submit
                 </SubmitButton>
             </form >
-            <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} imgUrl={auth?.bgImage} />
         </>
     )
 }

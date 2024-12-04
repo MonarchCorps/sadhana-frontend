@@ -84,12 +84,9 @@ function UserHomeDashboard() {
                             alt={`${auth?.username} image`}
                         />
                     </div>
-
-                    <div>
-                        <h1 className='text-[2rem] mb-4 font-500 font-serif imd:text-3xl imd:mt-2'>
-                            {auth?.username || 'User'}
-                        </h1>
-                    </div>
+                    <h1 className='text-[2rem] mb-4 font-500 font-serif imd:text-3xl imd:mt-2'>
+                        {auth?.username || 'User'}
+                    </h1>
                     <UserDetails user={auth} />
                     {selectedCourses && selectedCourses?.length > 0 && (
                         <div className='max-w-[96%] mx-auto mt-4'>

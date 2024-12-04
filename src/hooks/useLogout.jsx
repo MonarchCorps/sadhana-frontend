@@ -10,7 +10,6 @@ const useLogout = () => {
 
     const logout = async () => {
         disConnectSocket(auth?._id)
-        console.log(auth?._id)
         setAuth({})
         try {
             await axios.get('/auth/logout', {
