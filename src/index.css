@@ -226,28 +226,6 @@ body {
 /* *******     Home component styles    ********** */
 /* ********************************************** */
 
-/* ******************************** */
-/* *******     Swiper button    ********** */
-/* ******************************** */
-
-.swiper-button-next,
-.swiper-button-prev {
-  position: absolute;
-  padding: 4 6px;
-  color: #000;
-  top: 94%;
-  width: 0px;
-}
-
-.swiper-button-next::after {
-  font-size: 20px;
-  margin-right: 40px;
-}
-
-.swiper-button-prev::after {
-  font-size: 20px;
-  margin-left: 40px;
-}
 
 /* ******************************** */
 /* *******     Spinner    ********** */
@@ -355,7 +333,6 @@ body {
   }
 }
 
-/* HTML: <div class="loader"></div> */
 .loader2 {
   width: fit-content;
   font-family: monospace;
@@ -372,88 +349,6 @@ body {
     clip-path: inset(0 -1ch 0 0);
   }
 }
-
-/* ******************************** */
-/* *******     Modal    ********** */
-/* ******************************** */
-
-/* The Modal (background) */
-.modal {
-  position: fixed;
-  padding-top: 100px;
-  overflow: auto;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
-}
-
-/* Modal Content (image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  max-width: 700px;
-}
-
-/* Add Animation */
-.modal-content {
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@-webkit-keyframes zoom {
-  from {
-    -webkit-transform: scale(0);
-  }
-
-  to {
-    -webkit-transform: scale(1);
-  }
-}
-
-@keyframes zoom {
-  from {
-    transform: scale(0);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
-
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px) {
-  .modal-content {
-    width: 100%;
-  }
-}
-
-/* ******************************** */
-/* *******     Modal    ********** */
-/* ******************************** */
 
 /* ******************************** */
 /* *******     Illustration    ********** */
@@ -704,7 +599,7 @@ svg.loading-3-svg {
 /* ******************************** */
 
 /* ******************************** */
-/* *******     Bot generating loader    ********** */
+/* *******  Bot generating loader ******* */
 /* ******************************** */
 
 .isGenerating-loader {
