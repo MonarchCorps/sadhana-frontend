@@ -30,7 +30,7 @@ function TableBody({ filteredUsers: pendingInstructors, handleApproval, isLoadin
                                 <User key={user?._id} user={user} handleApproval={handleApproval} index={i} />
                             )
                         })
-                    ) : !isLoading && (
+                    ) : !isLoading && filteredData?.length === 0 && (
                         <p className='w-full text-center my-12 xsm:text-sm'>No pending applications found! Check back later or reload page!</p>
                     )
                 }

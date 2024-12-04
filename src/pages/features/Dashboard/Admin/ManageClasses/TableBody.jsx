@@ -31,7 +31,7 @@ function TableBody({ filteredCourses: allCourses, handleCheckedState, deleteCour
                                 <Course key={course?._id} course={course} handleCheckedState={handleCheckedState} deleteCourse={deleteCourse} setCoursesToDelete={setCoursesToDelete} coursesToDelete={coursesToDelete} handleApproval={handleApproval} />
                             )
                         })
-                    ) : !isLoading && (
+                    ) : !isLoading && filteredData?.length === 0 && (
                         <p className='w-full text-center my-12 xsm:text-sm'>No courses found! Check back later or reload page!</p>
                     )
                 }

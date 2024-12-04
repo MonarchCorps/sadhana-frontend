@@ -31,7 +31,7 @@ function TableBody({ filteredUsers: allUsers, handleCheckedState, deleteUser, se
                                 <User key={user?._id} user={user} handleCheckedState={handleCheckedState} deleteUser={deleteUser} setUsersToDelete={setUsersToDelete} usersToDelete={usersToDelete} />
                             )
                         })
-                    ) : !isLoading && (
+                    ) : !isLoading && filteredData?.length === 0 && (
                         <p className='w-full text-center my-12 xsm:text-sm'>No users found! Check back later or reload page!</p>
                     )
                 }
