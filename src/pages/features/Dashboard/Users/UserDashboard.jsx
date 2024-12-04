@@ -16,7 +16,7 @@ function UserDashboard() {
             <SidebarProvider className="grid grid-cols-[auto_1fr] md:grid-cols-1">
                 <SideBar />
                 <Outlet />
-                <div className='fixed bottom-20 right-10 w-fit z-[400]'>
+                <div className='fixed bottom-20 right-10 w-fit'>
                     <BotChat />
                 </div>
             </SidebarProvider>
