@@ -6,11 +6,11 @@ function Unauthorized() {
     useTitle('Unauthorized');
 
     return (
-        <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8 csm:px-6">
             <div className="mx-auto max-w-md text-center">
                 <div className="mx-auto h-12 w-12 text-primary" />
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Unauthorized Access</h1>
-                <p className="mt-4 text-muted-foreground">
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl csm:text-4xl">Unauthorized Access</h1>
+                <p className="mt-4 text-muted-foreground csm:text-base/relaxed">
                     You don&apos;t have permission to view this page. Please go back!
                 </p>
                 <div className="mt-6">
