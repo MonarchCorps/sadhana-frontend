@@ -153,6 +153,7 @@ export default {
 			sm: { max: '639px' },
 			ism: { max: '585px' },
 			csm: { max: '578px' },
+			msm: { max: '552px' },
 			aism: { max: '525px' },
 			esm: { max: '510px' },
 			ixsm: { max: '473px' },

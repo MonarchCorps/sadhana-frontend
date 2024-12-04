@@ -2,7 +2,7 @@
 import useAuth from '../../../../hooks/useAuth'
 import { FaTrashAlt, FaUserAlt } from 'react-icons/fa'
 import { LuListFilter } from 'react-icons/lu'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { format } from 'date-fns'
@@ -10,8 +10,9 @@ import useHideScroll from '../../../../hooks/useHideScroll'
 import Filter from './Filter'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import useHandleClickOutside from '../../../../hooks/useHandleClickOutside'
+
 import { FaBook } from 'react-icons/fa6'
+import useComponentVisible from '@/hooks/useComponentVisible'
 
 function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, deleteData, setFilteredData, management, title, desc }) {
 
@@ -19,17 +20,15 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
     const [searchItem, setSearchItem] = useState('');
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
-    const dropDownRef = useRef(null);
-
     const [gender, setGender] = useState('Gender');
     const [roles, setRoles] = useState('Roles');
 
-    useHandleClickOutside(isOpen, setIsOpen, dropDownRef);
+    // useHandleClickOutside(isOpen, setIsOpen, dropDownRef);
+    const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible()
 
     useHideScroll(isModalOpen)
 
@@ -107,10 +106,10 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
 
     return (
         <>
-            <h1 className='text-[2rem] mb-4 font-500 font-sans'>
-                Hi <span className='text-[#27554a] font-cuba'>{auth?.username ?? 'User'}</span> Welcome to your dashboard
+            <h1 className='text-[2rem] mb-4 font-500 font-sans sm:text-3xl ixsm:text-2xl axsm:text-xl'>
+                Hi <span className='text-[#27554a] font-cuba'>{auth?.username ?? 'User'}</span> welcome to your dashboard
             </h1>
-            <h1 className='text-[1.67rem] mb-4 font-500 font-sans inline-flex items-center'>
+            <h1 className='text-[1.67rem] mb-4 font-500 font-sans inline-flex items-center sm:text-xl ixsm:text-base'>
                 <span className='mr-5'>
                     {management}
                 </span>
@@ -127,14 +126,14 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
                 }
             </h1>
             <p>{desc}</p>
-            <div className='mt-10 mb-5 mr-5 flex justify-between'>
-                <h1 className='text-[1.59rem] font-500 '>
+            <div className='mt-10 mb-5 mr-5 flex justify-between md:flex-col md:gap-y-3'>
+                <h1 className='text-[1.59rem] font-500 asm:text-xl'>
                     <span>{title} {management.split(' ')[0]}</span>
                     &nbsp;
                     <span className='opacity-65'>{datas?.length}</span>
                 </h1>
-                <div className='grid grid-flow-col items-center gap-7 relative'>
-                    <div className='w-96'>
+                <div className='grid grid-flow-col items-center gap-7 msm:grid-flow-row msm:gap-y-5 relative'>
+                    <div className='w-96 msm:w-full'>
                         <label htmlFor="search" className='left-[-9999px] absolute'>Search</label>
                         <div className='relative h-11'>
                             <span className='absolute text-[#8b8888] text-[1.2rem] top-[0.58rem] left-3 font-300'>
@@ -157,7 +156,7 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
                             <button
                                 id='openButton'
                                 type='button'
-                                className='flex items-center text-[0.9rem] border border-solid border-current px-6 py-[0.78rem] rounded-xl text-[#efefef] font-sans font-700 hover:border-current hover:bg-transparent bg-red-600 hover:text-red-600'
+                                className='flex text-center items-center justify-center text-[0.9rem] border border-solid border-current px-6 py-[0.78rem] rounded-xl text-[#efefef] font-sans font-700 hover:border-current hover:bg-slate-50 bg-red-600 hover:text-red-600 hmd:justify-self-end msm:justify-self-start ixsm:w-full'
                                 onClick={() => {
                                     dataToDelete && dataToDelete.length > 0 && setIsModalOpen(true);
                                 }}
@@ -166,8 +165,8 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
                                 <span>Delete </span>
                             </button>
                         ) : (
-                            <button type='button' id='openButton' className='flex items-center text-[0.9rem] border border-solid border-current px-6 py-[0.78rem] rounded-xl text-[#efefef] font-sans font-700 hover:border-current hover:bg-transparent bg-[#0a0808] hover:text-[#0a0808]' onClick={() => {
-                                setIsOpen(!isOpen)
+                            <button type='button' id='openButton' className='flex items-center justify-center text-[0.9rem] border border-solid border-current px-6 py-[0.78rem] rounded-xl text-[#efefef] font-sans font-700 hover:border-current hover:bg-slate-50 bg-[#0a0808] hover:text-[#0a0808] hmd:justify-self-end msm:justify-self-start ixsm:w-full' onClick={() => {
+                                setIsComponentVisible(!isComponentVisible)
                             }}>
                                 <span className='mr-3' id='openButton'> <LuListFilter /> </span>
                                 <span id='openButton'>Filter</span>
@@ -175,7 +174,7 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
                         )
                     }
 
-                    <Filter isOpen={isOpen} handleInputChange={handleInputChange} searchItem={searchItem} handleSelect={handleSelect} selectionRange={selectionRange} gender={gender} setGender={setGender} roles={roles} setRoles={setRoles} setSearchItem={setSearchItem} dropDownRef={dropDownRef} resetDateRange={resetDateRange} />
+                    <Filter isOpen={isComponentVisible} handleInputChange={handleInputChange} searchItem={searchItem} handleSelect={handleSelect} selectionRange={selectionRange} gender={gender} setGender={setGender} roles={roles} setRoles={setRoles} setSearchItem={setSearchItem} dropDownRef={ref} resetDateRange={resetDateRange} />
                     {isModalOpen && (
                         <div className="fixed top-0 left-0 bottom-0 right-0 w-full overflow-hidden flex items-center justify-center bg-black bg-opacity-50 z-[2000]">
                             <div className="bg-white p-5 rounded">
