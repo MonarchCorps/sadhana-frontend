@@ -140,6 +140,7 @@ export default {
 			lg: { max: '1023px' },
 			clg: { min: '987px' },
 			hrmd: { max: '986px' },
+			pmd: { max: '973px' },
 			umd: { max: '916px' },
 			ermd: { max: '910px' },
 			eumd: { max: '905px' },

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import User from './User'
 import Loading2 from '../../../../../components/Loaders/Loading2'
 import ReactPagination from '../../../../../components/ReactPagination'
+import { Accordion } from '@/components/ui/accordion';
 
 function TableBody({ filteredUsers: pendingInstructors, handleApproval, isLoading }) {
 
@@ -21,17 +22,19 @@ function TableBody({ filteredUsers: pendingInstructors, handleApproval, isLoadin
     return (
         <div>
             <Loading2 data={'pending applications'} isLoading={isLoading} />
-            {
-                !isLoading && filteredData && filteredData?.length > 0 ? (
-                    filteredData.map((user, i) => {
-                        return (
-                            <User key={user?._id} user={user} handleApproval={handleApproval} index={i} />
-                        )
-                    })
-                ) : !isLoading && (
-                    <p className='w-full text-center mt-16 my-6 mb-6'>No pending applications found! Check back later or reload page!</p>
-                )
-            }
+            <Accordion type='single' collapsible>
+                {
+                    !isLoading && filteredData && filteredData?.length > 0 ? (
+                        filteredData.map((user, i) => {
+                            return (
+                                <User key={user?._id} user={user} handleApproval={handleApproval} index={i} />
+                            )
+                        })
+                    ) : !isLoading && (
+                        <p className='w-full text-center my-12 xsm:text-sm'>No pending applications found! Check back later or reload page!</p>
+                    )
+                }
+            </Accordion>
             <ReactPagination data={pendingInstructors} setPage={setPage} n={n} isLoading={isLoading} filteredData={filteredData} />
         </div>
     )

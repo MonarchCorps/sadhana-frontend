@@ -134,7 +134,7 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
                 </h1>
                 <div className='grid grid-flow-col items-center gap-7 msm:grid-flow-row msm:gap-y-5 relative'>
                     <div className='w-96 msm:w-full'>
-                        <label htmlFor="search" className='left-[-9999px] absolute'>Search</label>
+                        <label htmlFor="search" className='sr-only'>Search</label>
                         <div className='relative h-11'>
                             <span className='absolute text-[#8b8888] text-[1.2rem] top-[0.58rem] left-3 font-300'>
                                 <FontAwesomeIcon icon={faSearch} />
