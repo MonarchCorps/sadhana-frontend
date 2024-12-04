@@ -46,30 +46,30 @@ function Class({ course }) {
     return (
         <>
             <Loading isLoading={handleDeleteClass.isPending} />
-            <div>
-                <div className={`shadow-shadow rounded-lg overflow-hidden flex mb-6 h-[22rem]`}>
-                    <div className='mr-9 w-2/5'>
-                        <IKImage
-                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
-                            path={course?.thumbnailPhoto}
-                            className=' h-full object-cover -mb-56' loading='lazy'
-                            lqip={{
-                                active: true,
-                                quality: 20
-                            }}
-                            alt={`${course?.classname} image`}
-                        />
-                    </div>
-                    <div className='py-8 px-2 w-3/5'>
-                        <h1 className='font-500 text-2xl mb-3'>{course?.classname}</h1>
-                        <div className='grid mb-3 grid-cols-2 w-fit gap-y-2 gap-x-6'>
+            <div className='w-full shadow-shadow rounded-lg overflow-hidden mb-6 grid grid-cols-3 hrmd:flex hrmd:flex-col hrmd:h-full hrmd:gap-0 gap-4'>
+                <div className='col-span-1 size-full'>
+                    <IKImage
+                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                        path={course?.thumbnailPhoto}
+                        className='size-full hrmd:h-[18.75rem] max-h-[20rem] object-cover'
+                        loading='lazy'
+                        lqip={{
+                            active: true,
+                            quality: 20
+                        }}
+                        alt={`${course?.classname} image`}
+                    />
+                </div>
+                <div className='py-8 px-2 flex flex-col justify-between col-span-2 hrmd:px-5 hrmd:py-5'>
+                    <div>
+                        <div className='grid mb-3 grid-cols-2 imd:grid-cols-3 csm:grid-cols-2 w-fit gap-y-2 gap-x-6 casm:gap-x-3'>
                             <span>
                                 <span className='inline-block mr-2 text-[#27554a]'>
                                     <FontAwesomeIcon icon={faCalendarAlt} />
                                 </span>
-                                <span className='text-[#3a3939] text-sm'>{course?.day}</span>
+                                <span className='text-[#3a3939] text-sm break-words'>{course?.day}</span>
                             </span>
-                            <span>
+                            <span className='casm:text-end'>
                                 <span className='inline-block mr-2 text-[#27554a] mb-[-0.125rem]'><FaClock /></span>
                                 <span className='text-[#3a3939] text-sm'>
                                     <span>{course.time?.startTime}</span>
@@ -81,15 +81,15 @@ function Class({ course }) {
                                 <span>Price: </span>
                                 <span className='text-sm text-[#27554a]'>{`#${course?.price}`}</span>
                             </span>
-                            <span>
+                            <span className='casm:text-end'>
                                 <span>Total Seats: </span>
                                 <span className='text-sm text-[#27554a]'>{course?.totalSeats}</span>
                             </span>
-                            <span>
+                            <span className='casm:col-span-full'>
                                 <span>Total Students: </span>
                                 <span className='text-sm text-[#27554a]'>10</span>
                             </span>
-                            <span>
+                            <span className='casm:col-span-full'>
                                 <span>Status: </span>
                                 <span
                                     className='text-base'
@@ -103,30 +103,30 @@ function Class({ course }) {
                                 </span>
                             </span>
                         </div>
-                        <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 ">
-                            {trim(course.description, 200)}
+                        <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 esm:text-sm esm:leading-6">
+                            {trim(course.description, 180)}
                         </p>
-                        <div className='grid grid-flow-col w-fit gap-2'>
-                            {
-                                pathAfterSlash === 'my-classes' && (
-                                    <Fragment>
-                                        <Link to={`/dashboard/instructor-cp/class/edit/${course?._id}`} className='text-center grid place-items-center h-12 w-28 text-[#3f32ff] rounded-full bg-slate-50 shadow-inner border-[#3f32ff] border-solid border-2 hover:bg-[#3f32ff] hover:text-slate-50 transition-all cursor-pointer' onClick={scrollTop}>
-                                            <span className='text-sm' >Update</span>
-                                        </Link>
-                                        <div className='text-center grid place-items-center h-12 w-28 text-[#c23a3a] rounded-full bg-slate-50 shadow-inner border-[#c23a3a] border-solid border-2 hover:bg-[#c23a3a] hover:text-slate-50 transition-all cursor-pointer' onClick={() => setIsModalOpen(prev => !prev)}>
-                                            <span className='text-sm'>Delete</span>
-                                        </div>
-                                    </Fragment>
-                                )
-                            }
-                            <Link
-                                to={`/class/${course?._id}`}
-                                onClick={scrollTop}
-                                className='text-center grid place-items-center h-12 w-28 text-[#00d661] rounded-full bg-slate-50 shadow-inner border-[#00d661] border-solid border-2 hover:bg-[#00d661] hover:text-slate-50 transition-all'
-                            >
-                                <span className='text-sm'>Read More</span>
-                            </Link>
-                        </div>
+                    </div>
+                    <div className='grid grid-cols-3 casm:w-full casm:grid-cols-2  w-fit gap-2'>
+                        {
+                            pathAfterSlash === 'my-classes' && (
+                                <Fragment>
+                                    <Link to={`/dashboard/instructor-cp/class/edit/${course?._id}`} className='text-center grid place-items-center h-12 w-28 casm:w-full text-[#3f32ff] rounded-full bg-slate-50 shadow-inner border-[#3f32ff] border-solid border-2 hover:bg-[#3f32ff] hover:text-slate-50 transition-all cursor-pointer' onClick={scrollTop}>
+                                        <span className='text-sm' >Update</span>
+                                    </Link>
+                                    <div className='text-center casm:w-full grid place-items-center h-12 w-28 text-[#c23a3a] rounded-full bg-slate-50 shadow-inner border-[#c23a3a] border-solid border-2 hover:bg-[#c23a3a] hover:text-slate-50 transition-all cursor-pointer' onClick={() => setIsModalOpen(prev => !prev)}>
+                                        <span className='text-sm'>Delete</span>
+                                    </div>
+                                </Fragment>
+                            )
+                        }
+                        <Link
+                            to={`/class/${course?._id}`}
+                            onClick={scrollTop}
+                            className='text-center casm:w-full casm:col-span-full grid place-items-center h-12 w-28 text-[#00d661] rounded-full bg-slate-50 shadow-inner border-[#00d661] border-solid border-2 hover:bg-[#00d661] hover:text-slate-50 transition-all'
+                        >
+                            <span className='text-sm'>Read More</span>
+                        </Link>
                     </div>
                 </div>
             </div>

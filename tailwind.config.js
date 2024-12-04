@@ -180,6 +180,9 @@ export default {
 			ism: {
 				max: '585px'
 			},
+			csm: {
+				max: '578px'
+			},
 			aism: {
 				max: '525px'
 			},
@@ -188,6 +191,9 @@ export default {
 			},
 			ixsm: {
 				max: '473px'
+			},
+			casm: {
+				max: '402px'
 			},
 			xsm: {
 				max: '393px'
