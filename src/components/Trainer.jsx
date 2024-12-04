@@ -36,11 +36,11 @@ function Trainer({ trainer }) {
                     </div>
                 </div>
             </div>
-            <div className='mt-6 flex ism:gap-2 ism:justify-center ixsm:flex-nowrap flex-wrap justify-between items-center'>
-                <Link to={`/dashboard/admin-cp/user/profile/${trainer?.userId}`} className='border-[#3a6043] border-solid border text-[#3a6043] px-3 py-2 rounded-md w-4/5 text-center transition-all hover:text-slate-50 hover:bg-[#3a6043] xsm:text-sm' onClick={scrollTop}>
+            <div className='mt-6 flex gap-2 ism:gap-2 ism:justify-center flex-wrap items-center'>
+                <Link to={`/dashboard/admin-cp/user/profile/${trainer?.userId}`} className='border-[#3a6043] border-solid border text-[#3a6043] px-3 py-2 rounded-md w-full text-center transition-all hover:text-slate-50 hover:bg-[#3a6043] xsm:text-sm asm:text-[0.7rem]' onClick={scrollTop}>
                     See Profile
                 </Link>
-                <span className='text-[1.35rem] border border-solid p-2 rounded-md bg-[#b1dbbba6] text-[#659771ba] cursor-pointer ism:w-4/5 ism:grid ism:place-items-center'>
+                <span className='text-[1.35rem] border border-solid p-2 rounded-md bg-[#b1dbbba6] text-[#659771ba] cursor-pointer grid place-items-center w-full'>
                     <Link to='/chat'>
                         <FaRegCommentDots />
                     </Link>

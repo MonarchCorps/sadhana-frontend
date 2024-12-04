@@ -8,7 +8,7 @@ import useAxiosPrivate from '../../../../hooks/useAxiosPrivate'
 import BotChat from '../../../../components/Bot/BotChat'
 import SideBar from './SideBar'
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
 
 function InstructorDashboard() {
 
@@ -27,9 +27,8 @@ function InstructorDashboard() {
 
     return (
         <main>
-            <SidebarProvider className="grid grid-cols-[auto_0px_1fr]">
+            <SidebarProvider className="grid grid-cols-[auto_1fr] md:grid-cols-1">
                 <SideBar />
-                <SidebarTrigger className="z-[1000]" />
                 <Outlet context={{
                     classes,
                     isLoading,
