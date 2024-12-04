@@ -108,9 +108,8 @@ function EditProfile() {
                     </div>
                     <div className='w-full'>
                         <EditProfileForm handleChange={handleChange} preview={preview} formData={formData} handleSubmit={handleSubmit} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
-                    </div >
+                    </div>
                 </div>
-                {/* </div> */}
             </section>
         </>
     )
