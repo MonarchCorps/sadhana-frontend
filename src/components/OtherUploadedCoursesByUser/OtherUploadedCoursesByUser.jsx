@@ -7,6 +7,7 @@ import Class from '../HomeAllClasses/Class'
 import useClassActions from '../../hooks/useClassActions'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
+import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 
 
 function OtherUploadedCoursesByUser() {
@@ -23,6 +24,20 @@ function OtherUploadedCoursesByUser() {
             }),
     })
 
+    const { screenWidth } = useGetScreenWidth()
+
+    const noOfSkeletons = () => {
+        if (screenWidth <= 473) {
+            return 2
+        } else if (screenWidth <= 852) {
+            return 2
+        } else if (screenWidth <= 1199) {
+            return 3
+        } else {
+            return 4
+        }
+    }
+
     return (
         <>
             <Header />
@@ -30,12 +45,13 @@ function OtherUploadedCoursesByUser() {
                 <section>
                     <div className='py-28 px-10'>
                         {
-                            isLoading &&
-                            <div className='max-w-[96%] mx-auto grid grid-cols-4 gap-10'>
-                                <SkeletonLoader2 value={4} />
-                            </div>
+                            isLoading && (
+                                <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 gap-2'>
+                                    <SkeletonLoader2 value={noOfSkeletons()} />
+                                </div>
+                            )
                         }
-                        <div className='max-w-[96%] mx-auto grid grid-cols-4 gap-7'>
+                        <div className='grid grid-cols-4 ilg:grid-cols-3 ilg:gap-4 imd:grid-cols-2 ixsm:grid-cols-1 gap-5'>
                             {
                                 instructorUploadedCourse?.length > 0 && !isLoading ? (
                                     instructorUploadedCourse.map(course => {
