@@ -4,7 +4,6 @@ import Select from 'react-select'
 import ReactSelect from './ReactSelect'
 import { useEffect, useState } from 'react'
 import useHideScroll from '../../../../../hooks/useHideScroll'
-import { ModalContent } from '../../../../../components/Modals/ImageModal'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit'
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton'
 import NoteOpen from './NoteOpen'
@@ -39,12 +38,12 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
 
     return (
         <>
-            <form className="grid grid-cols-2 gap-3 w-[40rem] mx-auto mt-4">
+            <form className="grid grid-cols-2 gap-3 mx-auto mt-4">
                 <div className='col-span-2 mb-3'>
                     <UploadImageKit imgUrl={user?.profileImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} imgName='profileImage' />
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full ixsm:col-span-2'>
                     <label className='text-sm mb-2 font-500' htmlFor="username">Username</label>
                     <input
                         type="text"
@@ -56,7 +55,7 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
                     />
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full ixsm:col-span-2'>
                     <label className='text-sm mb-2 font-500' htmlFor="email">Email</label>
                     <input
                         type="email"
@@ -92,7 +91,7 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
                     </div>
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full cimd:col-span-2'>
                     <label className='text-sm mb-2 font-500' htmlFor="userId">User id</label>
                     <input
                         type="text"
@@ -134,7 +133,7 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
                     />
                 </div>
 
-                <div className='relative'>
+                <div className='relative cimd:col-span-2'>
                     <label className="text-sm font-500 block" htmlFor="roles">
                         Roles
                     </label>
@@ -147,7 +146,7 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
                         options={options}
                         onChange={handleRoleChange}
                         closeMenuOnSelect={false}
-                        components={{ MultiValueRemove, ClearIndicator }} // Use custom components for role removal and clearing all
+                        components={{ MultiValueRemove, ClearIndicator }}
                     />
                 </div>
                 {isModalOpen && (
@@ -179,7 +178,7 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
                     <textarea
                         name="address"
                         id="address"
-                        className='border-[1px] border-solid border-[#aeacac] p-2 mt-1 rounded w-full h-44'
+                        className='border-[1px] border-solid border-[#aeacac] p-2 mt-1 rounded w-full h-44 resize-none'
                         onChange={handleChange}
                         value={formData.address}
                     >
@@ -191,7 +190,6 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
                     Submit
                 </SubmitButton>
             </form >
-            <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} imgUrl={user?.profileImage} />
         </>
     )
 }

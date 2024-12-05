@@ -12,7 +12,7 @@ function EditProfileForm({ handleChange, preview, formData, handleSubmit, img, s
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="grid grid-cols-2 ixsm:flex ixsm:flex-col gap-3 mx-auto mt-4">
+            <form className="grid grid-cols-2 ixsm:flex ixsm:flex-col gap-3 mx-auto mt-4">
                 <div className='col-span-2 mb-3'>
                     <UploadImageKit imgUrl={auth?.profileImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} imgName='profileImage' />
                 </div >

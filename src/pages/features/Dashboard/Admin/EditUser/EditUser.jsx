@@ -158,18 +158,15 @@ function EditUser() {
     return (
         <>
             <Loading isLoading={isLoading || editUser.isPending} />
-            <section className='w-full'>
-                <div className='grid place-items-center w-full h-full'>
-                    <div className="border-4 border-solid py-6 px-4 rounded-xl w-fit bg-white mt-10">
-                        <div>
-                            <h1 className='text-[1.7rem] font-sans flex justify-between'>
-                                <span></span>
-                                <span className='font-500 text-[1.9rem] font-cuba'> {formData.username}</span>
-                            </h1>
-                        </div>
-                        <div>
-                            <EditUserForm user={user} handleChange={handleChange} preview={preview} formData={formData} setRoles={setRoles} handleSubmit={handleSubmit} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
-                        </div >
+            <section className='imd:w-screen'>
+                <div className='pt-14 px-3 pb-3 w-full h-full flex flex-col justify-center max-w-[38.8rem] amd:max-w-[34rem] esm:px-5 mx-auto'>
+                    <div className='w-full text-start'>
+                        <h1 className='text-[2rem] amd:text-2xl ixsm:text-xl mb-2 font-500 font-serif'>
+                            Edit user profile <span className='text-[#27554a] font-roboto'>{user?.username}</span>
+                        </h1>
+                    </div>
+                    <div className='w-full'>
+                        <EditUserForm user={user} handleChange={handleChange} preview={preview} formData={formData} setRoles={setRoles} handleSubmit={handleSubmit} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
                     </div>
                 </div>
             </section>
