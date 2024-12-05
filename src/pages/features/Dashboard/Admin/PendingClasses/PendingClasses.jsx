@@ -1,7 +1,7 @@
 import TableHead from './TableHead'
 import TableBody from './TableBody'
 import { useState, useEffect } from 'react'
-import UsersManagementHeading from '../UsersManagementHeading'
+import ManagementHeading from '../ManagementHeading'
 import useAxiosPrivate from '../../../../../hooks/useAxiosPrivate'
 import Loading from '../../../../../components/Loaders/Loading'
 import useHideScroll from '../../../../../hooks/useHideScroll'
@@ -57,7 +57,7 @@ function PendingClasses() {
             <Loading isLoading={handleApproval.isPending} />
             <section>
                 <div className='mt-8 mx-5'>
-                    <UsersManagementHeading data={pendingCourses || []} setFilteredData={setFilteredCourses} management='Course management' title='Pending' desc='Manage all pending or denied course application here' />
+                    <ManagementHeading data={pendingCourses || []} setFilteredData={setFilteredCourses} management='Course management' title='Pending' desc='Manage all pending or denied course application here' />
                     <div className='mt-14'>
                         <div className='w-full'>
                             <TableHead />

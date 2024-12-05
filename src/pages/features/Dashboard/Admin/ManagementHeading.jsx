@@ -14,7 +14,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { FaBook } from 'react-icons/fa6'
 import useComponentVisible from '@/hooks/useComponentVisible'
 
-function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, deleteData, setFilteredData, management, title, desc }) {
+function ManagementHeading({ data: datas, dataToDelete, setDataToDelete, deleteData, setFilteredData, management, title, desc }) {
 
     const { auth } = useAuth();
     const [searchItem, setSearchItem] = useState('');
@@ -126,8 +126,8 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
                 }
             </h1>
             <p>{desc}</p>
-            <div className='mt-10 mb-5 mr-5 flex justify-between md:flex-col md:gap-y-3'>
-                <h1 className='text-[1.59rem] font-500 asm:text-xl'>
+            <div className='mt-10 mb-5 mr-5 flex justify-between md:flex-col flex-wrap md:gap-y-3'>
+                <h1 className='text-[1.59rem] font-500 asm:text-xl mr-2'>
                     <span>{title} {management.split(' ')[0]}</span>
                     &nbsp;
                     <span className='opacity-65'>{datas?.length}</span>
@@ -210,4 +210,4 @@ function UsersManagementHeading({ data: datas, dataToDelete, setDataToDelete, de
     )
 }
 
-export default UsersManagementHeading
+export default ManagementHeading

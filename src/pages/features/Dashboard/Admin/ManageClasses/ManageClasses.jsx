@@ -3,7 +3,7 @@ import TableHead from './TableHead'
 import TableBody from './TableBody'
 import { useState, useEffect } from 'react'
 
-import UsersManagementHeading from '../UsersManagementHeading'
+import ManagementHeading from '../ManagementHeading'
 
 import useHideScroll from '../../../../../hooks/useHideScroll'
 import Loading from '../../../../../components/Loaders/Loading'
@@ -86,7 +86,7 @@ function ManageClasses() {
             <Loading isLoading={deleteCourse.isPending || handleApproval.isPending} />
             <section>
                 <div className='mt-8 mx-5 relative'>
-                    <UsersManagementHeading data={allCourses || []} dataToDelete={coursesToDelete} setDataToDelete={setCoursesToDelete} deleteData={deleteCourse} setFilteredData={setFilteredCourses} management='Course management' title='All' desc='Manage all course here' />
+                    <ManagementHeading data={allCourses || []} dataToDelete={coursesToDelete} setDataToDelete={setCoursesToDelete} deleteData={deleteCourse} setFilteredData={setFilteredCourses} management='Course management' title='All' desc='Manage all course here' />
                     <div className='mt-14'>
                         <div className='w-full'>
                             <TableHead />

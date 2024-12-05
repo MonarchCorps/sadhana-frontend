@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 
 import Loading from '../../../../../components/Loaders/Loading'
 
-import UsersManagementHeading from '../UsersManagementHeading'
+import ManagementHeading from '../ManagementHeading'
 
 import useHideScroll from '../../../../../hooks/useHideScroll'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
@@ -70,7 +70,7 @@ function ManageUser() {
             <Loading isLoading={deleteUser.isPending} />
             <section>
                 <div className='mt-8 mx-5 relative'>
-                    <UsersManagementHeading data={allUsers || []} dataToDelete={usersToDelete} setDataToDelete={setUsersToDelete} deleteData={deleteUser} setFilteredData={setFilteredUsers} management='Users management' title='All' desc='Manage your members and their account permissions here' />
+                    <ManagementHeading data={allUsers || []} dataToDelete={usersToDelete} setDataToDelete={setUsersToDelete} deleteData={deleteUser} setFilteredData={setFilteredUsers} management='Users management' title='All' desc='Manage your members and their account permissions here' />
                     <div className='mt-14'>
                         <div className='w-full'>
                             <TableHead />
