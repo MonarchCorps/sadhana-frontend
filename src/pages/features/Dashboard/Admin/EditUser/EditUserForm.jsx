@@ -7,6 +7,7 @@ import useHideScroll from '../../../../../hooks/useHideScroll'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit'
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton'
 import NoteOpen from './NoteOpen'
+import { DeleteCancelButton, DeleteConfirmButton, DeleteModal } from '@/components/Modals/DeleteModal'
 
 function EditUserForm({ user, handleChange, preview, formData, setRoles, handleSubmit, img, setImg, setPreview, ikUploadRef }) {
 
@@ -150,29 +151,21 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
                     />
                 </div>
                 {isModalOpen && (
-                    <div className="fixed top-0 left-0 bottom-0 right-0 w-full overflow-hidden flex items-center justify-center bg-black bg-opacity-50 z-[2000]">
-                        <div className="bg-white p-5 rounded">
-                            <p>
-                                {isClearAll
-                                    ? 'Are you sure you want to remove all roles?'
-                                    : `Are you sure you want to remove the role "${roleToDelete?.label}"?`}
-                            </p>
-                            <div className="mt-4 flex justify-end gap-3">
-                                <button
-                                    onClick={cancelRemoveRole}
-                                    className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    onClick={confirmRemoveRole}
-                                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                                >
-                                    Confirm
-                                </button>
-                            </div>
+                    <DeleteModal>
+                        <p>
+                            {isClearAll
+                                ? 'Are you sure you want to remove all roles?'
+                                : `Are you sure you want to remove the role "${roleToDelete?.label}"?`}
+                        </p>
+                        <div className='mt-3 w-full text-center flex gap-4 justify-center'>
+                            <DeleteCancelButton
+                                onClick={cancelRemoveRole}
+                            />
+                            <DeleteConfirmButton
+                                onClick={confirmRemoveRole}
+                            />
                         </div>
-                    </div>
+                    </DeleteModal>
                 )}
                 <div className='col-span-2'>
                     <textarea

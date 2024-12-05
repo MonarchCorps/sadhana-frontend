@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useRef } from 'react'
+import { useState, useRef, Fragment } from 'react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { FaUserAlt, FaEdit, FaTrash, FaMoneyBillAlt, FaInfoCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -10,6 +10,7 @@ import { IKImage } from 'imagekitio-react'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { formatDate } from '@/chat/lib/utils'
 import useGetScreenWidth from '@/hooks/useGetScreenWidth'
+import { DeleteCancelButton, DeleteConfirmButton, DeleteModal } from '@/components/Modals/DeleteModal'
 
 function Course({ course, handleCheckedState, deleteCourse, setCoursesToDelete, coursesToDelete, handleApproval }) {
 
@@ -32,7 +33,7 @@ function Course({ course, handleCheckedState, deleteCourse, setCoursesToDelete, 
     }
 
     return (
-        <>
+        <Fragment>
             <AccordionItem value={course?._id} className='border-b-0' key={course?._id}>
                 <AccordionTrigger className={`w-screen grid grid-cols-[repeat(9,minmax(0,1fr)),50px] cmd:grid-cols-[repeat(8,minmax(0,1fr)),50px] imd:grid-cols-[repeat(7,minmax(0,1fr)),50px] cimd:grid-cols-[repeat(6,minmax(0,1fr)),50px] sm:grid-cols-6 xsm:grid-cols-5 sm:pb-0 msm:grid-cols-5 gap-3 items-center px-2 pt-[0.9rem] pb-4 border-b border-solid border-[#d2d1d1c8] casm:px-0 accordionWrapper ${screenWidth <= 930 ? 'cursor-pointer' : 'cursor-default'}`} style={{ textDecoration: 'none', userSelect: 'text' }}>
                     <div className='text-start flex items-center ml-4 col-span-4 msm:col-span-full axsm:items-start'>
@@ -155,35 +156,6 @@ function Course({ course, handleCheckedState, deleteCourse, setCoursesToDelete, 
                                 </li>
                             </ul>
                         </div>
-                        {isModalOpen && (
-                            <div className="fixed top-0 left-0 bottom-0 right-0 w-full overflow-hidden flex items-center justify-center bg-black bg-opacity-50 z-[2000]">
-                                <div className="bg-white p-5 rounded">
-                                    <p>
-                                        {`Are you sure you want to delete ${course?.classname}`}
-                                    </p>
-                                    <div className="mt-4 flex justify-end gap-3">
-                                        <button
-                                            onClick={() => {
-                                                setIsModalOpen(false)
-                                                setCoursesToDelete([])
-                                            }}
-                                            className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-                                        >
-                                            Cancel
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                deleteCourse.mutate()
-                                                setIsModalOpen(false)
-                                            }}
-                                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                                        >
-                                            Confirm
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
                     </div>
                     {screenWidth <= 930 && (
                         <div className='col-span-full'>
@@ -225,7 +197,28 @@ function Course({ course, handleCheckedState, deleteCourse, setCoursesToDelete, 
                     )}
                 </AccordionTrigger >
             </AccordionItem>
-        </>
+            {isModalOpen && (
+                <DeleteModal>
+                    <p>
+                        {`Are you sure you want to delete ${course?.classname}`}
+                    </p>
+                    <div className='mt-3 w-full text-center flex gap-4 justify-center'>
+                        <DeleteCancelButton
+                            onClick={() => {
+                                setIsModalOpen(false)
+                                setCoursesToDelete([])
+                            }}
+                        />
+                        <DeleteConfirmButton
+                            onClick={() => {
+                                deleteCourse.mutate()
+                                setIsModalOpen(false)
+                            }}
+                        />
+                    </div>
+                </DeleteModal>
+            )}
+        </Fragment>
     )
 }
 

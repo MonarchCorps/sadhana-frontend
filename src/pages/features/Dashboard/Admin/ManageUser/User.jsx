@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useRef } from 'react'
+import { useState, useRef, Fragment } from 'react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { FaUserAlt, FaEdit, FaKey, FaTrash, FaMoneyBillAlt, FaInfoCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -11,6 +11,7 @@ import trim from '../../../../../utils/trim'
 import { formatDate } from '@/chat/lib/utils'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import useGetScreenWidth from '@/hooks/useGetScreenWidth'
+import { DeleteCancelButton, DeleteConfirmButton, DeleteModal } from '@/components/Modals/DeleteModal'
 
 function User({ user, handleCheckedState, deleteUser, setUsersToDelete, usersToDelete, index = 0 }) {
 
@@ -34,7 +35,7 @@ function User({ user, handleCheckedState, deleteUser, setUsersToDelete, usersToD
     }
 
     return (
-        <>
+        <Fragment>
             <AccordionItem value={user?._id} className='border-b-0' key={user?._id}>
                 <AccordionTrigger className={`w-screen grid grid-cols-12 eumd:grid-cols-10 hrmd2:grid-cols-9 md:grid-cols-5 items-center px-6 pt-[0.9rem] pb-4 border-b border-solid border-[#d2d1d1c8] accordionWrapper imd:px-2 ${screenWidth <= 905 ? 'cursor-pointer' : 'cursor-default'}`} style={{ textDecoration: 'none', userSelect: 'text' }}>
                     <div className='text-start flex items-center col-span-5 eumd:col-span-4 ixsm:col-span-full'>
@@ -140,7 +141,7 @@ function User({ user, handleCheckedState, deleteUser, setUsersToDelete, usersToD
                                     </span>
                                     <span className='font-sans'>Payments</span>
                                 </li>
-                                <li className='cursor-pointer hover:bg-[#f2f2f2] font-400 pl-5 hover:font-500 py-2 rounded-md flex justify-between items-center select-none' onClick={
+                                <li className='cursor-pointer text-red-500 hover:bg-[#f2f2f2] font-400 pl-5 hover:font-500 py-2 rounded-md flex justify-between items-center select-none' onClick={
                                     () => {
                                         setIsModalOpen(true)
                                         setUsersToDelete([])
@@ -148,46 +149,15 @@ function User({ user, handleCheckedState, deleteUser, setUsersToDelete, usersToD
                                     }
                                 }>
                                     <div className='grid grid-flow-col justify-start items-center gap-3'>
-                                        <span className='text-[#6a6767]'>
-                                            <FaTrash />
-                                        </span>
+                                        <FaTrash />
                                         <span className='font-sans'>Delete user</span>
                                     </div>
-                                    <span className='text-red-500 mr-2'>
+                                    <span className='mr-2'>
                                         <FaInfoCircle />
                                     </span>
                                 </li>
                             </ul>
                         </div>
-                        {isModalOpen && (
-                            <div className="fixed top-0 left-0 bottom-0 right-0 w-full overflow-hidden flex items-center justify-center bg-black bg-opacity-50 z-[2000]">
-                                <div className="bg-white p-5 rounded">
-                                    <p>
-                                        {`Are you sure you want to delete ${user?.username}`}
-                                    </p>
-                                    <div className="mt-4 flex justify-end gap-3">
-                                        <button
-                                            onClick={() => {
-                                                setIsModalOpen(false)
-                                                setUsersToDelete([])
-                                            }}
-                                            className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-                                        >
-                                            Cancel
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                deleteUser.mutate()
-                                                setIsModalOpen(false)
-                                            }}
-                                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                                        >
-                                            Confirm
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
                     </div>
                     {screenWidth <= 905 && (
                         <div className='col-span-full'>
@@ -211,7 +181,26 @@ function User({ user, handleCheckedState, deleteUser, setUsersToDelete, usersToD
                     )}
                 </AccordionTrigger >
             </AccordionItem>
-        </>
+            {isModalOpen && (
+                <DeleteModal>
+                    <p>
+                        {`Are you sure you want to delete ${user?.username}`}
+                    </p>
+                    <div className='mt-3 w-full text-center flex gap-4 justify-center'>
+                        <DeleteCancelButton onClick={() => {
+                            setIsModalOpen(false)
+                            setUsersToDelete([])
+                        }} />
+                        <DeleteConfirmButton
+                            onClick={() => {
+                                deleteUser.mutate()
+                                setIsModalOpen(false)
+                            }}
+                        />
+                    </div>
+                </DeleteModal>
+            )}
+        </Fragment>
     )
 }
 

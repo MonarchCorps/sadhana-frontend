@@ -13,6 +13,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 import { FaBook } from 'react-icons/fa6'
 import useComponentVisible from '@/hooks/useComponentVisible'
+import { DeleteCancelButton, DeleteConfirmButton, DeleteModal } from '@/components/Modals/DeleteModal'
 
 function ManagementHeading({ data: datas, dataToDelete, setDataToDelete, deleteData, setFilteredData, management, title, desc }) {
 
@@ -27,7 +28,6 @@ function ManagementHeading({ data: datas, dataToDelete, setDataToDelete, deleteD
     const [gender, setGender] = useState('Gender');
     const [roles, setRoles] = useState('Roles');
 
-    // useHandleClickOutside(isOpen, setIsOpen, dropDownRef);
     const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible()
 
     useHideScroll(isModalOpen)
@@ -175,34 +175,27 @@ function ManagementHeading({ data: datas, dataToDelete, setDataToDelete, deleteD
                     }
 
                     <Filter isOpen={isComponentVisible} handleInputChange={handleInputChange} searchItem={searchItem} handleSelect={handleSelect} selectionRange={selectionRange} gender={gender} setGender={setGender} roles={roles} setRoles={setRoles} setSearchItem={setSearchItem} dropDownRef={ref} resetDateRange={resetDateRange} />
+
                     {isModalOpen && (
-                        <div className="fixed top-0 left-0 bottom-0 right-0 w-full overflow-hidden flex items-center justify-center bg-black bg-opacity-50 z-[2000]">
-                            <div className="bg-white p-5 rounded">
-                                <p>
-                                    {`Are you sure you want to delete ${dataToDelete.length} ${dataToDelete.length > 1 ? `${(management.split(' ')[0]).toLowerCase()}s` : `${(management.split(' ')[0]).toLowerCase()}`}`}
-                                </p>
-                                <div className="mt-4 flex justify-end gap-3">
-                                    <button
-                                        onClick={() => {
-                                            setDataToDelete([])
-                                            setIsModalOpen(false)
-                                        }}
-                                        className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            deleteData.mutate();
-                                            setIsModalOpen(false)
-                                        }}
-                                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                                    >
-                                        Confirm
-                                    </button>
-                                </div>
+                        <DeleteModal>
+                            <p>
+                                {`Are you sure you want to delete ${dataToDelete.length} ${dataToDelete.length > 1 ? `${(management.split(' ')[0]).toLowerCase()}s` : `${(management.split(' ')[0]).toLowerCase()}`}`}
+                            </p>
+                            <div className='mt-3 w-full text-center flex gap-4 justify-center'>
+                                <DeleteCancelButton
+                                    onClick={() => {
+                                        setDataToDelete([])
+                                        setIsModalOpen(false)
+                                    }}
+                                />
+                                <DeleteConfirmButton
+                                    onClick={() => {
+                                        deleteData.mutate();
+                                        setIsModalOpen(false)
+                                    }}
+                                />
                             </div>
-                        </div>
+                        </DeleteModal>
                     )}
                 </div>
             </div>

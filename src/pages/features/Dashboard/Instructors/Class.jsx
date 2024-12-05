@@ -17,6 +17,7 @@ import usePathAfterSlash from '../../../../hooks/usePathAfterSlash'
 
 import trim from '../../../../utils/trim'
 import { IKImage } from 'imagekitio-react'
+import { DeleteCancelButton, DeleteConfirmButton, DeleteModal } from '@/components/Modals/DeleteModal'
 
 function Class({ course }) {
 
@@ -131,32 +132,24 @@ function Class({ course }) {
                 </div>
             </div>
             {isModalOpen && (
-                <div className="fixed top-0 left-0 bottom-0 right-0 w-full overflow-hidden flex items-center justify-center bg-black bg-opacity-50 z-[2000]">
-                    <div className="bg-white p-5 rounded">
-                        <p>
-                            {`Are you sure you want to delete ${course?.classname}`}
-                        </p>
-                        <div className="mt-4 flex justify-end gap-3">
-                            <button
-                                onClick={() => {
-                                    setIsModalOpen(prev => !prev)
-                                }}
-                                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={() => {
-                                    handleDeleteClass.mutate();
-                                    setIsModalOpen(prev => !prev)
-                                }}
-                                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                            >
-                                Confirm
-                            </button>
-                        </div>
+                <DeleteModal>
+                    <p>
+                        {`Are you sure you want to delete ${course?.classname}`}
+                    </p>
+                    <div className='mt-3 w-full text-center flex gap-4 justify-center'>
+                        <DeleteCancelButton
+                            onClick={() => {
+                                setIsModalOpen(false)
+                            }}
+                        />
+                        <DeleteConfirmButton
+                            onClick={() => {
+                                handleDeleteClass.mutate();
+                                setIsModalOpen(false)
+                            }}
+                        />
                     </div>
-                </div>
+                </DeleteModal>
             )}
         </>
     )
