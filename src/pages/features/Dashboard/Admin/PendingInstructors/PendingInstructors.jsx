@@ -55,7 +55,7 @@ function PendingInstructors() {
     return (
         <>
             <Loading isLoading={handleApproval.isPending} />
-            <section>
+            <section className='w-screen'>
                 <div className='mt-8 mx-5'>
                     <ManagementHeading data={pendingInstructors || []} setFilteredData={setFilteredUsers} management='Users management' title='Pending' desc='Manage all pending or denied instructor application here' />
                     <div className='mt-14'>

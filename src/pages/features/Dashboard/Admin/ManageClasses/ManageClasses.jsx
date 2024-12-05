@@ -84,7 +84,7 @@ function ManageClasses() {
     return (
         <>
             <Loading isLoading={deleteCourse.isPending || handleApproval.isPending} />
-            <section>
+            <section className='w-screen'>
                 <div className='mt-8 mx-5 relative'>
                     <ManagementHeading data={allCourses || []} dataToDelete={coursesToDelete} setDataToDelete={setCoursesToDelete} deleteData={deleteCourse} setFilteredData={setFilteredCourses} management='Course management' title='All' desc='Manage all course here' />
                     <div className='mt-14'>

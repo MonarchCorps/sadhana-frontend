@@ -68,7 +68,7 @@ function ManageUser() {
     return (
         <>
             <Loading isLoading={deleteUser.isPending} />
-            <section>
+            <section className='w-screen'>
                 <div className='mt-8 mx-5 relative'>
                     <ManagementHeading data={allUsers || []} dataToDelete={usersToDelete} setDataToDelete={setUsersToDelete} deleteData={deleteUser} setFilteredData={setFilteredUsers} management='Users management' title='All' desc='Manage your members and their account permissions here' />
                     <div className='mt-14'>

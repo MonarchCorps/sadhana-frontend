@@ -55,7 +55,7 @@ function PendingClasses() {
     return (
         <>
             <Loading isLoading={handleApproval.isPending} />
-            <section>
+            <section className='w-screen'>
                 <div className='mt-8 mx-5'>
                     <ManagementHeading data={pendingCourses || []} setFilteredData={setFilteredCourses} management='Course management' title='Pending' desc='Manage all pending or denied course application here' />
                     <div className='mt-14'>

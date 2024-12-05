@@ -18,7 +18,7 @@ function TableHead() {
             <p className='text-center cmd:hidden'>
                 <span className='font-300 text-base tracking-tight'>D. Applied</span>
             </p>
-            <p className='text-end imd:hidden'>
+            <p className='text-end imd:hidden text-nowrap'>
                 <span className='font-300 text-base tracking-tight'>D. Approved</span>
             </p>
             <p>
