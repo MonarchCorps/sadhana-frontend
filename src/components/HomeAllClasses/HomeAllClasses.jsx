@@ -18,7 +18,7 @@ function HomeAllClasses() {
     const axiosPrivate = useAxiosPrivate()
 
     const { isLoading, data: classes } = useQuery({
-        queryKey: ['homePageClasses'],
+        queryKey: ['homeAllCourses'],
         queryFn: () =>
             axios.get('/public/class').then((res) => {
                 return res?.data
