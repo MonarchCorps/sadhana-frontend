@@ -88,31 +88,32 @@ function UserHomeDashboard() {
                         {auth?.username || 'User'}
                     </h1>
                     <UserDetails user={auth} />
-                    {selectedCourses && selectedCourses?.length > 0 && (
-                        <div className='max-w-[96%] mx-auto mt-4'>
-                            <h1 className='text-[1.14rem] font-500 font-sans inline-block'>
-                                Selected Courses
-                            </h1>
-                            {selectedCourses?.length >= 8 && <Link to='selected' className='float-right underline text-[#053323]' onClick={scrollTop}><span>See all</span></Link>}
-                        </div>)}
-                    <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 ixsm:gap-4 gap-3 max-w-[96%] mx-auto mt-4'>
-                        {isLoading && (<SkeletonLoader2 value={noOfSkeletons()} />)}
-                        {!isLoading && selectedCourses && selectedCourses.length > 0 && (
-                            selectedCourses?.slice(0, 4).map(course => {
-                                return (
-                                    // This OtherCourseDetails component is from my adminDashboard component
-                                    <OtherCourseDetails key={course?._id} course={course} />
-                                )
-                            }))}
+                    <div className='p-4 mt-4 max-w-[96%] mx-auto'>
+                        {selectedCourses && selectedCourses?.length > 0 && (
+                            <div>
+                                <h1 className='text-[1.14rem] font-500 font-sans inline-block'>Selected Courses</h1>
+                                {selectedCourses?.length >= 8 && <Link to='selected' className='float-right underline text-[#053323]' onClick={scrollTop}><span>See all</span></Link>}
+                            </div>
+                        )}
+                        <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 ixsm:gap-4 gap-3 mt-4'>
+                            {isLoading && (<SkeletonLoader2 value={noOfSkeletons()} />)}
+                            {!isLoading && selectedCourses && selectedCourses.length > 0 && (
+                                selectedCourses?.slice(0, 4).map(course => {
+                                    return (
+                                        // This OtherCourseDetails component is from my adminDashboard component
+                                        <OtherCourseDetails key={course?._id} course={course} />
+                                    )
+                                }))}
+                        </div>
                     </div>
-                    <div className='p-4 mt-4'>
+                    <div className='p-4 mt-4 max-w-[96%] mx-auto'>
                         {classes && classes?.length > 0 && (
                             <div>
                                 <h1 className='text-[1.14rem] font-500 font-sans inline-block'>Available Courses</h1>
                                 {classes?.length >= 8 && <Link to='/class' className='float-right underline text-[#053323]' onClick={scrollTop}><span>See all</span></Link>}
                             </div>
                         )}
-                        <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 ixsm:gap-4 gap-3 max-w-[96%] mx-auto mt-4'>
+                        <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 ixsm:gap-4 gap-3 mt-4'>
                             {isLoading && (<SkeletonLoader2 value={noOfSkeletons()} />)}
                             {!isLoading && classes && classes.length > 0 && (
                                 classes?.slice(0, 4).map(course => {

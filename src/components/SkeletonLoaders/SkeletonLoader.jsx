@@ -18,8 +18,8 @@ function SkeletonItem() {
     );
 }
 
-function SkeletonLoader() {
-    const skeletons = Array(4).fill(null); // Create an array with 4 items
+function SkeletonLoader({ value }) {
+    const skeletons = Array(parseInt(value)).fill(null); // Create an array with 4 items
 
     return (
         <>
