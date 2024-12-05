@@ -49,7 +49,7 @@ function UploadCustomPhoto({ previews, setPreviews, isUploading, setIsUploading 
     return (
         <>
             <Loading isLoading={handleUpload.isPending} />
-            <div className='px-3 pb-3 w-fit sticky top-3'>
+            <div className='px-3 pb-3 w-fit'>
                 <UploadCustomPhotoForm setImg={setImg} img={img} handleSubmit={handleSubmit} setPreviews={setPreviews} previews={previews} isUploading={isUploading} setIsUploading={setIsUploading} />
             </div>
         </>

@@ -8,12 +8,12 @@ function ManageCustomPhoto() {
     const [isUploading, setIsUploading] = useState(false); // State to handle upload status
 
     return (
-        <section>
-            <div className='grid grid-cols-[1fr_auto] relative'>
+        <section className='w-screen'>
+            <div className='grid grid-cols-[70%_30rem] esm:grid-cols-[84%_25rem] relative'>
                 <div className='py-12'>
                     <ViewUploadPreview previews={previews} setPreviews={setPreviews} isUploading={isUploading} />
                 </div>
-                <div className=' py-12 pl-7'>
+                <div className='py-12 pl-7'>
                     <UploadCustomPhoto previews={previews} setPreviews={setPreviews} isUploading={isUploading} setIsUploading={setIsUploading} />
                 </div>
             </div>

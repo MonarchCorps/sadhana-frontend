@@ -1,9 +1,6 @@
 /* eslint-disable react/prop-types */
 import Masonry from 'react-masonry-css'
 import { FaTrash } from 'react-icons/fa'
-// import ReactImageMagnify from 'react-image-magnify';
-
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 
 function ViewUploadPreview({ previews, setPreviews, isUploading }) {
 
@@ -12,79 +9,37 @@ function ViewUploadPreview({ previews, setPreviews, isUploading }) {
         1100: 2,
         700: 1
     }
-    console.log(isUploading)
 
     return (
         previews && previews.length > 0 && (
             <Masonry
                 breakpointCols={breakpointColumnsObj}
-                className="flex -ml-[1.875rem] w-auto"
+                className="flex  w-auto"
                 columnClassName="pl-[1.875rem]"
             >
                 {previews.map((preview, i) => (
-                    <div key={i} style={{ position: 'relative' }} className='mb-3'>
-                        <HoverCard
-                            openDelay={0}
-                            closeDelay={0}
-                            style={{
-                                position: 'absolute',
-                                background: isUploading ? 'gray' : 'red',
-                                pointerEvents: isUploading ? 'none' : 'auto',
-                                opacity: isUploading ? 0.5 : 1,
-                            }}
+                    <div key={i} className='group shadow-md relative'>
+                        <img src={preview.blobUrl} alt="Preview" className='mb-4' />
+                        <div
+                            className={`absolute  bottom-4 left-0 bg-transparent border-none p-0 grid items-center w-fit ${isUploading ? 'pointer-events-none opacity-50' : ''
+                                }`}
                         >
-                            <HoverCardTrigger>
-                                {/* <ReactImageMagnify
-                                    {...{
-                                        smallImage: {
-                                            alt: 'Wristwatch by Ted Baker London',
-                                            isFluidWidth: true,
-                                            src: preview.blobUrl,
-                                        },
-                                        largeImage: {
-                                            src: preview.blobUrl,
-                                            width: 1000,
-                                            height: 1000,
-                                            objectFit: 'contain',
-                                        },
-                                        enlargedImageContainerStyle: {
-                                            zIndex: 1000,
-                                            objectFit: 'cover',
-                                        },
-                                        lensStyle: {
-                                            backgroundColor: 'rgba(0,0,0,0.3)', // Optional lens effect
-                                            zIndex: 10,
-                                        },
-                                    }}
-                                /> */}
-                                <img src={preview.blobUrl} alt="Preview" />
-                            </HoverCardTrigger>
-                            <HoverCardContent
-                                align="center"
-                                side="bottom"
-                                sideOffset={-80}
-                                avoidCollisions={true}
-                                className={`bg-transparent border-none p-0 grid items-center w-fit ${isUploading ? 'pointer-events-none opacity-50' : ''
-                                    }`}
+                            <button
+                                className="flex gap-1 items-center border border-solid border-red-600 bg-slate-50 rounded-xl px-3 py-2 text-red-500 hover:border-current hover:bg-red-500 hover:text-slate-50 opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 text-xs"
+                                onClick={() => {
+                                    const updated = previews.filter((_, idx) => idx !== i);
+                                    setPreviews(updated);
+                                }}
+                                disabled={isUploading}
                             >
-                                <button
-                                    className="flex gap-1 items-center border border-solid border-red-600 bg-slate-50 rounded-xl transition-all px-3 py-2 text-red-500 hover:border-current hover:bg-red-500 hover:text-slate-50"
-                                    onClick={() => {
-                                        const updated = previews.filter((_, idx) => idx !== i);
-                                        setPreviews(updated);
-                                    }}
-                                    disabled={isUploading}
-                                >
-                                    Delete Photo
-                                    <FaTrash />
-                                </button>
-                            </HoverCardContent>
-                        </HoverCard>
+                                Delete Photo
+                                <FaTrash />
+                            </button>
+                        </div>
                     </div>
                 ))}
             </Masonry>
         )
-
     )
 }
 
