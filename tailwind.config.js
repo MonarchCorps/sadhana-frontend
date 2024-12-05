@@ -145,6 +145,7 @@ export default {
 			umd: { max: '916px' },
 			ermd: { max: '910px' },
 			eumd: { max: '905px' },
+			himd: { max: '874px' },
 			imd: { max: '852px' },
 			hrmd2: { max: '825px' },
 			hmd: { max: '854px' },
@@ -163,6 +164,7 @@ export default {
 			ixsm: { max: '473px' },
 			casm: { max: '402px' },
 			xsm: { max: '393px' },
+			cxsm: { max: '384px' },
 			axsm: { max: '377px' },
 			asm: { max: '365px' },
 		}
