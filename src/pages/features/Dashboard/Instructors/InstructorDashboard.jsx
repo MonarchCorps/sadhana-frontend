@@ -27,7 +27,7 @@ function InstructorDashboard() {
 
     return (
         <main>
-            <SidebarProvider className="grid grid-cols-[auto_1fr] md:grid-cols-1">
+            <SidebarProvider className="grid grid-cols-[auto_1fr]">
                 <SideBar />
                 <Outlet context={{
                     classes,

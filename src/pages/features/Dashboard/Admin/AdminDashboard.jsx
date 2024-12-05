@@ -13,7 +13,7 @@ function AdminDashboard() {
 
     return (
         <main>
-            <SidebarProvider className="grid grid-cols-[auto_1fr] md:grid-cols-1">
+            <SidebarProvider className="grid grid-cols-[auto_1fr]">
                 <SideBar />
                 <Outlet />
                 <div className='fixed bottom-20 right-10 w-fit'>
