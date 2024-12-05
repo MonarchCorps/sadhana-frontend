@@ -148,6 +148,7 @@ export default {
 			imd: { max: '852px' },
 			hrmd2: { max: '825px' },
 			hmd: { max: '854px' },
+			emd: { max: '778px' },
 			md: { max: '767px' },
 			cimd: { max: '730px' },
 			amd: { max: '710px' },

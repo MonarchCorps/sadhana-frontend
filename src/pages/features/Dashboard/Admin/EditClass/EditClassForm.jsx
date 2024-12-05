@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import Select from 'react-select'
 import { useState } from 'react'
-import { ModalContent } from '../../../../../components/Modals/ImageModal'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit';
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton';
 
@@ -29,12 +28,12 @@ function EditClassForm({
 
     return (
         <>
-            <form className="grid grid-cols-2 gap-3 mt-7">
+            <form className="grid grid-cols-2 gap-3 mt-5">
                 <div className='col-span-2 mb-3'>
                     <UploadImageKit imgUrl={course?.thumbnailPhoto} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} imgName='thumbnailPhoto' />
                 </div >
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full asm:col-span-2'>
                     <label className='text-sm mb-2 font-500' htmlFor="classname">Class Name</label>
                     <input
                         type="text"
@@ -49,7 +48,7 @@ function EditClassForm({
                     />
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full asm:col-span-2'>
                     <label className='text-sm mb-2 font-500' htmlFor="videoUrl">Youtube Link</label>
                     <input
                         type="text"
@@ -64,7 +63,7 @@ function EditClassForm({
                     />
                 </div>
 
-                <div>
+                <div className='ixsm:col-span-2'>
                     <p className='text-sm mb-2 font-500'>Day</p>
                     <Select
                         id="days"
@@ -78,7 +77,7 @@ function EditClassForm({
                     />
                 </div>
 
-                <div>
+                <div className='ixsm:col-span-2'>
                     <div className='flex justify-between mb-1'>
                         <p className='text-sm font-500'>Start Time</p>
                         <p className='text-sm font-500'>End Time</p>
@@ -105,7 +104,7 @@ function EditClassForm({
                     </div>
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full asm:col-span-2'>
                     <label className='text-sm mb-2 font-500' htmlFor="instructorName">Instructor name</label>
                     <input
                         type="text"
@@ -117,7 +116,7 @@ function EditClassForm({
                     />
                 </div>
 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full asm:col-span-2'>
                     <label className='text-sm mb-2 font-500' htmlFor="instructorEmail">Instructor email</label>
                     <input
                         type="email"
@@ -177,7 +176,6 @@ function EditClassForm({
                     Submit
                 </SubmitButton>
             </form >
-            <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} photo={formData.thumbnailPhoto} />
         </>
     )
 }

@@ -6,6 +6,7 @@ import useAxiosPrivate from '../../../../../hooks/useAxiosPrivate'
 import EditClassForm from './EditClassForm'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import trim from '@/utils/trim'
 
 function EditClass() {
 
@@ -126,7 +127,16 @@ function EditClass() {
 
         e.preventDefault();
 
-        if (emptyField === true) return toast.error('All fields are required')
+        if (emptyField === true) {
+            return toast.error('All fields are required')
+        }
+
+        if (!formData.time.startTime) {
+            return toast.error('Fill in the startTime field')
+        } else if (!formData.time.endTime) {
+            return toast.error('Fill in the endTime field')
+        }
+
         const formDataToSend = new FormData();
 
         Object.entries(formData).forEach(([key, value]) => {
@@ -164,13 +174,14 @@ function EditClass() {
     return (
         <>
             <Loading isLoading={isLoading} />
-            <section className='w-full'>
-                <div className='grid place-items-center w-full h-full'>
-                    <div className="border-4 border-solid py-6 px-4 rounded-xl w-full max-w-[41rem] bg-white mt-10">
-                        <h1 className='text-[1.7rem] font-sans flex justify-between'>
-                            <span></span>
-                            <span className='font-500 text-[1.9rem] font-cuba'> {formData?.classname}</span>
+            <section className='emd:w-screen'>
+                <div className='pt-14 px-3 pb-3 w-full h-full flex flex-col justify-center max-w-[38.8rem] amd:max-w-[34rem] esm:px-5 mx-auto'>
+                    <div className='w-full text-start'>
+                        <h1 className='text-[2rem] amd:text-2xl ixsm:text-xl font-500 font-serif'>
+                            Edit course:  <span className='text-[#27554a] font-roboto'>{trim(course?.classname, 15)}</span>
                         </h1>
+                    </div>
+                    <div className='w-full'>
                         <EditClassForm handleSubmit={handleSubmit} handleChange={handleChange} preview={preview} course={course} formData={formData} handleTimeChange={handleTimeChange} dayArray={dayArray} setDayArray={setDayArray} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
                     </div>
                 </div>

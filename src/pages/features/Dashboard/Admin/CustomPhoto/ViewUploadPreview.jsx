@@ -32,7 +32,7 @@ function ViewUploadPreview({ previews, setPreviews, isUploading }) {
                                 }}
                                 disabled={isUploading}
                             >
-                                Delete Photo
+                                <span className='break-words'>Delete Photo</span>
                                 <FaTrash />
                             </button>
                         </div>
