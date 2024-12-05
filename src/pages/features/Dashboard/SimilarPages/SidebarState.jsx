@@ -20,9 +20,13 @@ function SidebarState({ navLinks, extraLinks, excludedIndices, comparePath }) {
     const { scrollTop } = useScrollTop();
     const pathAfterSlash = usePathAfterSlash();
 
+
     const isActiveFunc = (path) => {
+        const splitPath = path?.split('/')
+        const newPath = splitPath && splitPath[splitPath?.length - 1]
+
         const isAdminPath = pathAfterSlash === comparePath && path === '';
-        const isExactPath = pathAfterSlash === path;
+        const isExactPath = pathAfterSlash === newPath;
         return {
             isActive: isAdminPath || isExactPath
         }
