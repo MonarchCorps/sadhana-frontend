@@ -55,6 +55,7 @@ function ManageUser() {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["allUsers"] })
+            setUsersToDelete([])
             toast.success('Deleted successfully')
         },
         onError: (error) => {

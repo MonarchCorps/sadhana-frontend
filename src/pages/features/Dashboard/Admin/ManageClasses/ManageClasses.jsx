@@ -71,6 +71,7 @@ function ManageClasses() {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["homeAllCourses"] })
+            setCoursesToDelete([])
             toast.success('Deleted successfully')
         },
         onError: (error) => {
