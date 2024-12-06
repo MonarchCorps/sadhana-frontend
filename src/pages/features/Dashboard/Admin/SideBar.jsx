@@ -1,10 +1,9 @@
 import { FaHome, FaUserAlt, FaMoneyBillAlt, FaDiscourse } from 'react-icons/fa'
-import { FaBookBookmark, FaKey, FaPhotoFilm } from 'react-icons/fa6'
+import { FaBookBookmark, FaKey, FaPhotoFilm, FaRegCommentDots } from 'react-icons/fa6'
 import { CgTrending } from 'react-icons/cg'
 import { GiShadowFollower } from 'react-icons/gi'
 import { RiPassPendingFill } from 'react-icons/ri'
 import { MdAddAPhoto } from 'react-icons/md'
-
 
 import SidebarState from '../SimilarPages/SidebarState'
 
@@ -14,8 +13,9 @@ function SideBar() {
         { id: 1, icon: <FaHome />, text: 'Dashboard', path: '', },
         { id: 2, icon: <FaUserAlt />, text: 'Manage Users', path: 'manage-users' },
         { id: 3, icon: <RiPassPendingFill />, text: 'Pending Instructors', path: 'pending-instructors' },
+        { id: 4, icon: <FaRegCommentDots />, text: 'Chat page', path: '/chat' },
         {
-            id: 4,
+            id: 5,
             text: 'Course',
             children: [
                 { id: 1, icon: <FaBookBookmark />, text: 'Pending Class', path: 'pending-classes' },
@@ -23,7 +23,7 @@ function SideBar() {
             ]
         },
         {
-            id: 5,
+            id: 6,
             text: 'Custom photo',
             children: [
                 { id: 1, icon: <MdAddAPhoto />, text: 'Upload photo', path: 'custom-photo/manage' },
@@ -40,7 +40,7 @@ function SideBar() {
         { id: 5, icon: <GiShadowFollower />, text: 'Following', path: '' },
     ]
 
-    const excludedIndices = [1, 2, 3]
+    const excludedIndices = [1, 2, 3, 4]
 
     return (
         <SidebarState navLinks={navLinks} extraLinks={extraLinks} excludedIndices={excludedIndices} comparePath='admin-cp' />

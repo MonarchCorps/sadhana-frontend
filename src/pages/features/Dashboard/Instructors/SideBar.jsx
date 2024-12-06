@@ -1,5 +1,5 @@
 import { FaHome, FaUserAlt, FaMoneyBill, FaAddressBook, FaCheckDouble } from 'react-icons/fa'
-import { FaBookBookmark, FaHatWizard } from 'react-icons/fa6'
+import { FaBookBookmark, FaHatWizard, FaRegCommentDots } from 'react-icons/fa6'
 import { CgTrending } from 'react-icons/cg'
 import { GiShadowFollower } from 'react-icons/gi'
 
@@ -13,9 +13,10 @@ function SideBar() {
         { id: 1, text: 'Dashboard', icon: <FaHome />, path: '' },
         { id: 2, text: 'Enrolled', icon: <FaUserAlt />, path: 'enrolled' },
         { id: 3, text: 'Selected', icon: <FaBookBookmark />, path: 'selected' },
-        { id: 4, text: 'Payments', icon: <FaMoneyBill />, path: 'payments' },
+        { id: 4, icon: <FaRegCommentDots />, text: 'Chat page', path: '/chat' },
+        { id: 5, text: 'Payments', icon: <FaMoneyBill />, path: 'payments' },
         {
-            id: 5,
+            id: 6,
             text: 'Course',
             children: [
                 { id: 1, icon: <FaAddressBook />, text: 'Add a course', path: 'add-class' },
@@ -24,7 +25,7 @@ function SideBar() {
                 { id: 4, icon: <FaCheckDouble />, text: 'Approved courses', path: 'approved-classes' }
             ]
         },
-        { id: 6, text: 'Earnings', icon: <FaCheckDouble />, path: 'earnings' }
+        { id: 7, text: 'Earnings', icon: <FaCheckDouble />, path: 'earnings' }
     ]
 
     const extraLinks = [
@@ -33,7 +34,7 @@ function SideBar() {
         { id: 3, text: 'Following', icon: <CgTrending />, path: '' },
     ]
 
-    const excludedIndices = [1, 2, 3, 4, 6]
+    const excludedIndices = [1, 2, 3, 4, 5, 7]
 
     return (
         <SidebarState navLinks={navLinks} extraLinks={extraLinks} excludedIndices={excludedIndices} comparePath='instructor-cp' />
