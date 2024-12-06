@@ -10,6 +10,13 @@ function Overview({ enrolledDetails }) {
             return acc += value
         })
     )
+    const totalFeesPrice = enrolledDetails?.length > 0 && (
+        enrolledDetails?.map(details => {
+            return details?.shipping_options[0]?.shipping_amount
+        }).reduce((acc, value) => {
+            return acc += value
+        })
+    )
 
     return (
         <div className="mt-12 w-96 ixsm:w-full ixsm:max-w-[30rem]">
@@ -47,6 +54,10 @@ function Overview({ enrolledDetails }) {
                             })
                         }
                     </ul>
+                    <div className='flex justify-between mt-3 text-sm'>
+                        <p className='font-600 font-sans'>Fees</p>
+                        <p>#{totalFeesPrice}</p>
+                    </div>
                     <div className="grid justify-end mt-3 mb-1">
                         <span className='h-[0.1rem] w-14 bg-black'></span>
                     </div>
