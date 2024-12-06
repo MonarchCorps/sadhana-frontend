@@ -7,7 +7,7 @@ import DateIndicator from './DateIndicator'
 import { Ban, CheckCheck } from 'lucide-react'
 import ReactPlayer from 'react-player'
 import { useState } from 'react'
-import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import ChatAvatarAction from './ChatAvatarAction'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
@@ -136,6 +136,9 @@ const ImageDialog = ({ src, onClose, open }) => {
             }}
         >
             <DialogContent className='min-w-[750px] bg-[#005c4b]'>
+                <DialogTitle className='sr-only'>
+                    Image preview
+                </DialogTitle>
                 <DialogDescription className='relative h-[450px] flex justify-center'>
                     <img src={src} className='rounded-lg object-contain' alt='image' />
                 </DialogDescription>

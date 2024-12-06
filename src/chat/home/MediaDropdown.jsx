@@ -141,7 +141,7 @@ const MediaDialog = ({ isOpen, onClose, isLoading, preview, selectedMedia, handl
                 if (!isOpen && !isLoading) onClose();
             }}
         >
-            <DialogTitle className="hidden">Preview Media</DialogTitle>
+            <DialogTitle className="sr-only">Preview Media</DialogTitle>
             <DialogContent className="bg-[#005c4b]">
                 <DialogDescription>
                     {isVideo ? (
