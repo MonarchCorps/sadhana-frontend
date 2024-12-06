@@ -1,19 +1,17 @@
 /* eslint-disable react/prop-types */
 import Class from './Class'
-import noDataImage from '../../../../../assets/images/17280568351339057725320967394372.jpg'
 import SkeletonLoader2 from '../../../../../components/SkeletonLoaders/SkeletonLoader2'
 import ReactPagination from '../../../../../components/ReactPagination'
 import { useEffect, useState } from 'react'
 import useGetScreenWidth from '@/hooks/useGetScreenWidth'
+import NoData from '@/components/NoData'
 
 function EnrolledCourse({ enrolledCourse, isLoading }) {
 
     const { screenWidth } = useGetScreenWidth()
 
     const [page, setPage] = useState(0);
-    // this filteredData is for the pagination on page
     const [filteredData, setFilteredData] = useState([]);
-    // const [totalAmount, setTotalAmount] = useState()
     const n = 2
 
     useEffect(() => {
@@ -55,10 +53,9 @@ function EnrolledCourse({ enrolledCourse, isLoading }) {
                         )
                     })
                 ) : !isLoading && filteredData?.length === 0 && (
-                    <div className='flex flex-col items-center pt-16'>
-                        <img src={noDataImage} alt="No details available" className='w-3/4 object-cover h-3/4' />
-                        <p className='p-10'>No enrolled course check back later or reload page!</p>
-                    </div>
+                    <NoData>
+                        <span>No enrolled course check back later or reload page!</span>
+                    </NoData>
                 )
             }
             <ReactPagination data={enrolledCourse} setPage={setPage} n={n} isLoading={isLoading} filteredData={filteredData} />

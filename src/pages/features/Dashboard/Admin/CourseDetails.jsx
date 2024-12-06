@@ -15,7 +15,7 @@ import OtherCourseDetails from './OtherCourseDetails'
 import SkeletonLoader2 from '@/components/SkeletonLoaders/SkeletonLoader2'
 import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 import SkeletonLoader from '@/components/SkeletonLoaders/SkeletonLoader'
-import noDataImage from '../../../../assets/images/17280568351339057725320967394372.jpg'
+import NoData from '@/components/NoData'
 
 function CourseDetails() {
 
@@ -248,10 +248,9 @@ function CourseDetails() {
                             </div>
                         </Fragment>
                     ) : !isLoading && !course?._id && (
-                        <div className='flex flex-col items-center pt-16'>
-                            <img src={noDataImage} alt="No details available" className='w-3/4 object-cover h-3/4' />
-                            <p className='p-10'>No details details available at the moment. Check back later or reload page!</p>
-                        </div>
+                        <NoData>
+                            <span>No details details available at the moment. Check back later or reload page!</span>
+                        </NoData>
                     )
                 }
             </div>

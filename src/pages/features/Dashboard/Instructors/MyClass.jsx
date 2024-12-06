@@ -4,10 +4,10 @@ import { Fragment, useEffect, useState } from 'react'
 import ReactPagination from '../../../../components/ReactPagination'
 import Class from './Class'
 
-import noDataImage from '../../../../assets/images/17280568351339057725320967394372.jpg'
 import Loading from '../../../../components/Loaders/Loading'
 import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 import SkeletonLoader2 from '@/components/SkeletonLoaders/SkeletonLoader2'
+import NoData from '@/components/NoData'
 
 function MyClass() {
 
@@ -15,14 +15,14 @@ function MyClass() {
 
     const [page, setPage] = useState(0);
 
-    const [filteredData, setFilteredData] = useState();
+    const [filteredData, setFilteredData] = useState([]);
     const n = 3
 
     useEffect(() => {
         setFilteredData(
-            classes?.length > 0 && classes.filter((course, index) => {
+            classes?.length > 0 && classes?.filter((course, index) => {
                 return (index >= page * n) & (index < (page + 1) * n)
-            })
+            }) || []
         )
     }, [page, classes])
 
@@ -65,10 +65,9 @@ function MyClass() {
                             })}
                         </div>
                     ) : !isLoading && filteredData?.length === 0 && (
-                        <div className='flex flex-col items-center pt-16'>
-                            <img src={noDataImage} alt="No details available" className='w-3/4 object-cover h-3/4' />
-                            <p className='p-10'>No course check back later or reload page!</p>
-                        </div>
+                        <NoData>
+                            <span>No course check back later or reload page!</span>
+                        </NoData>
                     )}
                     <ReactPagination data={classes} setPage={setPage} n={n} isLoading={isLoading} filteredData={filteredData} />
                 </div>

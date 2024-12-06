@@ -9,7 +9,7 @@ import PaymentHead from './PaymentHead'
 import AskQuestion from './AskQuestion'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 
-import noDataImage from '../../../../../assets/images/17280568351339057725320967394372.jpg'
+import NoData from '@/components/NoData'
 
 function Enrolled() {
 
@@ -58,10 +58,9 @@ function Enrolled() {
                         }
                         {
                             !isPending && !enrolledCourse?.length > 0 && (
-                                <div className='flex flex-col items-center justify-center h-screen'>
-                                    <img src={noDataImage} alt="No details available" className='w-full max-w-[40rem]' />
-                                    <p className='p-10 text-center msm:text-sm asm:text-xs/relaxed'>No details available at the moment. Check back later or reload page!</p>
-                                </div>
+                                <NoData>
+                                    <span>No details available at the moment. Check back later or reload page!</span>
+                                </NoData>
                             )
                         }
                     </>

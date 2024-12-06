@@ -8,7 +8,6 @@ import { IKImage } from 'imagekitio-react'
 import { Fragment, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import noDataImage from '../../../../../assets/images/17280568351339057725320967394372.jpg'
 import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 import styled from 'styled-components'
 import UserDetails from '@/components/UserDetails'
@@ -16,6 +15,7 @@ import SkeletonLoader2 from '@/components/SkeletonLoaders/SkeletonLoader2'
 import OtherCourseDetails from '../OtherCourseDetails'
 import SkeletonLoader from '@/components/SkeletonLoaders/SkeletonLoader'
 import Trainer from '@/components/Trainer'
+import NoData from '@/components/NoData'
 
 function ViewProfile() {
 
@@ -224,10 +224,9 @@ function ViewProfile() {
                         </div>
                     </Fragment>
                 ) : !isLoading && !user?._id && (
-                    <div className='flex flex-col items-center justify-center mt-16 h-screen'>
-                        <img src={noDataImage} alt="No details available" className='w-full max-w-[40rem]' />
-                        <p className='p-10 text-center msm:text-sm asm:text-xs/relaxed'>No details available at the moment. Check back later or reload page!</p>
-                    </div>
+                    <NoData>
+                        <span>No details available at the moment. Check back later or reload page!</span>
+                    </NoData>
                 )}
             </div>
         </section>
