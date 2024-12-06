@@ -76,7 +76,7 @@ const MessageContainer = () => {
 
     return (
         <div className="relative p-3 flex-1 overflow-auto h-full bg-light-img">
-            <div className="mx-12 flex flex-col gap-2 h-full">
+            <div className="mx-12 hmd:mx-8 amd:mx-5 flex flex-col gap-2 h-full">
                 {processedMessages?.map((msg, idx) => (
                     <div key={msg._id}>
                         <ChatBubble message={msg} previousMessage={idx > 0 ? processedMessages[idx - 1] : 0} lastIdx={idx == processedMessages?.length - 1} endRef={endRef} />

@@ -10,10 +10,10 @@ import TypingUsers from './TypingUsers'
 import { useState } from 'react'
 
 const RightPanel = () => {
-    const { selectedConversation, setSelectedConversation } = useConversationStore()
+    const { stateType, selectedConversation, setSelectedConversation } = useConversationStore()
     const [showName, setShowName] = useState('')
 
-    if (!selectedConversation) return <ChatPlaceHolder />
+    if (!selectedConversation && (stateType === '' || stateType === null)) return <ChatPlaceHolder />
 
     const conversationName = selectedConversation?.groupName || selectedConversation?.userDetails?.username
     const conversationImage = selectedConversation?.groupImage || selectedConversation?.userDetails?.profileImage
@@ -47,7 +47,7 @@ const RightPanel = () => {
                         <Link to='video-call' target='_blank' rel='noopener noreferrer'>
                             <Video size={23} />
                         </Link>
-                        <X size={16} className='cursor-pointer' onClick={() => setSelectedConversation(null)} />
+                        <X size={16} className='cursor-pointer' onClick={() => setSelectedConversation({ conversation: null, type: '' })} />
                     </div>
                 </div>
             </div>

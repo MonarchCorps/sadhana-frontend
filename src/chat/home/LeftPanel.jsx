@@ -11,11 +11,14 @@ import Loading4 from '@/components/Loaders/Loading4'
 import { IKImage } from 'imagekitio-react'
 import useSocket from '@/hooks/useSocket'
 import { useConversationStore } from '../store/chatStore'
+import useLogout from '@/hooks/useLogout'
 
 const LeftPanel = () => {
     const { auth } = useAuth()
     const axiosPrivate = useAxiosPrivate()
     const queryClient = useQueryClient()
+    const { logout } = useLogout()
+
     const { connectSocket } = useSocket()
     const { selectedConversation, setSelectedConversation } = useConversationStore()
     const socket = connectSocket(auth?._id)
@@ -59,12 +62,12 @@ const LeftPanel = () => {
     useEffect(() => {
         const conversationIds = conversations?.map(conversation => conversation?._id)
         if (selectedConversation && conversationIds && !conversationIds.includes(selectedConversation?._id)) {
-            setSelectedConversation(null)
+            setSelectedConversation({ conversation: null, type: '' })
         }
     }, [conversations, selectedConversation, setSelectedConversation])
 
     return (
-        <div className="w-1/4 border-slate-600 border-r">
+        <div className="w-1/4 pmd:w-[30%] himd:w-[35%] md:w-[38%] border-slate-600 border-r">
             <div className="sticky top-0 bg-[#ffffff] z-10">
                 <div className="flex justify-between bg-[#f0f2f5] p-3 items-center">
                     <Link to='/dashboard'>
@@ -84,7 +87,7 @@ const LeftPanel = () => {
                     </Link>
                     <div className="flex items-center gap-3">
                         <UserListDialog />
-                        <LogOut size={20} className="cursor-pointer" />
+                        <LogOut size={20} className="cursor-pointer" onClick={logout} />
                     </div>
                 </div>
                 <div className="p-3 flex items-center">

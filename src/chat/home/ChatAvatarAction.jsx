@@ -47,10 +47,9 @@ function ChatAvatarAction({ message, conversationId, handleCreateConversation })
             )
         },
         onSuccess: (response) => {
-            console.log(response.data)
             queryClient.invalidateQueries({ queryKey: ['fetchConversations', auth?._id] })
             queryClient.invalidateQueries({ queryKey: ['fetchMessages', auth?._id, selectedConversation?._id] })
-            setSelectedConversation(response.data)
+            setSelectedConversation({ conversation: response.data, type: 'chat' })
             toast.success('Success')
         },
         onError: (error) => {

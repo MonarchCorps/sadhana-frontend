@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 import useAuth from '@/hooks/useAuth'
 import { useConversationStore } from '../store/chatStore'
-import applyCustomStyles from '@/utils/applyCustomStyles'
 import ChatBubbleAvatar from './ChatBubbleAvatar'
 import DateIndicator from './DateIndicator'
 import { Ban, CheckCheck } from 'lucide-react'
 import ReactPlayer from 'react-player'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import ChatAvatarAction from './ChatAvatarAction'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import toast from 'react-hot-toast'
+import styled from 'styled-components'
 
 const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
     const { auth } = useAuth()
@@ -35,11 +35,11 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
     const renderMessageContent = () => {
         switch (message.messageType) {
             case 'text':
-                return <TextMessage message={message} />
+                return <TextMessage message={message} time={time} fromMe={fromMe} />
             case 'image':
-                return <ImageMessage message={message} handleClick={() => setOpen(true)} />
+                return <ImageMessage message={message} handleClick={() => setOpen(true)} time={time} fromMe={fromMe} />
             case 'video':
-                return <VideoMessage message={message} />
+                return <VideoMessage message={message} time={time} fromMe={fromMe} />
             default:
                 return null
         }
@@ -59,7 +59,7 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
                 try {
                     const { data } = await axiosPrivate.get(`/conversation/${auth?._id}`);
                     const newConversation = data.find(conversation => conversation?._id === createdConversationId)
-                    setSelectedConversation(newConversation)
+                    setSelectedConversation({ conversation: newConversation, type: 'chat' })
                 } catch (error) {
                     console.error("Failed to fetch the new conversation:", error);
                 }
@@ -75,10 +75,10 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
         return (
             <>
                 <DateIndicator message={message} previousMessage={previousMessage} />
-                <div className={`flex gap-1 w-2/3 ${lastIdx && 'mb-1'}`}>
+                <div className={`flex relative gap-1 w-2/3 cimd:w-4/5 ${lastIdx && 'mb-1'}`}>
+                    {checkPreviousSender && <OtherMessageIndicator />}
                     <ChatBubbleAvatar isGroup={isGroup} isMember={isMember} message={message} previousMessage={previousMessage} />
-                    <div className={`flex flex-col z-20 max-w-fit px-2 pt-1 rounded-md shadow-md relative group ${bgClass}`}>
-                        {checkPreviousSender && <OtherMessageIndicator />}
+                    <div className={`flex z-20 max-w-fit px-2 pt-1 rounded-md shadow-md relative group ${bgClass}`}>
                         {isGroup && checkPreviousSender && (<div>
                             <span className='text-xs block font-600 w-full' onClick={() => handleCreateConversation.mutate({ userId: message.sender?._id })}>{message.sender?.username}</span>
                         </div>
@@ -86,7 +86,6 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
                         {renderMessageContent()}
                         {isGroup && <ChatAvatarAction message={message} conversationId={selectedConversation?._id} handleCreateConversation={handleCreateConversation} />}
                         {open && <ImageDialog src={message?.content} open={open} onClose={() => setOpen(false)} />}
-                        <MessageTime time={time} fromMe={fromMe} message={message} />
                     </div>
                 </div>
                 {lastIdx && <div ref={endRef}></div>}
@@ -111,12 +110,11 @@ const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
     return (
         <>
             <DateIndicator message={message} previousMessage={previousMessage} />
-            <div className={`flex gap-1 w-2/3 ml-auto ${lastIdx && 'mb-1'}`}>
-                <div className={`flex z-20 max-w-fit px-2 py-1 rounded-md shadow-md ml-auto relative ${bgClass}`}>
-                    <SelfMessageIndicator />
+            <div className={`flex relative gap-1 w-2/3 cimd:w-4/5 ml-auto ${lastIdx && 'mb-1'}`}>
+                <SelfMessageIndicator />
+                <div className={`flex z-20 max-w-fit px-2 pr-1 py-1 rounded-md shadow-md ml-auto relative ${bgClass}`}>
                     {renderMessageContent()}
                     {open && <ImageDialog src={message?.content} open={open} onClose={() => setOpen(false)} />}
-                    <MessageTime time={time} fromMe={fromMe} message={message} />
                 </div>
             </div>
             {lastIdx && <div ref={endRef}></div>}
@@ -147,11 +145,16 @@ const ImageDialog = ({ src, onClose, open }) => {
     );
 }
 
-const VideoMessage = ({ message }) => {
-    return <ReactPlayer url={message.content} width='250px' height='250px' controls={true} />;
+const VideoMessage = ({ message, time, fromMe }) => {
+    return (
+        <div>
+            <ReactPlayer url={message.content} width='250px' height='250px' controls={true} />
+            <MessageTime time={time} fromMe={fromMe} message={message} />
+        </div>
+    );
 }
 
-const ImageMessage = ({ message, handleClick }) => {
+const ImageMessage = ({ message, handleClick, time, fromMe }) => {
     return (
         <div className='w-[250px] h-[250px] my-1 relative block'>
             <img
@@ -160,15 +163,16 @@ const ImageMessage = ({ message, handleClick }) => {
                 alt='image'
                 onClick={handleClick}
             />
+            <MessageTime time={time} fromMe={fromMe} message={message} />
         </div>
     );
 }
 
 const MessageTime = ({ time, fromMe, message }) => {
     return (
-        <p className={`text-[10px] mt-2 self-end flex gap-1 items-center ${message?.messageType === 'video' || message?.messageType === 'image' ? 'absolute bg-slate-200 text-slate-800 p-1 rounded bottom-3 right-3 font-500 font-sans' : ''}`}>
+        <p className={`text-[10px] self-end flex gap-1 items-center ${message?.messageType === 'video' || message?.messageType === 'image' ? 'absolute bg-slate-200 text-slate-800 p-1 rounded bottom-3 right-3 font-500 font-sans' : ''}`}>
             {time} {fromMe && <CheckCheck size={15} />}
-        </p>
+        </p >
     );
 }
 
@@ -180,22 +184,82 @@ const SelfMessageIndicator = () => (
     <div className='absolute bg-[#d9fdd3] top-0 -right-[3px] w-3 h-3 rounded-br-full overflow-hidden' />
 )
 
-const TextMessage = ({ message }) => {
+
+const TextMessage = ({ message, time, fromMe }) => {
     const isLink = /^(ftp|http|https):\/\/[^ ']+$/.test(message.content); // Check if the content is a URL
+
+    const Text = styled.p`
+        font-size: 16px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        overflow: hidden;
+        max-height: ${({ expanded }) => (expanded ? "none" : "120px")};
+        transition: max-height 0.3s ease;
+
+        @media (max-width: 710px) {
+            font-size: 14px;
+        }
+    `;
+
+    const ToggleButton = styled.button`
+        margin-top: 4px;
+        color: #264028;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        @media (min-width: 768px) {
+            width: auto;
+        }
+
+    `;
+
+    const [expanded, setExpanded] = useState(false);
+    const [showToggleButton, setShowToggleButton] = useState(false);
+    const textRef = useRef(null);
+
+    useEffect(() => {
+        if (textRef.current) {
+            setShowToggleButton(textRef.current.scrollHeight > 120);
+        }
+    }, [message.content]);
+
+    const toggleReadMore = () => {
+        setExpanded(!expanded);
+    };
 
     return (
         <div>
             {isLink ? (
                 <a
                     href={message.content}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className={`mr-2 text-sm font-light text-blue-400 underline`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mr-2 text-sm font-light text-blue-400 underline"
                 >
                     {message.content}
                 </a>
             ) : (
-                <p className={`mr-2 text-sm font-light`}>{applyCustomStyles(message.content)}</p>
+                <>
+                    <Text ref={textRef} expanded={expanded}>
+                        {message.content}
+                    </Text>
+                    <div className={`flex justify-between ${showToggleButton ? 'mt-3 mb-2 amd:mt-2 amd:mb-1' : 'mb-1 ml-8'}`}>
+                        <div>
+                            {showToggleButton && (
+                                <ToggleButton onClick={toggleReadMore}>
+                                    {expanded ? "Read Less" : "Read More"}
+                                </ToggleButton>
+                            )}
+                        </div>
+                        <MessageTime time={time} fromMe={fromMe} message={message} />
+                    </div>
+                </>
             )}
         </div>
     )

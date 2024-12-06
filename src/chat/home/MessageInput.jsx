@@ -73,14 +73,14 @@ const MessageInput = () => {
     return (
         <div className='bg-[#f0f2f5] p-2 flex gap-4 items-center'>
             <div className='relative flex gap-2 ml-2'>
-                <div ref={ref} onClick={() => setIsComponentVisible(true)}>
+                <div ref={ref} onClick={() => setIsComponentVisible(true)} className='w-full'>
                     {isComponentVisible && (
                         <EmojiPicker
                             theme={Theme.DARK}
                             onEmojiClick={emojiObject => {
                                 setMsgText(prev => prev + emojiObject.emoji)
                             }}
-                            style={{ position: 'absolute', bottom: '1.5rem', left: '1rem', zIndex: 50 }}
+                            style={{ position: 'absolute', bottom: '1.5rem', left: '1rem', zIndex: 50, width: '20rem' }}
                         />
                     )}
                     <Laugh className='text-gray-600 cursor-pointer' />

@@ -87,7 +87,7 @@ const UserListDialog = () => {
                 try {
                     const { data } = await axiosPrivate.get(`/conversation/${auth?._id}`);
                     const newConversation = data.find(conversation => conversation?._id === createdConversationId)
-                    setSelectedConversation(newConversation)
+                    setSelectedConversation({ conversation: newConversation, type: 'chat' })
                 } catch (error) {
                     console.error("Failed to fetch the new conversation:", error);
                 }

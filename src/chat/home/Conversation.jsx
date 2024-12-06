@@ -57,9 +57,9 @@ const Conversation = ({ conversation }) => {
     return (
         <>
             <div
-                className={`flex gap-3 p-3 hover:bg-[#f4f5f5] cursor-pointer ${activeBgClass ? 'bg-[#eff0f0]' : ''
+                className={`flex cimd:flex-col gap-3 p-3 hover:bg-[#f4f5f5] cursor-pointer ${activeBgClass ? 'bg-[#eff0f0]' : ''
                     }`}
-                onClick={() => setSelectedConversation(conversation)}
+                onClick={() => setSelectedConversation({ conversation, type: 'chat' })}
             >
                 <div
                     className={`w-12 ${!isGroup && isAnyParticipantOnline
@@ -70,19 +70,23 @@ const Conversation = ({ conversation }) => {
                     {!isGroup && isAnyParticipantOnline && (
                         <div className='absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-solid border-[#020817] z-50' />
                     )}
-                    <IKImage
-                        path={conversationImage}
-                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
-                        className='w-10 h-10 rounded-full object-cover'
-                        lqip={{ active: true, quality: 20 }}
-                        transformation={[{ quality: 'auto', format: 'auto' }]}
-                        alt={`${conversationName} image`}
-                    />
+                    {conversationImage ? (
+                        <IKImage
+                            path={conversationImage}
+                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            className='w-10 h-10 rounded-full object-cover cimd:h-12 cimd:w-16'
+                            lqip={{ active: true, quality: 20 }}
+                            transformation={[{ quality: 'auto', format: 'auto' }]}
+                            alt={`${conversationName} image`}
+                        />
+                    ) : (
+                        <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+                    )}
                 </div>
                 <div className='w-full'>
                     <div className='flex items-center'>
-                        <h3 className='text-xs lg:text-sm font-medium'>{conversationName}</h3>
-                        <span className='text-[10px] lg:text-xs text-gray-500 ml-auto'>
+                        <h3 className='text-xs lg:text-sm font-medium text-wrap '>{conversationName ? trim(conversationName, 10) : 'Not found'}</h3>
+                        <span className='text-[10px] lg:text-xs text-gray-500 ml-auto text-nowrap'>
                             {formatDate(lastMessage?.createdAt || conversation?.createdAt)}
                         </span>
                     </div>
@@ -93,10 +97,10 @@ const Conversation = ({ conversation }) => {
                         {!showName && !lastMessage && ((!isGroup && conversation?.userDetails?._id) || (isGroup && conversation?.participants?.length > 0)) && 'Say Hi!'}
                         {!isGroup && !conversation?.userDetails?._id && 'User no longer exists'}
                         {isGroup && conversation?.participants?.length == 0 && 'Group no longer exists'}
-                        {!showName && lastMessageType === 'text' ? (
-                            <span className='text-xs'>
-                                {lastMessage?.content.length > 30
-                                    ? trim(lastMessage?.content, 30)
+                        {!showName && lastMessageType === 'text' && ((!isGroup && Boolean(conversation?.userDetails?.username)) || (isGroup && conversation?.participants?.length == 0)) ? (
+                            <span className='text-xs text-wrap'>
+                                {lastMessage?.content.length > 20
+                                    ? trim(lastMessage?.content, 20)
                                     : lastMessage?.content}
                             </span>
                         ) : null}
