@@ -9,14 +9,14 @@ function TableBody({ filteredUsers: allUsers, handleCheckedState, deleteUser, se
     const [page, setPage] = useState(0);
 
     // this filteredData is for the pagination on page
-    const [filteredData, setFilteredData] = useState();
+    const [filteredData, setFilteredData] = useState([]);
     const n = 5
 
     useEffect(() => {
         setFilteredData(
             allUsers?.length > 0 && allUsers?.filter((user, index) => {
                 return (index >= page * n) & (index < (page + 1) * n)
-            })
+            }) || []
         )
     }, [page, allUsers])
 

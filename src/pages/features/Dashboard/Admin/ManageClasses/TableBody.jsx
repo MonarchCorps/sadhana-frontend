@@ -9,14 +9,14 @@ function TableBody({ filteredCourses: allCourses, handleCheckedState, deleteCour
 
     const [page, setPage] = useState(0);
     // this filteredData is for the pagination on page
-    const [filteredData, setFilteredData] = useState();
+    const [filteredData, setFilteredData] = useState([]);
     const n = 5
 
     useEffect(() => {
         setFilteredData(
             allCourses?.length > 0 && allCourses.filter((user, index) => {
                 return (index >= page * n) & (index < (page + 1) * n)
-            })
+            }) || []
         )
     }, [page, allCourses])
 

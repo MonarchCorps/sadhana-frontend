@@ -8,14 +8,14 @@ import { Accordion } from '@/components/ui/accordion';
 function TableBody({ filteredUsers: pendingInstructors, handleApproval, isLoading }) {
 
     const [page, setPage] = useState(0);
-    const [filteredData, setFilteredData] = useState();
+    const [filteredData, setFilteredData] = useState([]);
     const n = 5
 
     useEffect(() => {
         setFilteredData(
             pendingInstructors?.length > 0 && pendingInstructors.filter((user, index) => {
                 return (index >= page * n) & (index < (page + 1) * n)
-            })
+            }) || []
         )
     }, [page, pendingInstructors])
 
