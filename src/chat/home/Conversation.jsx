@@ -90,7 +90,9 @@ const Conversation = ({ conversation }) => {
                         {lastMessage?.sender === auth?._id && <CheckCheck size={15} />}
                         <TypingUsers showName={showName} setShowName={setShowName} currentConversationId={conversation?._id} />
                         {conversation?.isGroup && <Users size={16} />}
-                        {!showName && !lastMessage && 'Say Hi!'}
+                        {!showName && !lastMessage && ((!isGroup && conversation?.userDetails?._id) || (isGroup && conversation?.participants?.length > 0)) && 'Say Hi!'}
+                        {!isGroup && !conversation?.userDetails?._id && 'User no longer exists'}
+                        {isGroup && conversation?.participants?.length == 0 && 'Group no longer exists'}
                         {!showName && lastMessageType === 'text' ? (
                             <span className='text-xs'>
                                 {lastMessage?.content.length > 30
