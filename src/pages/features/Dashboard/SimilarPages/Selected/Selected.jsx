@@ -14,15 +14,17 @@ function Selected() {
         queryKey: ['homeAllCourses'],
         queryFn: () =>
             axios.get('/public/class').then((res) => {
-                return res?.data
+                return Array.isArray(res?.data) ? res.data : [];
             }),
     })
 
     useEffect(() => {
-        const idsInArray2 = new Set(auth?.selectedCourses.map(obj => obj.courseId));
-        const data = classes?.filter(obj => idsInArray2.has(obj._id));
+        if (classes) {
+            const idsInArray2 = new Set(auth?.selectedCourses.map(obj => obj.courseId));
+            const data = classes?.filter(obj => idsInArray2.has(obj._id));
 
-        setSelectedCourses(data)
+            setSelectedCourses(data)
+        }
     }, [classes, auth?.selectedCourses])
 
     return (

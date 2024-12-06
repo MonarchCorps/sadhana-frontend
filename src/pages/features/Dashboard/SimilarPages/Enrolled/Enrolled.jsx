@@ -9,6 +9,8 @@ import PaymentHead from './PaymentHead'
 import AskQuestion from './AskQuestion'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 
+import noDataImage from '../../../../../assets/images/17280568351339057725320967394372.jpg'
+
 function Enrolled() {
 
     const { auth } = useAuth();
@@ -18,7 +20,7 @@ function Enrolled() {
         queryKey: ['enrolledDetails'],
         queryFn: () =>
             axiosPrivate.get(`/enrolled/${auth?._id}`).then(res => {
-                return res?.data
+                return Array.isArray(res?.data) ? res.data : [];
             })
     })
 
@@ -52,6 +54,14 @@ function Enrolled() {
                                     <PaymentSummary filteredDetails={filteredDetails} />
                                 </Fragment>
 
+                            )
+                        }
+                        {
+                            !isPending && !enrolledCourse?.length > 0 && (
+                                <div className='flex flex-col items-center justify-center h-screen'>
+                                    <img src={noDataImage} alt="No details available" className='w-full max-w-[40rem]' />
+                                    <p className='p-10 text-center msm:text-sm asm:text-xs/relaxed'>No details available at the moment. Check back later or reload page!</p>
+                                </div>
                             )
                         }
                     </>

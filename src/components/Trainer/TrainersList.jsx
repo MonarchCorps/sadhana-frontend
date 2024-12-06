@@ -5,11 +5,11 @@ import { IKImage } from 'imagekitio-react'
 
 function TrainersList() {
 
-    const { data: trainers } = useQuery({
+    const { data: trainers = [] } = useQuery({
         queryKey: ['homeAllInstructors'],
         queryFn: () =>
             axios.get('/public/instructor').then((res) => {
-                return res?.data
+                return Array.isArray(res?.data) ? res.data : [];
             }),
     })
 

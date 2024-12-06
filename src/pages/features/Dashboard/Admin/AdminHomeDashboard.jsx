@@ -34,7 +34,7 @@ function AdminHomeDashboard() {
         queryKey: ['homeAllCourses'],
         queryFn: () =>
             axiosPrivate.get('/public/class').then((res) => {
-                return res?.data
+                return Array.isArray(res?.data) ? res.data : [];
             }),
     })
 
@@ -42,7 +42,7 @@ function AdminHomeDashboard() {
         queryKey: ['allUsers'],
         queryFn: () =>
             axiosPrivate.get('/admin-cp/all-users').then((res) => {
-                return res?.data
+                return Array.isArray(res?.data) ? res.data : [];
             }),
     })
 
@@ -50,7 +50,7 @@ function AdminHomeDashboard() {
         queryKey: ['homeAllInstructors'],
         queryFn: () =>
             axiosPrivate.get('/public/instructor').then((res) => {
-                return res?.data
+                return Array.isArray(res?.data) ? res.data : [];
             }),
     })
 
@@ -104,7 +104,7 @@ function AdminHomeDashboard() {
                         {auth?.username || 'Admin'}
                     </h1>
                     <div className='p-4 max-w-[96%] mx-auto'>
-                        {classes && classes?.length > 0 && (
+                        {classes?.length > 0 && (
                             <div>
                                 <h1 className='text-[1.14rem] font-500 font-sans inline-block'>
                                     Courses
@@ -114,7 +114,7 @@ function AdminHomeDashboard() {
                         )}
                         <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 ixsm:gap-4 gap-3 mt-4'>
                             {isLoading && (<SkeletonLoader2 value={noOfSkeletons()} />)}
-                            {!isLoading && classes && classes.length > 0 && (
+                            {!isLoading && classes?.length > 0 && (
                                 classes?.slice(0, 4).map(course => {
                                     return (
                                         <OtherCourseDetails key={course?._id} course={course} />
@@ -123,7 +123,7 @@ function AdminHomeDashboard() {
                         </div>
                     </div>
                     <div className='p-4 max-w-[96%] mx-auto'>
-                        {trainers && trainers.length > 0 && (
+                        {trainers?.length > 0 && (
                             <div>
                                 <h1 className='text-[1.14rem] font-500 font-sans inline-block'>Instructors</h1>
                                 {trainers?.length >= 8 && <Link to='/instructors' className='float-right underline text-[#053323]' onClick={scrollTop}><span>See all</span></Link>}
@@ -131,7 +131,7 @@ function AdminHomeDashboard() {
                         )}
                         <div className='grid grid-cols-4 ilg:grid-cols-3 imd:grid-cols-2 ixsm:grid-cols-1 ixsm:gap-4 gap-3 mt-4'>
                             {isLoading && (<SkeletonLoader2 value={noOfSkeletons()} />)}
-                            {!isLoading && trainers && trainers.length > 0 && (
+                            {!isLoading && trainers?.length > 0 && (
                                 trainers.map(trainer => {
                                     return (
                                         <Trainer key={trainer?._id} trainer={trainer} />

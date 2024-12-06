@@ -9,6 +9,7 @@ export function cn(...inputs) {
 
 export const convertToTimestamp = (date_ms) => {
     // Parse the ISO string to a Date object
+    if (!date_ms) return
     const date = parseISO(date_ms);
 
     // Get the timestamp in milliseconds
