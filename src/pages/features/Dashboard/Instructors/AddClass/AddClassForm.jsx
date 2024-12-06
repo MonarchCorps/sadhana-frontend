@@ -162,6 +162,8 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
                         className='border-[1px] border-solid border-[#aeacac] h-[40px] p-2 rounded placeholder:text-sm'
                         onChange={handleChange}
                         value={formData.totalSeats}
+                        max={999}
+                        min={1}
                     />
                 </div>
 

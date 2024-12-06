@@ -86,6 +86,12 @@ function AddClass() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        if (name === "totalSeats") {
+            const parsedValue = parseInt(value, 10);
+            if (isNaN(parsedValue) || parsedValue < 1 || parsedValue > 999) {
+                return;
+            }
+        }
         setFormData(prevData => ({
             ...prevData,
             [name]: value
