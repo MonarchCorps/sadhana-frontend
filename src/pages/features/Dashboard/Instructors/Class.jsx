@@ -52,7 +52,7 @@ function Class({ course }) {
                     <IKImage
                         urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
                         path={course?.thumbnailPhoto}
-                        className='size-full hrmd:h-[18.75rem] max-h-[20rem] object-cover'
+                        className='size-full hrmd:h-[18.75rem] max-h-[22rem] object-cover'
                         loading='lazy'
                         lqip={{
                             active: true,
@@ -61,8 +61,9 @@ function Class({ course }) {
                         alt={`${course?.classname} image`}
                     />
                 </div>
-                <div className='py-8 px-2 flex flex-col justify-between col-span-2 hrmd:px-5 hrmd:py-5'>
+                <div className='pt-3 px-2 flex flex-col justify-between col-span-2 hrmd:px-5'>
                     <div>
+                        <h1 className='text-3xl mb-4 font-500'>{trim(course?.classname, 30)}</h1>
                         <div className='grid mb-3 grid-cols-2 imd:grid-cols-3 csm:grid-cols-2 w-fit gap-y-2 gap-x-6 casm:gap-x-3'>
                             <span>
                                 <span className='inline-block mr-2 text-[#27554a]'>
@@ -108,7 +109,7 @@ function Class({ course }) {
                             {trim(course.description, 180)}
                         </p>
                     </div>
-                    <div className='grid grid-cols-3 casm:w-full casm:grid-cols-2  w-fit gap-2'>
+                    <div className='grid grid-cols-3 casm:w-full casm:grid-cols-2 mb-4 w-fit gap-2'>
                         {
                             pathAfterSlash === 'my-classes' && (
                                 <Fragment>

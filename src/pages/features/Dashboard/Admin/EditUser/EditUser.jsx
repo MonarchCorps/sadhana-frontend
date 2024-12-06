@@ -162,7 +162,7 @@ function EditUser() {
                 <div className='pt-14 px-3 pb-3 w-full h-full flex flex-col justify-center max-w-[38.8rem] amd:max-w-[34rem] esm:px-5 mx-auto'>
                     <div className='w-full text-start'>
                         <h1 className='text-[2rem] amd:text-2xl ixsm:text-xl mb-2 font-500 font-serif'>
-                            Edit user profile <span className='text-[#27554a] font-roboto'>{user?.username}</span>
+                            Edit user profile <span className='text-[#27554a] font-roboto'>{user?.username || ''}</span>
                         </h1>
                     </div>
                     <div className='w-full'>
