@@ -18,9 +18,9 @@ import Loading4 from "@/components/Loaders/Loading4"
 import useAuth from "@/hooks/useAuth"
 import UploadImageKitImg from "@/components/UploadImageKit/UploadImageKitImg"
 import { FaInfoCircle } from "react-icons/fa"
-import { ModalContent } from "@/components/Modals/ImageModal"
 import toast from "react-hot-toast"
 import { useConversationStore } from "../store/chatStore"
+import { ModalContent } from "@/components/Modals/ImageModal"
 
 const UserListDialog = () => {
 
@@ -36,7 +36,6 @@ const UserListDialog = () => {
         error: '',
         dbData: {}
     })
-    const [isOpen, setIsOpen] = useState(false);
     const ikUploadRef = useRef(null)
     const dialogCloseRef = useRef(null)
 
@@ -118,9 +117,15 @@ const UserListDialog = () => {
                 {preview && (
                     <div className="w-full grid place-items-center">
                         <div className='relative w-fit'>
-                            <img src={preview} alt="" className='cursor-pointer w-[70px] object-cover h-[70px] rounded-md' onClick={() => {
-                                setIsOpen(!isOpen)
-                            }} />
+                            <Dialog>
+                                <DialogTrigger asChild >
+                                    <img src={preview} alt="preview" className='cursor-pointer w-[70px] object-cover h-[70px] rounded-md' />
+                                </DialogTrigger>
+                                <DialogContent className="sm:max-w-[90%] bg-transparent outline-none border-none">
+                                    <DialogTitle className='sr-only'>Preview</DialogTitle>
+                                    <ModalContent preview={preview} />
+                                </DialogContent>
+                            </Dialog>
                             {img?.isLoading && !img?.error ? (
                                 <div className='absolute size-full top-0 left-0 grid place-items-center bg-[#49444452] rounded-md'>
                                     <Loading4 size={30} bgColor='#000' />
@@ -135,7 +140,6 @@ const UserListDialog = () => {
                         </div>
                     </div>
                 )}
-                <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} />
                 {selectedUsers?.length > 1 && (
                     <>
                         <Input
