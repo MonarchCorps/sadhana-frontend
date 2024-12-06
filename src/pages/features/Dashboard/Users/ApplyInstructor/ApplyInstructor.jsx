@@ -102,7 +102,7 @@ function ApplyInstructor() {
     return (
         <>
             <Loading isLoading={isPending} />
-            <section>
+            <section className='w-screen'>
                 <div className='pt-14 px-3 pb-3 w-full h-full flex flex-col justify-center max-w-[38.8rem] amd:max-w-[34rem] esm:px-5 mx-auto'>
                     <div className='text-center'>
                         <h1 className='text-[2rem] amd:text-2xl ixsm:text-xl mb-4 font-500 font-sans'>
