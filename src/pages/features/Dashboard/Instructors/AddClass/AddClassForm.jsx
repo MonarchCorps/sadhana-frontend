@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
 import Select from 'react-select'
 
 import useAuth from '../../../../../hooks/useAuth'
@@ -10,7 +9,6 @@ import SubmitButton from '../../../../../components/SubmitButton/SubmitButton'
 const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTimeChange, dayArray, setDayArray, isLoading, img, setImg, setPreview, ikUploadRef }) => {
 
     const { auth } = useAuth();
-    const [isOpen, setIsOpen] = useState(false);
 
     const handleDayChange = (selectedOptions) => {
         const allDaysOption = { value: 'All Days', label: 'All Days' };
@@ -52,7 +50,7 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
         <>
             <form className="grid grid-cols-2 gap-3 mt-7 max-w-[41rem] mx-auto">
                 <div className='col-span-2 mb-3'>
-                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} isLoading={isLoading} imgName='thumbnailPhoto' />
+                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} isLoading={isLoading} imgName='thumbnailPhoto' />
                 </div>
 
                 <div className='flex flex-col w-full'>

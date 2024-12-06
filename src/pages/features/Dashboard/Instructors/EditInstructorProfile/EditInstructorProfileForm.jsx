@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
 
 import useAuth from '../../../../../hooks/useAuth'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit';
@@ -8,7 +7,6 @@ import SubmitButton from '../../../../../components/SubmitButton/SubmitButton';
 const ApplyInstructorForm = ({ preview, formData, handleChange, handleSubmit, img, setImg, setPreview, ikUploadRef }) => {
 
     const { auth } = useAuth();
-    const [isOpen, setIsOpen] = useState(false);
 
     const valid = Object.values(formData).every(value => value !== '' && value !== undefined && value !== null)
 
@@ -16,7 +14,7 @@ const ApplyInstructorForm = ({ preview, formData, handleChange, handleSubmit, im
         <>
             <form className="grid grid-cols-2 ixsm:flex ixsm:flex-col gap-3 mx-auto mt-4">
                 <div className='col-span-2 w-full'>
-                    <UploadImageKit imgUrl={auth?.bgImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} imgName='bgImage' />
+                    <UploadImageKit imgUrl={auth?.bgImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} imgName='bgImage' />
                 </div>
                 <div className='flex flex-col w-full'>
                     <label htmlFor="username" className='text-sm mb-2 font-500'>Username</label>

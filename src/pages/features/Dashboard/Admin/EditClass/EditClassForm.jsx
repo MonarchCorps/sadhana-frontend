@@ -1,14 +1,11 @@
 /* eslint-disable react/prop-types */
 import Select from 'react-select'
-import { useState } from 'react'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit';
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton';
 
 function EditClassForm({
     handleSubmit, handleChange, preview, course, formData, handleTimeChange, dayArray, setDayArray, img, setImg, setPreview, ikUploadRef
 }) {
-
-    const [isOpen, setIsOpen] = useState(false);
 
     const options = [
         { value: 'Mon', label: 'Mon' },
@@ -30,7 +27,7 @@ function EditClassForm({
         <>
             <form className="grid grid-cols-2 gap-3 mt-5">
                 <div className='col-span-2 mb-3'>
-                    <UploadImageKit imgUrl={course?.thumbnailPhoto} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} imgName='thumbnailPhoto' />
+                    <UploadImageKit imgUrl={course?.thumbnailPhoto} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} imgName='thumbnailPhoto' />
                 </div >
 
                 <div className='flex flex-col w-full asm:col-span-2'>

@@ -16,7 +16,6 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
     useHideScroll(isModalOpen)
 
     const [noteOpen, setNoteOpen] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
 
     const valid = Object.entries(formData)
         .filter(([key]) => key !== 'address')
@@ -41,7 +40,7 @@ function EditUserForm({ user, handleChange, preview, formData, setRoles, handleS
         <>
             <form className="grid grid-cols-2 gap-3 mx-auto mt-4">
                 <div className='col-span-2 mb-3'>
-                    <UploadImageKit imgUrl={user?.profileImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} isOpen={isOpen} setIsOpen={setIsOpen} preview={preview} imgName='profileImage' />
+                    <UploadImageKit imgUrl={user?.profileImage} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} imgName='profileImage' />
                 </div>
 
                 <div className='flex flex-col w-full ixsm:col-span-2'>
