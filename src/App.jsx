@@ -51,7 +51,6 @@ import useAxiosPrivate from './hooks/useAxiosPrivate'
 import useAuth from './hooks/useAuth'
 
 import debounce from './utils/debounce'
-import UpdateClass from './pages/features/Dashboard/Instructors/UpdateClass/UpdateClass'
 import EditInstructorProfile from './pages/features/Dashboard/Instructors/EditInstructorProfile/EditInstructorProfile'
 import CustomPhoto from './components/CustomPhoto'
 import ManageCustomPhoto from './pages/features/Dashboard/Admin/CustomPhoto/ManageCustomPhoto'
@@ -191,7 +190,7 @@ function App() {
 								<Route path='pending-classes' element={<PendingClass />} />
 								<Route path='approved-classes' element={<ApprovedClass />} />
 								<Route path='selected' element={<Selected />} />
-								<Route path='class/edit/:id' element={<UpdateClass />} />
+								<Route path='class/edit/:id' element={<EditClass />} />
 								<Route path='details/edit-profile' element={<EditProfile />} />
 								<Route path='edit-instructor-profile' element={<EditInstructorProfile />} />
 								<Route path='enrolled' element={<Enrolled />} />

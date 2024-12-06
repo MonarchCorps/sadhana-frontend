@@ -45,8 +45,8 @@ function EditClass() {
     const [formData, setFormData] = useState({
         classname: '',
         thumbnailPhoto: null,
-        totalSeats: '',
-        price: '',
+        totalSeats: 1,
+        price: 1,
         videoUrl: '',
         description: '',
         day: '',
@@ -67,8 +67,8 @@ function EditClass() {
             setFormData({
                 classname: course?.classname || '',
                 thumbnailPhoto: course?.thumbnailPhoto || null,
-                totalSeats: course?.totalSeats || '',
-                price: course?.price || '',
+                totalSeats: course?.totalSeats || 1,
+                price: course?.price || 1,
                 videoUrl: course?.videoUrl || '',
                 description: course?.description || '',
                 day: course?.day || '',
@@ -113,6 +113,12 @@ function EditClass() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        if (name === "totalSeats") {
+            const parsedValue = parseInt(value, 10);
+            if (isNaN(parsedValue) || parsedValue < 1 || parsedValue > 999) {
+                return;
+            }
+        }
         setFormData(prevData => ({ ...prevData, [name]: value }))
     }
 
@@ -178,7 +184,7 @@ function EditClass() {
                 <div className='pt-14 px-3 pb-3 w-full h-full flex flex-col justify-center max-w-[38.8rem] amd:max-w-[34rem] esm:px-5 mx-auto'>
                     <div className='w-full text-start'>
                         <h1 className='text-[2rem] amd:text-2xl ixsm:text-xl font-500 font-serif'>
-                            Edit course:  <span className='text-[#27554a] font-roboto'>{trim(course?.classname, 15)}</span>
+                            Edit course:  <span className='text-[#27554a] font-roboto'>{course?.classname ? trim(course?.classname, 15) : ''}</span>
                         </h1>
                     </div>
                     <div className='w-full'>

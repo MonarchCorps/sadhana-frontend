@@ -8,6 +8,7 @@ function EditClassForm({
 }) {
 
     const options = [
+        { value: 'All Days', label: 'All Days' },
         { value: 'Mon', label: 'Mon' },
         { value: 'Tue', label: 'Tue' },
         { value: 'Wed', label: 'Wed' },
@@ -18,9 +19,27 @@ function EditClassForm({
     ]
 
     const handleDayChange = (selectedOptions) => {
-        const value = selectedOptions ? selectedOptions.map(option => option.value) : []
-        setDayArray(value);
+        const allDaysOption = { value: 'All Days', label: 'All Days' };
+
+        if (selectedOptions.some(option => option.value === 'All Days')) {
+            setDayArray([allDaysOption.value]);
+            return;
+        }
+
+        const allOtherDays = options
+            .filter(option => option.value !== 'All Days')
+            .map(option => option.value);
+
+        const selectedValues = selectedOptions.map(option => option.value);
+
+        if (allOtherDays.every(day => selectedValues.includes(day))) {
+            setDayArray([allDaysOption.value]);
+            return;
+        }
+
+        setDayArray(selectedValues);
     }
+
     const valid = Object.values(formData).concat(Object.values(formData.time)).some(value => value !== '') && !img?.isLoading && !img?.error;
 
     return (
@@ -137,6 +156,8 @@ function EditClassForm({
                         className='border-[1px] border-solid border-[#aeacac] h-[40px] p-2 rounded placeholder:text-sm'
                         onChange={handleChange}
                         value={formData.totalSeats}
+                        max={999}
+                        min={1}
                     />
                 </div>
 
