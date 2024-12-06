@@ -228,7 +228,6 @@ function App() {
 					<Route path='/custom-photo' element={<CustomPhoto />} />
 				</Route>
 
-
 				<Route path='/success' element={<Success />} />
 				<Route path='/cancel' element={<Cancel />} />
 				{/* Missing  */}
@@ -237,8 +236,10 @@ function App() {
 
 			</Routes>
 
-			<Toaster position="bottom-center"
+			<Toaster
+				position="bottom-center"
 				reverseOrder={false}
+				containerClassName='text-wrap text-center'
 			/>
 		</Fragment>
 
