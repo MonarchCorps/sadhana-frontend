@@ -21,7 +21,7 @@ function ViewUploadPreview({ previews, setPreviews, isUploading }) {
                     <div key={i} className='group shadow-md relative'>
                         <img src={preview.blobUrl} alt="Preview" className='mb-4' />
                         <div
-                            className={`absolute  bottom-4 left-0 bg-transparent border-none p-0 grid items-center w-fit ${isUploading ? 'pointer-events-none opacity-50' : ''
+                            className={`absolute bottom-4 left-0 bg-transparent border-none p-0 grid items-center w-fit ${isUploading ? 'pointer-events-none opacity-50' : ''
                                 }`}
                         >
                             <button
