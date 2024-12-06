@@ -4,7 +4,7 @@ import { FaCheck, FaCopy } from 'react-icons/fa6'
 import applyCustomStyles from '../../utils/applyCustomStyles'
 import handleCopy from '../../utils/handleCopy'
 
-function Chats({ chats, visibleRefs }) {
+function Chats({ chats }) {
     const [copySuccess, setCopySuccess] = useState([]);
 
     return (
@@ -37,21 +37,12 @@ function Chats({ chats, visibleRefs }) {
                 </div>
             ) : (
                 <div
-                    className='w-full grid justify-items-start mb-4'
+                    className='w-full grid justify-items-start mb-4 group'
                     key={chat?.parts[0]?._id}
-                    onMouseEnter={() => {
-                        visibleRefs.current[i].classList.remove('hidden')
-                        visibleRefs.current[i].classList.add('flex')
-                    }}
-                    onMouseLeave={() => {
-                        visibleRefs.current[i].classList.remove('flex')
-                        visibleRefs.current[i].classList.add('hidden')
-                    }}
                 >
-                    <h3 className='w-fit rounded-md break-words bg-[#34536e58] p-3 max-w-[80%] relative overflow-hidden'>
+                    <div className='w-fit rounded-md break-words bg-[#34536e58] p-3 max-w-[80%] relative overflow-hidden'>
                         <div
-                            ref={(el) => (visibleRefs.current[i] = el)}
-                            className='hidden absolute top-0 px-3 pl-2 py-2 right-0 cursor-pointer w-fit bg-slate-900 text-slate-50' onClick={(event) => {
+                            className='opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 absolute top-0 px-3 pl-2 py-2 right-0 cursor-pointer w-fit bg-slate-900 text-slate-50' onClick={(event) => {
                                 handleCopy(event, i, copySuccess, setCopySuccess)
                             }} data-content={chat?.parts[0]?.text}>
                             {
@@ -71,7 +62,7 @@ function Chats({ chats, visibleRefs }) {
                         <span className='whitespace-pre-wrap text-sm'>
                             {applyCustomStyles(chat?.parts[0]?.text)}
                         </span>
-                    </h3>
+                    </div>
                 </div >
             )
         ))

@@ -8,7 +8,6 @@ import applyCustomStyles from '../../utils/applyCustomStyles'
 
 function Content({ question, answer, chats, isGenerating, errMsg, isMounted, isLoading, dataERR, preview, img }) {
     const endRef = useRef(null);
-    const visibleRefs = useRef([]);
 
     useEffect(() => {
         endRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -20,7 +19,7 @@ function Content({ question, answer, chats, isGenerating, errMsg, isMounted, isL
             <div className='mt-8 mb-4'>
                 <Loading2 isLoading={isLoading} data='user chats' />
             </div>
-            {chats?.history && (<Chats chats={chats} visibleRefs={visibleRefs} />)}
+            {chats?.history && (<Chats chats={chats} />)}
             <>
                 {question && preview && (
                     <div className='mb-2'>
