@@ -67,7 +67,7 @@ const LeftPanel = () => {
     }, [conversations, selectedConversation, setSelectedConversation])
 
     return (
-        <div className="w-1/4 pmd:w-[30%] himd:w-[35%] md:w-[38%] border-slate-600 border-r">
+        <div className="w-1/4 pmd:w-[30%] himd:w-[35%] md:w-[38%] chsm:hidden border-slate-600 border-r">
             <div className="sticky top-0 bg-[#ffffff] z-10">
                 <div className="flex justify-between bg-[#f0f2f5] p-3 items-center">
                     <Link to='/dashboard'>

@@ -57,7 +57,7 @@ const Conversation = ({ conversation }) => {
     return (
         <>
             <div
-                className={`flex cimd:flex-col gap-3 p-3 hover:bg-[#f4f5f5] cursor-pointer ${activeBgClass ? 'bg-[#eff0f0]' : ''
+                className={`flex cimd:flex-col chsm:flex-row gap-3 p-3 hover:bg-[#f4f5f5] cursor-pointer ${activeBgClass ? 'bg-[#eff0f0]' : ''
                     }`}
                 onClick={() => setSelectedConversation({ conversation, type: 'chat' })}
             >

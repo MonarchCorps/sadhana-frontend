@@ -169,6 +169,7 @@ export default {
 			cxsm: { max: '384px' },
 			axsm: { max: '377px' },
 			asm: { max: '365px' },
+			hxsm: { max: '350px' }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

@@ -12,6 +12,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import toast from 'react-hot-toast'
 import styled from 'styled-components'
+import useGetScreenWidth from '@/hooks/useGetScreenWidth'
 
 const ChatBubble = ({ message, previousMessage, lastIdx, endRef }) => {
     const { auth } = useAuth()
@@ -146,9 +147,12 @@ const ImageDialog = ({ src, onClose, open }) => {
 }
 
 const VideoMessage = ({ message, time, fromMe }) => {
+
+    const { screenWidth } = useGetScreenWidth()
+
     return (
         <div>
-            <ReactPlayer url={message.content} width='250px' height='250px' controls={true} />
+            <ReactPlayer url={message.content} width={screenWidth <= 350 ? '180px' : screenWidth <= 386 ? '200px' : '250px'} height={screenWidth <= 350 ? '160px' : screenWidth <= 386 ? '200px' : '250px'} controls={true} />
             <MessageTime time={time} fromMe={fromMe} message={message} />
         </div>
     );
@@ -156,7 +160,7 @@ const VideoMessage = ({ message, time, fromMe }) => {
 
 const ImageMessage = ({ message, handleClick, time, fromMe }) => {
     return (
-        <div className='w-[250px] h-[250px] my-1 relative block'>
+        <div className='w-[250px] h-[250px] my-1 relative block xsm:w-52 xsm:h-52'>
             <img
                 src={message.content}
                 className='cursor-pointer object-cover rounded size-full'
@@ -185,10 +189,7 @@ const SelfMessageIndicator = () => (
 )
 
 
-const TextMessage = ({ message, time, fromMe }) => {
-    const isLink = /^(ftp|http|https):\/\/[^ ']+$/.test(message.content); // Check if the content is a URL
-
-    const Text = styled.p`
+const Text = styled.p`
         font-size: 16px;
         line-height: 1.6;
         white-space: pre-wrap;
@@ -199,9 +200,14 @@ const TextMessage = ({ message, time, fromMe }) => {
         @media (max-width: 710px) {
             font-size: 14px;
         }
+
+        @media (max-width: 354px) {
+            font-size: 12px;
+            leading: 1.3;
+        }
     `;
 
-    const ToggleButton = styled.button`
+const ToggleButton = styled.button`
         margin-top: 4px;
         color: #264028;
         font-size: 14px;
@@ -218,6 +224,8 @@ const TextMessage = ({ message, time, fromMe }) => {
         }
 
     `;
+const TextMessage = ({ message, time, fromMe }) => {
+    const isLink = /^(ftp|http|https):\/\/[^ ']+$/.test(message.content); // Check if the content is a URL
 
     const [expanded, setExpanded] = useState(false);
     const [showToggleButton, setShowToggleButton] = useState(false);
@@ -249,7 +257,10 @@ const TextMessage = ({ message, time, fromMe }) => {
                     <Text ref={textRef} expanded={expanded}>
                         {message.content}
                     </Text>
-                    <div className={`flex justify-between ${showToggleButton ? 'mt-3 mb-2 amd:mt-2 amd:mb-1' : 'mb-1 ml-8'}`}>
+                    <div
+                        className={`flex justify-between ${showToggleButton ? 'mt-3 mb-2 amd:mt-2 amd:mb-1' : 'mb-1 ml-8'
+                            }`}
+                    >
                         <div>
                             {showToggleButton && (
                                 <ToggleButton onClick={toggleReadMore}>

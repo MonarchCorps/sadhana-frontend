@@ -1,13 +1,12 @@
 import { Lock } from 'lucide-react'
 import detectOS from '../utils/detectOs'
-import { Button } from '@/components/ui/button';
-import heroImg from '@/assets/chatImages/desktop-hero.png'
+import { Button } from '@/components/ui/button'
 import logo from '@/assets/images/logo.png'
 
 const ChatPlaceHolder = () => {
     const os = detectOS()
     return (
-        <div className='w-3/4 h-screen bg-[#f0f2f5] flex flex-col place-content-center py-10'>
+        <div className='w-3/4 chsm:w-full chsm:overflow-hidden chsm:h-full h-screen bg-[#f0f2f5] flex flex-col place-content-center py-10'>
             <div className='flex flex-col items-center w-full justify-center py-10 gap-4'>
                 <img src={logo} alt='Hero' width={280} height={188} />
                 <p className='text-3xl font-extralight mt-5 mb-2 amd:text-xl amd:text-center'>Download Sadhana for {os}</p>

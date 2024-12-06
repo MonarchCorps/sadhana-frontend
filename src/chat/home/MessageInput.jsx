@@ -71,7 +71,7 @@ const MessageInput = () => {
     }, [selectedConversation?._id])
 
     return (
-        <div className='bg-[#f0f2f5] p-2 flex gap-4 items-center'>
+        <div className='bg-[#f0f2f5] p-2 flex gap-4 items-center chsm:fixed chsm:bottom-0 chsm:w-full chsm:z-50'>
             <div className='relative flex gap-2 ml-2'>
                 <div ref={ref} onClick={() => setIsComponentVisible(true)} className='w-full'>
                     {isComponentVisible && (
