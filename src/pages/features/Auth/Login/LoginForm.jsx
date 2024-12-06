@@ -38,7 +38,7 @@ function LoginForm({ isPending, user, setUser, password, setPassword, handleSubm
                     />
                 </div>
                 <SubmitButton divStyle="w-full mt-7" valid={valid} action={handleSubmit}>
-                    Submit
+                    Login
                 </SubmitButton>
             </form>
         </>

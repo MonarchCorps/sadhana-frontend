@@ -50,7 +50,7 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
     }
 
     return (
-        <form className="flex flex-col place-items-center w-full gap-x-4 gap-y-3 amd:px-6" encType='multipart/form-data'>
+        <form className="flex flex-col place-items-center w-full gap-x-4 gap-y-3 amd:px-6">
             {
                 step === 1 ? (
                     <Fragment>
@@ -181,7 +181,7 @@ function RegisterForm({ isPending, handleSubmit, step, setStep, setFormData, for
                     </SubmitButton>
                 ) : (
                     <SubmitButton divStyle='col-span-2 w-full mt-7' valid={submitValid} action={handleSubmit}>
-                        Submit
+                        Register
                     </SubmitButton>
                 )
             }
