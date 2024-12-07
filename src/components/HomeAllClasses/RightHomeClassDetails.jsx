@@ -13,7 +13,7 @@ import { IKImage } from 'imagekitio-react'
 
 function RightHomeClassDetails({ course }) {
     return (
-        <div>
+        <div className='lg:w-full lg:max-w-[30rem]'>
             <aside>
                 <div className='mb-4 relative'>
                     <Link to={course[0]?.videoUrl} >
@@ -38,7 +38,7 @@ function RightHomeClassDetails({ course }) {
                 <div>
                     <p className='text-[#e5779a] text-[1.15rem] mb-3'>#{course[0]?.price}</p>
                 </div>
-                <Link to='/enroll' className='text-center'>
+                <Link to='/class' className='text-center'>
                     <div className='bg-[#e5779a] py-3 text-slate-300 font-600 transition-all border border-solid hover:rounded-full hover:border-[#e5779a] hover:bg-slate-100 hover:text-[#e5779a] hover:bg-transparent'>Enroll now</div>
                 </Link>
                 <div className='mt-7'>
