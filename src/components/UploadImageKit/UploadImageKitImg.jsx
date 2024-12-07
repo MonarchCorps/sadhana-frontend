@@ -50,6 +50,19 @@ function UploadImageKitImg({ img, setImg, setPreview, ikUploadRef, children }) {
         if (!fileType) {
             toast.error('All files must be images');
         }
+        const file = evt.target.files[0]
+        const reader = new FileReader()
+        reader.onloadend = () => {
+            setImg(prev => ({
+                ...prev, isLoading: true, aiData: {
+                    inlineData: {
+                        data: reader.result.split(',')[1],
+                        mimeType: file.type
+                    }
+                }
+            }))
+        }
+        reader.readAsDataURL(file)
     }
 
     const handleChange = (e) => {
