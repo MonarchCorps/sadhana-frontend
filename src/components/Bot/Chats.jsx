@@ -3,6 +3,8 @@ import { Fragment, useState } from 'react'
 import { FaCheck, FaCopy } from 'react-icons/fa6'
 import applyCustomStyles from '../../utils/applyCustomStyles'
 import handleCopy from '../../utils/handleCopy'
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../ui/dialog'
+import { ModalContent } from '../Modals/ImageModal'
 
 function Chats({ chats }) {
     const [copySuccess, setCopySuccess] = useState([]);
@@ -11,20 +13,28 @@ function Chats({ chats }) {
         chats?.history.map((chat, i) => (
             chat?.role === 'user' ? (
                 <div key={chat?.parts[0]?._id} className='w-full grid justify-items-end'>
-                    <div className='max-w-[70%]'>
+                    <div className='max-w-[70%] ahsm:max-w-[75%] asm:max-w-[85%]'>
                         {
                             chat?.img && (
                                 <div className='mb-2'>
-                                    <IKImage
-                                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
-                                        path={chat?.img}
-                                        className='w-80 h-80 rounded-md object-cover'
-                                        loading='lazy'
-                                        lqip={{
-                                            active: true,
-                                            quality: 20
-                                        }}
-                                    />
+                                    <Dialog>
+                                        <DialogTrigger asChild >
+                                            <IKImage
+                                                urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                                path={chat?.img}
+                                                className='w-80 h-80 rounded-md object-cover'
+                                                loading='lazy'
+                                                lqip={{
+                                                    active: true,
+                                                    quality: 20
+                                                }}
+                                            />
+                                        </DialogTrigger>
+                                        <DialogContent className="sm:max-w-[90%] bg-transparent outline-none border-none">
+                                            <DialogTitle className='sr-only'>Preview</DialogTitle>
+                                            <ModalContent imgUrl={chat?.img} />
+                                        </DialogContent>
+                                    </Dialog>
                                 </div>
                             )
                         }
@@ -40,7 +50,7 @@ function Chats({ chats }) {
                     className='w-full grid justify-items-start mb-4 group'
                     key={chat?.parts[0]?._id}
                 >
-                    <div className='w-fit rounded-md break-words bg-[#34536e58] p-3 max-w-[80%] relative overflow-hidden'>
+                    <div className='w-fit rounded-md break-words bg-[#34536e58] p-3 max-w-[80%] ahsm:max-w-[88%] asm:max-w-[95%] relative overflow-hidden'>
                         <div
                             className='opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 absolute top-0 px-3 pl-2 py-2 right-0 cursor-pointer w-fit bg-slate-900 text-slate-50' onClick={(event) => {
                                 handleCopy(event, i, copySuccess, setCopySuccess)

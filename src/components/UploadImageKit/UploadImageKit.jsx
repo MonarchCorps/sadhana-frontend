@@ -28,7 +28,7 @@ function UploadImageKit({ imgUrl, img, setImg, setPreview, ikUploadRef, preview,
                         <ModalContent preview={preview} imgUrl={imgUrl} />
                     </DialogContent>
                 </Dialog>
-                <label htmlFor={imgName} className={`relative flex flex-col items-center justify-center border-2 rounded-xl overflow-hidden border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 w-full h-[20rem] asm:h-fit asm:max-h-[20rem] ${!preview && !imgUrl ? 'min-h-[20rem]' : ''} ${img?.isLoading ? 'cursor-default' : 'cursor-pointer'}`} onClick={() => ikUploadRef.current.click()}>
+                <label htmlFor={imgName} className={`relative flex flex-col items-center justify-center border-2 rounded-xl overflow-hidden border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 w-full h-[20rem] max-h-[20rem] min-h-[18rem] ${img?.isLoading ? 'cursor-default' : 'cursor-pointer'}`} onClick={() => ikUploadRef.current.click()}>
                     {
                         preview ? (
                             <div className='relative size-full'>

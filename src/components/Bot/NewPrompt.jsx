@@ -5,10 +5,11 @@ import model from '../../lib/gemini'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import useAuth from '../../hooks/useAuth'
 import Loading4 from '../Loaders/Loading4'
-import { ModalContent } from '../Modals/ImageModal'
 import Question from './Question'
 import UploadImageKitImg from '../UploadImageKit/UploadImageKitImg'
-import { FaFileImport } from 'react-icons/fa'
+import { FaFileImport, FaInfoCircle } from 'react-icons/fa'
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../ui/dialog'
+import { ModalContent } from '../Modals/ImageModal'
 
 function NewPrompt({
     setQuestion, setAnswer, isGenerating, setIsGenerating,
@@ -150,19 +151,30 @@ function NewPrompt({
                             {
                                 preview && !isGenerating && (
                                     <div className='px-3 py-2'>
-                                        <div className='w-fit relative'>
-                                            <img src={preview} alt="Preview" className='w-14 h-14 rounded-md object-cover cursor-pointer' onClick={() => {
-                                                setIsOpen(!isOpen)
-                                            }} />
-                                            <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} preview={preview} />
-                                            {
-                                                img?.isLoading && (
-                                                    <div className='absolute  size-full top-0 left-0 grid place-items-center bg-[#49444452] rounded-md'>
-                                                        <Loading4 size={20} />
-                                                    </div>
-                                                )
-                                            }
-                                        </div>
+                                        <Dialog>
+                                            <DialogTrigger asChild >
+                                                <div className='relative w-fit'>
+                                                    <img src={preview} alt="Preview" className='w-14 h-14 rounded-md object-cover cursor-pointer' onClick={() => {
+                                                        setIsOpen(!isOpen)
+                                                    }} />
+                                                    {img?.isLoading && !img?.error ? (
+                                                        <div className='absolute size-full top-0 left-0 grid place-items-center bg-[#49444452] rounded-md'>
+                                                            <Loading4 size={20} bgColor='#000' />
+                                                        </div>
+                                                    ) : !img?.isLoading && img?.error && (
+                                                        <div className='absolute size-full top-0 left-0 grid place-items-center bg-[#bf707028] rounded-md'>
+                                                            <span className='grid place-items-center rounded-full overflow-hidden'>
+                                                                <FaInfoCircle className='text-red-800 text-2xl bg-white rounded-2xl' />
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </DialogTrigger>
+                                            <DialogContent className="sm:max-w-[90%] bg-transparent outline-none border-none">
+                                                <DialogTitle className='sr-only'>Preview</DialogTitle>
+                                                <ModalContent preview={preview} />
+                                            </DialogContent>
+                                        </Dialog>
                                     </div>
 
                                 )
@@ -174,7 +186,7 @@ function NewPrompt({
                                 placeholder="Ask a question..." rows="1" maxLength="200" />
                         </div>
                         {
-                            isGenerating || img?.isLoading ? (
+                            isGenerating || img?.isLoading || img?.error ? (
                                 <button
                                     type='button'
                                     disabled

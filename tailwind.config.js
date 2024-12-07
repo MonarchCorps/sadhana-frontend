@@ -30,7 +30,8 @@ export default {
 				shrink: 'shrink 4.5s linear forwards',
 				scaleIn: 'scaleIn 0.5s ease-out',
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'scale-in-br': 'scaleInBR 0.5s linear forwards',
 			},
 			keyframes: {
 				slideIn: {
@@ -71,6 +72,15 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				scaleInBR: {
+					'0%': {
+						transform: 'scale(0)',
+						transformOrigin: 'bottom right', // Start from bottom right
+					},
+					'100%': {
+						transform: 'scale(1)', // Final state
+					},
 				}
 			},
 			boxShadow: {
@@ -164,6 +174,7 @@ export default {
 			aism: { max: '525px' },
 			esm: { max: '510px' },
 			ixsm: { max: '473px' },
+			ahsm: { max: '428px' },
 			casm: { max: '402px' },
 			xsm: { max: '393px' },
 			cxsm: { max: '384px' },

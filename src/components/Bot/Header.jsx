@@ -12,10 +12,10 @@ function Header({ handleOpen, handleDeleteBotChat }) {
 
     return (
         <Fragment>
-            <header className='fixed bg-[#fff] px-4 py-2 w-[26rem]'>
+            <header className='fixed bg-[#fff] px-4 py-2 w-full'>
                 <div className='flex items-center justify-between w-full h-fit'>
-                    <div className='w-48 overflow-hidden'>
-                        <img src={logo} alt='logo' className=' object-cover' />
+                    <div className='w-48 xsm:w-40 overflow-hidden'>
+                        <img src={logo} alt='logo' className='object-cover' />
                     </div>
                     <div className='h-full grid grid-flow-col gap-4 place-items-center'>
                         <button

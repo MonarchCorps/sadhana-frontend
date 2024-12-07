@@ -11,10 +11,10 @@ function Content({ question, answer, chats, isGenerating, errMsg, isMounted, isL
 
     useEffect(() => {
         endRef.current.scrollIntoView({ behavior: 'smooth' })
-    }, [question, answer, errMsg, isLoading, dataERR, isMounted]);
+    }, [question, answer, errMsg, isLoading, dataERR, isMounted, chats]);
 
     return (
-        <div className='flex-grow mb-2 mt-20 p-6 pb-0 overflow-scroll'>
+        <div className='flex-grow mb-2 axsm:mx-3 asm:pr-1 asm:mr-1 mt-20 p-6 pb-0 overflow-scroll'>
             <HardCodedContent />
             <div className='mt-8 mb-4'>
                 <Loading2 isLoading={isLoading} data='user chats' />
@@ -24,7 +24,7 @@ function Content({ question, answer, chats, isGenerating, errMsg, isMounted, isL
                 {question && preview && (
                     <div className='mb-2'>
                         <div className='w-full grid justify-items-end'>
-                            <div className='max-w-[70%]'>
+                            <div className='max-w-[70%] ahsm:max-w-[75%] asm:max-w-[85%]'>
                                 <IKImage
                                     urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
                                     path={img.dbData?.filePath}
@@ -41,7 +41,7 @@ function Content({ question, answer, chats, isGenerating, errMsg, isMounted, isL
                 )}
                 {question && (
                     <div className='w-full grid justify-items-end mb-4' >
-                        <h3 className='w-fit rounded-md break-words bg-[#f2f2f2] p-3 max-w-[70%]'>
+                        <h3 className='w-fit rounded-md break-words bg-[#f2f2f2] p-3 max-w-[70%] ahsm:max-w-[75%] asm:max-w-[85%]'>
                             <span className='whitespace-pre-wrap text-sm'>
                                 {question}
                             </span>
@@ -50,7 +50,7 @@ function Content({ question, answer, chats, isGenerating, errMsg, isMounted, isL
                 )}
                 {answer && (
                     <div className='w-full grid justify-items-start mb-4'>
-                        <h3 className='w-fit rounded-md break-words bg-[#34536e58] p-3 max-w-[80%] relative overflow-hidden flex flex-col'>
+                        <h3 className='w-fit rounded-md break-words bg-[#34536e58] p-3 max-w-[80%] ahsm:max-w-[88%] asm:max-w-[95%] relative overflow-hidden flex flex-col'>
                             <span className={`whitespace-pre-wrap text-sm ${isGenerating && ' mb-3'}`}>
                                 {applyCustomStyles(answer)}
                             </span>

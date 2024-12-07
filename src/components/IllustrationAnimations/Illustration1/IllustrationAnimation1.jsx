@@ -30,9 +30,7 @@ function IllustrationAnimation1() {
 			<div className='eyebrow r'></div>
 			<div className='eyebrow r'></div>
 
-
-
-			<div className='bubble b r hb'>
+			<div className='bubble b r hb esm:h-[10rem] esm:w-[12rem] ahsm:-top-10'>
 				<span>Hello...</span>
 				<span className='text-sm'>
 					Do you need&nbsp;

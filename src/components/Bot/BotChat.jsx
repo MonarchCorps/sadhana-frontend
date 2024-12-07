@@ -96,30 +96,27 @@ function BotChat() {
     return (
         <>
             <Loading isLoading={handleDeleteBotChat.isPending} />
+
             {
                 open && illIsMounted && (
-                    <>
+                    <div className='fixed bottom-28 right-20 ahsm:right-32'>
                         <IllustrationAnimation1 />
                         <CurvedArrow color='#a45638' />
-                    </>
-                )
-            }
-            {
-                !open && (
-                    <div className='shadow-lg bg-[#fcfcfc] rounded-md w-[26rem] flex flex-col overflow-hidden max-h-[85vh]'>
-                        <Header handleOpen={handleOpen} handleDeleteBotChat={handleDeleteBotChat} />
-
-                        <Content question={question} answer={answer} chats={chats} isGenerating={isGenerating} errMsg={errMsg} isMounted={isMounted} isLoading={isLoading} dataERR={dataERR} preview={preview} img={img} />
-
-                        <NewPrompt setQuestion={setQuestion} setAnswer={setAnswer} isGenerating={isGenerating} setIsGenerating={setIsGenerating}
-                            setErrMsg={setErrMsg} errMsg={errMsg} question={question} isMounted={isMounted} setIsMounted={setIsMounted}
-                            isLoading={isLoading} preview={preview} setPreview={setPreview} setImg={setImg} img={img} setChats={setChats} />
                     </div>
                 )
             }
-            <div className='fixed bottom-5 right-10 z-[1500]'>
-                <BotButton handleOpen={handleOpen} />
-            </div>
+            {!open && (
+                <div className='fixed w-1/3 h-4/5 chsm:w-screen chsm:max-w-full chsm:top-0 chsm:bottom-0 chsm:h-full chsm:right-0 chsm:z-20 flex flex-col max-w-[26rem] max-h-[45rem] chsm:max-h-full  min-w-[24rem] bottom-[4rem] right-3 bg-slate-50 rounded-xl shadow-shadow backdrop-blur animate-scale-in-br transition-all duration-300'>
+                    <Header handleOpen={handleOpen} handleDeleteBotChat={handleDeleteBotChat} />
+
+                    <Content question={question} answer={answer} chats={chats} isGenerating={isGenerating} errMsg={errMsg} isMounted={isMounted} isLoading={isLoading} dataERR={dataERR} preview={preview} img={img} />
+
+                    <NewPrompt setQuestion={setQuestion} setAnswer={setAnswer} isGenerating={isGenerating} setIsGenerating={setIsGenerating}
+                        setErrMsg={setErrMsg} errMsg={errMsg} question={question} isMounted={isMounted} setIsMounted={setIsMounted}
+                        isLoading={isLoading} preview={preview} setPreview={setPreview} setImg={setImg} img={img} setChats={setChats} />
+                </div>
+            )}
+            <div className='fixed bottom-5 right-4 z-10'> <BotButton handleOpen={handleOpen} /></div>
         </>
     )
 }
