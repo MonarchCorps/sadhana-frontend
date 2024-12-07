@@ -83,7 +83,7 @@ function InstructorHomeDashboard() {
     const providedExperience = 'From my perspective as an instructor, a yoga experience is all about finding the balance between body and mind. It’s about guiding students through each pose with care, focusing on alignment and breath, while fostering a welcoming space where everyone feels supported. I aim to help students not just improve their physical practice but also connect with their inner selves, finding moments of calm and clarity on and off the mat. Each class is a journey, where we learn to embrace challenges, release tension, and cultivate mindfulness, leaving with a sense of renewal and inner strength.'
 
     return (
-        <section>
+        <section className='w-screen'>
             <div className='relative -ml-1'>
                 <div className='absolute right-0 left-0 h-[19rem] -z-20'>
                     {
