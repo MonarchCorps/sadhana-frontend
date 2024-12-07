@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../ui/dialog'
 import { ModalContent } from '../Modals/ImageModal'
 
 function NewPrompt({
-    setQuestion, setAnswer, isGenerating, setIsGenerating,
+    chats, setQuestion, setAnswer, isGenerating, setIsGenerating,
     setErrMsg, errMsg, question, isMounted, setIsMounted,
     isLoading, preview, setPreview, setImg, img, setChats
 }) {
@@ -24,17 +24,10 @@ function NewPrompt({
 
     const chat = model.startChat({
         history: [
-            {
-                role: "user",
-                parts: [{
-                    text: "Hello"
-                }]
-            }, {
-                role: "model",
-                parts: [{
-                    text: "Greetings!"
-                }]
-            }
+            chats?.history.map(({ role, parts }) => ({
+                role,
+                parts: [{ text: parts[0] }.text]
+            }))
         ],
         generationConfig: {
             maxOutputTokens: 80,

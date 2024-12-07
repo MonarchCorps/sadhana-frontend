@@ -111,7 +111,7 @@ function BotChat() {
 
                     <Content question={question} answer={answer} chats={chats} isGenerating={isGenerating} errMsg={errMsg} isMounted={isMounted} isLoading={isLoading} dataERR={dataERR} preview={preview} img={img} />
 
-                    <NewPrompt setQuestion={setQuestion} setAnswer={setAnswer} isGenerating={isGenerating} setIsGenerating={setIsGenerating}
+                    <NewPrompt chats={chats} setQuestion={setQuestion} setAnswer={setAnswer} isGenerating={isGenerating} setIsGenerating={setIsGenerating}
                         setErrMsg={setErrMsg} errMsg={errMsg} question={question} isMounted={isMounted} setIsMounted={setIsMounted}
                         isLoading={isLoading} preview={preview} setPreview={setPreview} setImg={setImg} img={img} setChats={setChats} />
                 </div>
