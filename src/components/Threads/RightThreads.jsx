@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 import yogaWomanInYellow from '../../assets/images/in-yellow-sportive-clothes-woman-doing-yoga-indoors.jpg'
 import yogaTookta from '../../assets/images/yoga-tookta.jpg'
 

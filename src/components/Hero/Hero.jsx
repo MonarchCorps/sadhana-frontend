@@ -3,7 +3,7 @@ import bgOrnament from '../../assets/images/bg-ornament.png'
 import heroImg from '../../assets/images/hero-bg-image.jpg'
 import useAuth from '../../hooks/useAuth'
 import useScrollTop from '../../hooks/useScrollTop'
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 
 function Hero() {
 

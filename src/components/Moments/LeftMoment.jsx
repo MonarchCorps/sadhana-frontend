@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 import { FaPlay } from 'react-icons/fa6'
 
 function LeftMoment() {

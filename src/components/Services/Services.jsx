@@ -1,6 +1,6 @@
 import bgOrnament from '../../assets/images/bg-ornament.png'
 import ServicesCard from './ServicesCard'
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 
 function Services() {
     return (

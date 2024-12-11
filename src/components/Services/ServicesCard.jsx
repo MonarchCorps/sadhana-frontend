@@ -1,5 +1,5 @@
 import { FaArrowRight } from 'react-icons/fa6'
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 import cardImage1 from '../../assets/images/meditation-2.png'
 import cardImage2 from '../../assets/images/yoga-pose-1.png'
 import cardImage3 from '../../assets/images/yoga.png'

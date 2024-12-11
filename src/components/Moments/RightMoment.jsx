@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 import { FaLeaf } from "react-icons/fa"
 
 function RightMoment() {

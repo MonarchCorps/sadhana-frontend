@@ -1,6 +1,6 @@
 import peopleLovingYoga from '../../assets/images/people-doing-yoga.jpg'
 import { FaQuoteRight } from 'react-icons/fa'
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 
 function BottomWelcome() {
     return (
