@@ -53,7 +53,7 @@ function BotChat() {
     }, [data])
 
     useEffect(() => {
-        setDataERR(dataErrMsg)
+        setDataERR(dataErrMsg?.message)
     }, [dataErrMsg])
 
     useEffect(() => {
@@ -116,7 +116,7 @@ function BotChat() {
                         isLoading={isLoading} preview={preview} setPreview={setPreview} setImg={setImg} img={img} setChats={setChats} />
                 </div>
             )}
-            <div className='fixed bottom-5 right-4 z-10'> <BotButton handleOpen={handleOpen} /></div>
+            <div className='fixed bottom-5 right-4 z-10'> <BotButton handleOpen={handleOpen} open={open} /></div>
         </>
     )
 }
