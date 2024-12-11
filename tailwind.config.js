@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import tailwindcssAnimate from "tailwindcss-animate";
+
 export default {
 	darkMode: ["class"],
 	content: [
@@ -183,5 +184,5 @@ export default {
 			hxsm: { max: '350px' }
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 }
