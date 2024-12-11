@@ -1,5 +1,6 @@
 import peopleLovingYoga from '../../assets/images/people-doing-yoga.jpg'
 import { FaQuoteRight } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 function BottomWelcome() {
     return (
@@ -12,9 +13,15 @@ function BottomWelcome() {
                     <span className="text-5xl text-[#edcba9]">
                         <FaQuoteRight />
                     </span>
-                    <h1 className='text-[1.18rem] text-[#3a3939] tracking-[0.13px] font-400'>
+                    <motion.h1
+                        initial={{ y: "12vh", opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className='text-[1.18rem] text-[#3a3939] tracking-[0.13px] font-400'
+                    >
                         Pellentesque magna facilisis elit facilisi purus inceptos ut potenti aliquam ex lectus. Pretium hendrerit nostra commodo dignissim est nam leo torquent finibus ut.
-                    </h1>
+                    </motion.h1>
                 </div>
                 <p className='text-base text-[#3a3939] font-400 mb-8'>
                     Suscipit eleifend quam odio arcu duis habitant placerat. Praesent odio hendrerit semper id ut vitae aliquet dictum velit. Sociosqu nostra consequat ipsum facilisi dictumst dolor ad id mi.

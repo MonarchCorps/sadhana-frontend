@@ -1,10 +1,11 @@
+import { FaArrowRight } from 'react-icons/fa6'
+import { motion } from 'framer-motion'
 import cardImage1 from '../../assets/images/meditation-2.png'
 import cardImage2 from '../../assets/images/yoga-pose-1.png'
 import cardImage3 from '../../assets/images/yoga.png'
 import cardImage4 from '../../assets/images/pilates.png'
 import cardImage5 from '../../assets/images/book.png'
 import cardImage6 from '../../assets/images/meditation-1.png'
-import { FaArrowRight } from 'react-icons/fa6'
 
 function ServicesCard() {
 
@@ -17,7 +18,8 @@ function ServicesCard() {
             image: cardImage1,
             imageBg: '#927397',
             cardBg: '#FFF',
-            linkColor: '#D6809C'
+            linkColor: '#D6809C',
+            dur: 0.65
         },
         {
             id: 2,
@@ -28,7 +30,8 @@ function ServicesCard() {
             imageBg: '#FFF',
             cardBg: '#927397',
             color: '#FFF',
-            linkColor: '#FFF'
+            linkColor: '#FFF',
+            dur: 0.85
         },
         {
             id: 3,
@@ -38,7 +41,8 @@ function ServicesCard() {
             image: cardImage3,
             imageBg: '#927397',
             cardBg: '#FFF',
-            linkColor: '#D6809C'
+            linkColor: '#D6809C',
+            dur: 0.95
         },
         {
             id: 4,
@@ -48,7 +52,8 @@ function ServicesCard() {
             image: cardImage4,
             imageBg: '#927397',
             cardBg: '#FFF',
-            linkColor: '#D6809C'
+            linkColor: '#D6809C',
+            dur: 0.89
         },
         {
             id: 5,
@@ -58,7 +63,8 @@ function ServicesCard() {
             image: cardImage5,
             imageBg: '#927397',
             cardBg: '#FFF',
-            linkColor: '#D6809C'
+            linkColor: '#D6809C',
+            dur: 0.72
         },
         {
             id: 6,
@@ -68,7 +74,8 @@ function ServicesCard() {
             image: cardImage6,
             imageBg: '#927397',
             cardBg: '#FFF',
-            linkColor: '#D6809C'
+            linkColor: '#D6809C',
+            dur: 0.82
         }
     ]
 
@@ -77,7 +84,14 @@ function ServicesCard() {
             {
                 cardsContent.map(content => {
                     return (
-                        <div key={content.id} className='rounded-xl shadow-lg py-11 px-[1.9rem] z-30' style={{ background: `${content.cardBg}` }}>
+                        <motion.div
+                            initial={{ y: "17vh", opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ duration: content.dur, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                            key={content.id}
+                            className='rounded-xl shadow-lg py-11 px-[1.9rem] z-30'
+                            style={{ background: `${content.cardBg}` }}>
                             <div className='mb-4'>
                                 <div className='w-14 h-14 rounded-full text-center grid place-items-center max-w-prose mx-auto p-2' style={{ background: `${content.imageBg}` }}>
                                     <img src={content.image} alt={`${content.heading} image`} className='w-9' />
@@ -91,7 +105,7 @@ function ServicesCard() {
                                     <div className='absolute w-full h-[0.095rem] bottom-0' style={{ background: `${content.linkColor}` }}></div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     )
                 })
             }
