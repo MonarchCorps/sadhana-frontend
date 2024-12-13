@@ -15,7 +15,7 @@ function Trainer({ trainer }) {
         <div className='border border-solid border-[#bcbcbc] p-3 rounded-md'>
             <div className='flex gap-6 items-center'>
                 <IKImage
-                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                     path={trainer?.profileImage}
                     className='w-[3.2rem] h-[3.2rem] rounded-md object-cover'
                     loading='lazy'

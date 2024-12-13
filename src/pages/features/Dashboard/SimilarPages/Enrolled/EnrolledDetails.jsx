@@ -16,7 +16,7 @@ function EnrolledDetails({ details }) {
                     <div className="w-12 h-12 rounded overflow-hidden">
                         <IKImage
                             key={details?.thumbnailPhoto}
-                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                             path={details?.thumbnailPhoto}
                             className="size-full object-cover"
                             loading='lazy'

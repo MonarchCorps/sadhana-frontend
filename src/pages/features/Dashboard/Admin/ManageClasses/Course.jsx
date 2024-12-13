@@ -48,7 +48,7 @@ function Course({ course, handleCheckedState, deleteCourse, setCoursesToDelete, 
                         <div className='flex axsm:flex-col'>
                             <div className='w-12 h-12'>
                                 <IKImage
-                                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                     path={course?.thumbnailPhoto}
                                     className='size-full rounded-full object-cover'
                                     loading='lazy'

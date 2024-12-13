@@ -31,7 +31,7 @@ const ModalContent = ({ preview, imgUrl }) => {
                 )
                     : imgUrl ? (
                         <IKImage
-                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                             path={imgUrl}
                             className='object-cover size-full max-h-[425px] max-w-[425px] select-none'
                             loading='lazy'

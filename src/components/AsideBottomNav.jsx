@@ -78,7 +78,7 @@ function AsideBottomNav() {
                             >
                                 <IKImage
                                     key={auth?.profileImage}
-                                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                     path={auth?.profileImage}
                                     className="h-8 w-8 rounded-lg"
                                     loading='lazy'
@@ -104,7 +104,7 @@ function AsideBottomNav() {
                                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                     <IKImage
                                         key={auth?.profileImage}
-                                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                        urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                         path={auth?.profileImage}
                                         className="h-8 w-8 rounded-lg"
                                         loading='lazy'

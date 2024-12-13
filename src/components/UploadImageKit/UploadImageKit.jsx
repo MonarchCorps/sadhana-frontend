@@ -47,7 +47,7 @@ function UploadImageKit({ imgUrl, img, setImg, setPreview, ikUploadRef, preview,
                             </div>
                         ) : imgUrl ? (
                             <IKImage
-                                urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                 path={imgUrl}
                                 className='cursor-pointer size-full object-cover'
                                 loading='lazy'

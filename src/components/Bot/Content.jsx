@@ -26,7 +26,7 @@ function Content({ question, answer, chats, isGenerating, errMsg, isMounted, isL
                         <div className='w-full grid justify-items-end'>
                             <div className='max-w-[70%] ahsm:max-w-[75%] asm:max-w-[85%]'>
                                 <IKImage
-                                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                     path={img.dbData?.filePath}
                                     className='w-80 h-80 rounded-md object-cover'
                                     loading='lazy'

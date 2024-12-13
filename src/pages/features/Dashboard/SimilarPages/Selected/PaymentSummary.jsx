@@ -34,7 +34,7 @@ function PaymentSummary({ selectedCourses }) {
         },
         onSuccess: async (data) => {
             if (data?.id) {
-                const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+                const stripe = await loadStripe("pk_test_51QBCuTFjx2kcpfF5lk6Hhn0Wf5dxAlNQTgdT4sEktTcii4rtSUY75Gte0zeSSksy2mlYe4gmTcfWqVeGKOi7HPqY00EnucjAZ3");
                 await stripe.redirectToCheckout({ sessionId: data.id });
             }
         },

@@ -15,7 +15,7 @@ function ChatBubbleAvatar({ isGroup, isMember, message, previousMessage }) {
                 checkPrevMsg ? (
                     <IKImage
                         key={message?.sender?.profileImage}
-                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                        urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                         path={message?.sender?.profileImage}
                         className='w-9 h-9 object-cover rounded-full'
                         loading='lazy'

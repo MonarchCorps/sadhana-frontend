@@ -2,17 +2,17 @@ import useAuth from '../hooks/useAuth'
 
 const AdminOnly = () => {
     const { auth } = useAuth();
-    return new Set(auth?.roles).size === 3 && new Set(auth?.roles.concat([parseInt(import.meta.env.VITE_USER_CODE), parseInt(import.meta.env.VITE_INSTRUCTOR_CODE), parseInt(import.meta.env.VITE_ADMIN_CODE)])).size === 3;
+    return new Set(auth?.roles).size === 3 && new Set(auth?.roles.concat([2001, 1984, 5150])).size === 3;
 }
 
 const UserAndInstructor = () => {
     const { auth } = useAuth();
-    return new Set(auth?.roles).size === 2 && new Set(auth?.roles.concat([parseInt(import.meta.env.VITE_USER_CODE), parseInt(import.meta.env.VITE_INSTRUCTOR_CODE)])).size === 2;
+    return new Set(auth?.roles).size === 2 && new Set(auth?.roles.concat([2001, 1984])).size === 2;
 }
 
 const UserOnly = () => {
     const { auth } = useAuth();
-    return new Set(auth?.roles).size === 1 && new Set(auth?.roles.concat([parseInt(import.meta.env.VITE_USER_CODE)])).size === 1;
+    return new Set(auth?.roles).size === 1 && new Set(auth?.roles.concat([2001])).size === 1;
 }
 
 export {

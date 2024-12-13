@@ -20,7 +20,7 @@ function Chats({ chats }) {
                                     <Dialog>
                                         <DialogTrigger asChild >
                                             <IKImage
-                                                urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                                urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                                 path={chat?.img}
                                                 className='w-80 h-80 rounded-md object-cover'
                                                 loading='lazy'

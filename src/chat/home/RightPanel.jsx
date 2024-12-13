@@ -38,7 +38,7 @@ const RightPanel = () => {
                         <FaArrowLeft className='hidden chsm:block' onClick={() => setSelectedConversation({ conversation: null, type: 'allChat' })} />
                         <IKImage
                             key={conversationImage}
-                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                             path={conversationImage}
                             className='animate-pulse w-10 h-10 rounded-full object-cover'
                             loading='lazy'

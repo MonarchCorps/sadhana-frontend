@@ -36,11 +36,11 @@ function DropDownDetails() {
             name: 'Profile',
             icon: <FaUserAlt />,
             link:
-                auth?.roles?.includes(parseInt(import.meta.env.VITE_ADMIN_CODE))
+                auth?.roles?.includes(5150)
                     ? '/dashboard/admin-cp/details/edit-profile'
-                    : auth?.roles?.includes(parseInt(import.meta.env.VITE_INSTRUCTOR_CODE))
+                    : auth?.roles?.includes(1984)
                         ? '/dashboard/instructor-cp/details/edit-profile'
-                        : auth?.roles?.includes(parseInt(import.meta.env.VITE_USER_CODE))
+                        : auth?.roles?.includes(2001)
                             ? '/dashboard/student-cp/details/edit-profile'
                             : '/auth'
         },
@@ -58,7 +58,7 @@ function DropDownDetails() {
             <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <IKImage
-                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                        urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                         path={auth?.profileImage}
                         className='rounded-full object-cover w-12 h-12'
                         loading='lazy'

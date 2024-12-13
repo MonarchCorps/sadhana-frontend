@@ -50,7 +50,7 @@ function Class({ course }) {
             <div className='w-full shadow-shadow rounded-lg overflow-hidden mb-6 grid grid-cols-3 hrmd:flex hrmd:flex-col hrmd:h-full hrmd:gap-0 gap-4'>
                 <div className='col-span-1 size-full'>
                     <IKImage
-                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                        urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                         path={course?.thumbnailPhoto}
                         className='size-full hrmd:h-[18.75rem] max-h-[22rem] object-cover'
                         loading='lazy'

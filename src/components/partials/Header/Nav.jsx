@@ -45,7 +45,7 @@ function Nav() {
                         {isMobile && auth?._id ? (
                             <div className='w-full flex justify-end'>
                                 <IKImage
-                                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                     path={auth?.profileImage}
                                     className='rounded-full object-cover w-12 h-12'
                                     loading='lazy'
@@ -59,7 +59,7 @@ function Nav() {
                         ) : !isMobile && auth?._id
                             ? <div className='w-full flex justify-start'>
                                 <IKImage
-                                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                     path={auth?.profileImage}
                                     className='rounded-full object-cover w-12 h-12'
                                     loading='lazy'

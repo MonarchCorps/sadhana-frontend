@@ -73,7 +73,7 @@ const LeftPanel = () => {
                     <Link to='/dashboard'>
                         <IKImage
                             key={auth?.profileImage}
-                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                             path={auth?.profileImage}
                             className="w-10 h-10 object-cover rounded-full"
                             loading="lazy"

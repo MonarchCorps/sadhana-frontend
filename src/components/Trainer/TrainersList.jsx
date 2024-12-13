@@ -21,7 +21,7 @@ function TrainersList() {
                         <div key={trainer?._id} className='shadow-shadow rounded-xl overflow-hidden'>
                             <div className='relative'>
                                 <IKImage
-                                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                     path={trainer?.profileImage}
                                     className='h-[20rem] w-full object-cover'
                                     loading='lazy'

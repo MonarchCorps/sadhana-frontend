@@ -66,9 +66,9 @@ import ChatPage from './chat/home/ChatPage'
 import VideoCall from './chat/home/VideoCall'
 
 const ROLES = {
-	User: parseInt(import.meta.env.VITE_USER_CODE),
-	Instructor: parseInt(import.meta.env.VITE_INSTRUCTOR_CODE),
-	Admin: parseInt(import.meta.env.VITE_ADMIN_CODE)
+	User: 2001,
+	Instructor: 1984,
+	Admin: 5150
 }
 
 function App() {
@@ -117,11 +117,11 @@ function App() {
 
 	useEffect(() => {
 		if (path) {
-			auth?.roles?.includes(parseInt(import.meta.env.VITE_ADMIN_CODE))
+			auth?.roles?.includes(5150)
 				? navigate('/dashboard/admin-cp')
-				: auth?.roles?.includes(parseInt(import.meta.env.VITE_INSTRUCTOR_CODE))
+				: auth?.roles?.includes(1984)
 					? navigate('/dashboard/instructor-cp')
-					: auth?.roles?.includes(parseInt(import.meta.env.VITE_USER_CODE))
+					: auth?.roles?.includes(2001)
 						? navigate('/dashboard/student-cp')
 						: '/auth'
 		}

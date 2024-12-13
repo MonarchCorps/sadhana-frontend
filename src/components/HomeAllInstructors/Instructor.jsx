@@ -7,7 +7,7 @@ function Instructor({ instructor }) {
         <div className="rounded-md overflow-hidden shadow-shadow px-5 py-4 flex flex-col justify-between">
             <div className="text-center grid place-items-center">
                 <IKImage
-                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                     path={instructor?.profileImage}
                     className="w-32 h-32 rounded-full object-cover"
                     loading='lazy'

@@ -15,7 +15,7 @@ function OtherCourseDetails({ course }) {
         <figure className='flex flex-col justify-between'>
             <div>
                 <IKImage
-                    urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                    urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                     path={course?.thumbnailPhoto}
                     className='w-72 h-52 object-cover rounded ilg:w-full'
                     loading='lazy'

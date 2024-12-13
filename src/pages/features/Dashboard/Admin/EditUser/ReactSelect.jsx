@@ -5,9 +5,9 @@ import { components } from 'react-select'
 function ReactSelect(user) {
 
     const options = [
-        { value: parseInt(import.meta.env.VITE_USER_CODE), label: 'User' },
-        { value: parseInt(import.meta.env.VITE_INSTRUCTOR_CODE), label: 'Instructor' },
-        { value: parseInt(import.meta.env.VITE_ADMIN_CODE), label: 'Admin' },
+        { value: 2001, label: 'User' },
+        { value: 1984, label: 'Instructor' },
+        { value: 5150, label: 'Admin' },
     ];
 
     useEffect(() => {
@@ -29,16 +29,16 @@ function ReactSelect(user) {
     const [isClearAll, setIsClearAll] = useState(false);
 
     const handleRoleChange = (newValue) => {
-        const fixedRole = options.find((option) => option.value === parseInt(import.meta.env.VITE_USER_CODE));
-        if (!newValue.some((role) => role.value === parseInt(import.meta.env.VITE_USER_CODE))) {
+        const fixedRole = options.find((option) => option.value === 2001);
+        if (!newValue.some((role) => role.value === 2001)) {
             newValue = [...newValue, fixedRole];
         }
 
-        const hasAdmin = newValue.some((role) => role.value === parseInt(import.meta.env.VITE_ADMIN_CODE));
-        const hasInstructor = newValue.some((role) => role.value === parseInt(import.meta.env.VITE_INSTRUCTOR_CODE));
+        const hasAdmin = newValue.some((role) => role.value === 5150);
+        const hasInstructor = newValue.some((role) => role.value === 1984);
 
         if (hasAdmin && !hasInstructor) {
-            newValue = [...newValue, options.find((option) => option.value === parseInt(import.meta.env.VITE_INSTRUCTOR_CODE))];
+            newValue = [...newValue, options.find((option) => option.value === 1984)];
         }
 
         setSelectedRoles(newValue);
@@ -51,7 +51,7 @@ function ReactSelect(user) {
 
     const confirmRemoveRole = () => {
         if (isClearAll) {
-            setSelectedRoles([options.find((option) => option.value === parseInt(import.meta.env.VITE_USER_CODE))]);
+            setSelectedRoles([options.find((option) => option.value === 2001)]);
             setIsClearAll(false);
         } else {
             setSelectedRoles((prevRoles) => prevRoles.filter((role) => role.value !== roleToDelete.value));
@@ -68,7 +68,7 @@ function ReactSelect(user) {
 
     const MultiValueRemove = (props) => {
         const { data } = props;
-        if (data.value === parseInt(import.meta.env.VITE_USER_CODE)) {
+        if (data.value === 2001) {
             return null; // Disable removing the "User" role
         }
         return (

@@ -14,7 +14,7 @@ function Class({ course, handleBookClass, handleUnBookClass, enrolledCourses }) 
     return (
         <div className="rounded-md overflow-hidden flex flex-col justify-between shadow-shadow">
             <IKImage
-                urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                 path={course?.thumbnailPhoto}
                 className="w-[90rem] h-[16rem] object-cover "
                 loading='lazy'

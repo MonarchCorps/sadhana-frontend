@@ -12,7 +12,7 @@ function useSocket() {
             return socket;
         }
 
-        socket = io(import.meta.env.VITE_BACKEND_URL, {
+        socket = io("https://sadhana-backend.vercel.app/", {
             query: {
                 userId: userId,
             },

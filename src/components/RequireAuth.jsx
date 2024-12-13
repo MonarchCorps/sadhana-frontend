@@ -3,9 +3,9 @@ import { useLocation, Navigate, Outlet } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 
 const ROLES = {
-    User: parseInt(import.meta.env.VITE_USER_CODE),
-    Instructor: parseInt(import.meta.env.VITE_INSTRUCTOR_CODE),
-    Admin: parseInt(import.meta.env.VITE_ADMIN_CODE)
+    User: 2001,
+    Instructor: 1984,
+    Admin: 5150
 }
 
 const RequireAuth = ({ allowedRoles }) => {

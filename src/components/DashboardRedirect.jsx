@@ -15,11 +15,11 @@ function DashboardRedirect() {
 
     useEffect(() => {
         if (path) {
-            auth?.roles?.includes(parseInt(import.meta.env.VITE_ADMIN_CODE))
+            auth?.roles?.includes(5150)
                 ? navigate('/dashboard/admin-cp')
-                : auth?.roles?.includes(parseInt(import.meta.env.VITE_INSTRUCTOR_CODE))
+                : auth?.roles?.includes(1984)
                     ? navigate('/dashboard/instructor-cp')
-                    : auth?.roles?.includes(parseInt(import.meta.env.VITE_USER_CODE))
+                    : auth?.roles?.includes(2001)
                         ? navigate('/dashboard/student-cp')
                         : '/auth'
         }

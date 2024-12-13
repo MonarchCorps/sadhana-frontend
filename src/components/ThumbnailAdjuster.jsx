@@ -100,7 +100,7 @@ const ThumbnailAdjuster = ({ imageUrl, imageHeight, alt }) => {
             {
                 imageUrl?.startsWith('/yoga-master') ? (
                     <IKImage
-                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                        urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                         path={imageUrl}
                         className="size-full"
                         loading="lazy"

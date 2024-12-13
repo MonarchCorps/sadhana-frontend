@@ -44,7 +44,7 @@ const GroupMembersDialog = ({ selectedConversation }) => {
                                         )}
                                         <IKImage
                                             key={user?.profileImage}
-                                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                            urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                             path={user?.profileImage}
                                             className='w-10 h-8 bg-gray-tertiary object-cover rounded-full'
                                             loading='lazy'

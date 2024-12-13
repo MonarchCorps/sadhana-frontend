@@ -34,17 +34,17 @@ function UserDetails({ user }) {
                 <span className='font-600 text-base text-[#1f2937] sm:text-sm'>Roles</span>
                 <span className='font-500 text-base tracking-tight align-text-top -mb-1'>
                     <span className='sm:text-xs'>
-                        {roles?.includes(parseInt(import.meta.env.VITE_ADMIN_CODE)) && (
+                        {roles?.includes(5150) && (
                             <span className='border border-solid border-[#15433c] bg-[#45837a1a] text-[#15433c] px-4 mr-1 rounded-2xl'>
                                 <span className='text-[0.8rem] sm:text-xs'>Admin </span>
                             </span>
                         )}
-                        {roles?.includes(parseInt(import.meta.env.VITE_INSTRUCTOR_CODE)) && (
+                        {roles?.includes(1984) && (
                             <span className='border border-solid border-[#4358d1] bg-[#2e387122] text-[#4358d1] px-4 mr-1 rounded-2xl'>
                                 <span className='text-[0.8rem] sm:text-xs'>Instructor </span>
                             </span>
                         )}
-                        {roles?.includes(parseInt(import.meta.env.VITE_USER_CODE)) && (
+                        {roles?.includes(2001) && (
                             <span className='border border-solid border-[#d143ab] bg-[#2e387122] text-[#d143ab] px-4 rounded-2xl'>
                                 <span className='text-[0.8rem] sm:text-xs'>User </span>
                             </span>

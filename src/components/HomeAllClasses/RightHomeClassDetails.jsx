@@ -18,7 +18,7 @@ function RightHomeClassDetails({ course }) {
                 <div className='mb-4 relative'>
                     <Link to={course[0]?.videoUrl} >
                         <IKImage
-                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                             path={course[0]?.thumbnailPhoto}
                             className='h-[18rem] w-full object-cover rounded-md'
                             loading='lazy'

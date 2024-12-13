@@ -8,8 +8,8 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 function UploadImageKitImg({ img, setImg, setPreview, ikUploadRef, children }) {
     const axiosPrivate = useAxiosPrivate()
 
-    const urlEndpoint = import.meta.env.VITE_IMAGE_KIT_ENDPOINT
-    const publicKey = import.meta.env.VITE_IMAGE_KIT_PUBLIC_KEY
+    const urlEndpoint = "https://ik.imagekit.io/4sbkuudrb"
+    const publicKey = "public_rYpewYN6p7Pg/FXgmjO5X3rB8vc="
 
     const authenticator = async () => {
         const controller = new AbortController()

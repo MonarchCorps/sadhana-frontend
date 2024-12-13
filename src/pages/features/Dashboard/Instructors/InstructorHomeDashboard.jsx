@@ -97,7 +97,7 @@ function InstructorHomeDashboard() {
                     <div className='p-4'>
                         <div className='border-solid border-slate-50 border-8 w-fit rounded-full overflow-hidden'>
                             <IKImage
-                                urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                 path={auth?.profileImage}
                                 className='w-[10rem] h-[10rem] object-cover imd:w-[8rem] imd:h-[8rem]'
                                 loading='lazy'

@@ -156,7 +156,7 @@ function Users() {
                         >
                             <IKImage
                                 key={user?.profileImage}
-                                urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                 path={user?.profileImage}
                                 className='w-10 h-10 rounded-full object-cover'
                                 loading='lazy'

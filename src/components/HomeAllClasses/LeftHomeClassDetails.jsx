@@ -16,7 +16,7 @@ function LeftHomeClassDetails({ course }) {
                     <div>
                         <div>
                             <IKImage
-                                urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                 path={course[0]?.profileImage}
                                 className='w-20 h-20 rounded-full object-cover'
                                 loading='lazy'

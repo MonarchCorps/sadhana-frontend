@@ -20,8 +20,8 @@ const UploadCustomPhotoForm = ({ setImg, img, handleSubmit, setPreviews, preview
     const [progress, setProgress] = useState({ current: 0, total: previews.length });
 
     const imageKit = new ImageKit({
-        publicKey: import.meta.env.VITE_IMAGE_KIT_PUBLIC_KEY,
-        urlEndpoint: import.meta.env.VITE_IMAGE_KIT_ENDPOINT,
+        publicKey: "public_rYpewYN6p7Pg/FXgmjO5X3rB8vc=",
+        urlEndpoint: "https://ik.imagekit.io/4sbkuudrb",
     });
 
     const handleUpload = async () => {

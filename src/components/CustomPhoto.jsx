@@ -133,7 +133,7 @@ function CustomPhoto() {
                                                 <HoverCardTrigger >
                                                     <IKImage
                                                         key={photo?.customPhoto}
-                                                        urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                                                        urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                                         path={fileId}
                                                         className='w-full h-auto mb-[1.875rem] bg-clip-padding break-inside-avoid rounded-md'
                                                         loading='lazy'

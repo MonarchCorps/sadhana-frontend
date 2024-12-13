@@ -73,7 +73,7 @@ const Conversation = ({ conversation }) => {
                     {conversationImage ? (
                         <IKImage
                             path={conversationImage}
-                            urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
+                            urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                             className='w-10 h-10 rounded-full object-cover cimd:h-12 cimd:w-16'
                             lqip={{ active: true, quality: 20 }}
                             transformation={[{ quality: 'auto', format: 'auto' }]}

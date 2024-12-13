@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASE_URL = import.meta.env.VITE_BACKEND_URL
+const BASE_URL = "https://sadhana-backend.vercel.app/"
 
 export default axios.create({
     baseURL: BASE_URL
