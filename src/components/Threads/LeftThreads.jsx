@@ -2,7 +2,7 @@ import { motion } from "motion/react"
 
 function LeftThreads() {
     return (
-        <div className="relative">
+        <div className="relative overflow-hidden">
             <motion.h3
                 initial={{ x: "-30vw", opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}

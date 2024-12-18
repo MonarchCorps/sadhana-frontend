@@ -4,8 +4,8 @@ import yogaTookta from '../../assets/images/yoga-tookta.jpg'
 
 function RightThreads() {
     return (
-        <div className='relative'>
-            <div className='overflow-hidden rounded-xl shadow-xl p-5 w-[19.5rem] h-[14rem] sm:w-[14.5rem] sm:h-[11rem] bg-[#ffffff] absolute z-10 -bottom-12 -left-16'>
+        <div className='relative amd:max-w-[30rem]'>
+            <div className='overflow-hidden rounded-xl shadow-xl p-5 w-[19.5rem] h-[14rem] sm:w-[14.5rem] sm:h-[11rem] bg-[#ffffff] absolute z-10 -bottom-12 -left-16 ism:-left-10'>
                 <motion.img
                     initial={{ y: "14vh", opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -32,7 +32,7 @@ function RightThreads() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 viewport={{ once: true }}
-                className='w-[13rem] h-[13rem] sm:w-[10rem] sm:h-[10rem] bg-[#e57595] rounded-2xl absolute -top-10 -right-9 -z-10'
+                className='w-[13rem] h-[13rem] sm:w-[10rem] sm:h-[10rem] bg-[#e57595] rounded-2xl absolute -top-10 -right-9 -z-10 ism:-right-6'
             />
         </div>
     )
