@@ -12,7 +12,7 @@ function useSocket() {
             return socket;
         }
 
-        socket = io("https://sadhana-backend.vercel.app/", {
+        socket = io("https://sadhana-backend.onrender.com/", {
             query: {
                 userId: userId,
             },
