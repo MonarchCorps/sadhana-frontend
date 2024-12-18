@@ -14,7 +14,6 @@ function Hero() {
     return (
         <section
             className="w-screen relative bg-[#eff6f6]"
-            style={{ height: `${screenHeight}px` }}
         >
             <div className='max-w-[90%] mx-auto'>
                 <div className='pt-40 hrmd2:max-w-[80%] sm:max-w-[96%] lg:max-w-[50%] max-w-[46%] h-full p-3 z-50 relative'>
