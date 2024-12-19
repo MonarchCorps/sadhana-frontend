@@ -80,7 +80,7 @@ function AsideBottomNav() {
                                     key={auth?.profileImage}
                                     urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                     path={auth?.profileImage}
-                                    className="h-8 w-8 rounded-lg"
+                                    className="h-8 w-8 rounded-lg object-cover"
                                     loading='lazy'
                                     lqip={{
                                         active: true,
@@ -106,7 +106,7 @@ function AsideBottomNav() {
                                         key={auth?.profileImage}
                                         urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
                                         path={auth?.profileImage}
-                                        className="h-8 w-8 rounded-lg"
+                                        className="h-8 w-8 rounded-lg object-cover"
                                         loading='lazy'
                                         lqip={{
                                             active: true,
