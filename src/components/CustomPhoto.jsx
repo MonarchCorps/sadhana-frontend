@@ -1,9 +1,3 @@
-import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger,
-} from "@/components/ui/hover-card"
-
 import { useEffect, useState } from 'react'
 import Masonry from 'react-masonry-css'
 
@@ -120,65 +114,43 @@ function CustomPhoto() {
                                 loadedImages.map(photo => {
                                     const fileName = photo?.customPhoto.split("/")[4].split("?")[0]
                                     return (
-                                        <figure key={photo?._id} className='relative overflow-hidden'>
-                                            <HoverCard
-                                                openDelay={0}
-                                                closeDelay={0}
-                                                style={{
-                                                    position: 'absolute',
-                                                    background: 'red'
-                                                }}
-                                            >
-                                                <HoverCardTrigger >
-                                                    <IKImage
-                                                        key={photo?.customPhoto}
-                                                        urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
-                                                        path={fileName}
-                                                        className='w-full h-auto mb-[1.875rem] bg-clip-padding break-inside-avoid rounded-md'
-                                                        loading='lazy'
-                                                    />
-                                                </HoverCardTrigger>
-                                                <HoverCardContent
-                                                    align="center"
-                                                    side="bottom"
-                                                    sideOffset={-80}
-                                                    avoidCollisions={true}
-                                                    className="bg-transparent border-none p-0"
-                                                >
-                                                    {
-                                                        <div className='size-full flex justify-center'>
-                                                            {
-                                                                pathAfterSlash === 'view' && (
-                                                                    <button
-                                                                        className="flex gap-1 items-center border border-solid border-red-600 bg-slate-50 rounded-xl transition-all px-3 py-2 text-red-500 hover:border-current hover:bg-red-500 hover:text-slate-50"
-                                                                        onClick={() => {
-                                                                            deletePhoto.mutate(photo?._id)
-                                                                        }}>
-                                                                        Delete Photo
-                                                                        <FaTrash />
-                                                                    </button>
-                                                                )
-                                                            }
-                                                        </div>
-                                                    }
-                                                    <div className='w-full justify-center grid grid-flow-col items-end gap-3 absolute bottom-0 left-0 right-0'>
-                                                        {userAndInstructor && pathAfterSlash === 'custom-photo' && (
-                                                            <div className='bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg text-sm font-500 cursor-pointer whitespace-nowrap' onClick={() => handleRedirectAddClass(fileName)}>
-                                                                <span>
-                                                                    Use for a course
-                                                                </span>
-                                                            </div>
-                                                        )}
-                                                        {userOnly && pathAfterSlash === 'custom-photo' && (
-                                                            <div className='bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg text-sm font-500 whitespace-nowrap cursor-pointer' onClick={() => handleRedirectApplication(fileName)}>
-                                                                <span>
-                                                                    Use for application
-                                                                </span>
-                                                            </div>
-                                                        )}
+                                        <figure key={photo?._id} className='relative overflow-hidden group'>
+                                            <IKImage
+                                                key={photo?.customPhoto}
+                                                urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
+                                                path={fileName}
+                                                className='w-full h-full mb-[1.875rem] bg-clip-padding break-inside-avoid rounded-md'
+                                                loading='lazy'
+                                            />
+
+                                            <div className='w-full justify-center grid grid-flow-col items-end gap-3 absolute bottom-0 left-0 right-0'>
+                                                {pathAfterSlash === 'view' && (
+                                                    <div className=' size-full flex justify-center opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100'>
+                                                        <button
+                                                            className="flex gap-1 items-center border border-solid border-red-600 bg-slate-50 rounded-xl transition-all px-3 py-2 text-red-500 hover:border-current hover:bg-red-500 hover:text-slate-50"
+                                                            onClick={() => {
+                                                                deletePhoto.mutate(photo?._id)
+                                                            }}>
+                                                            Delete Photo
+                                                            <FaTrash />
+                                                        </button>
                                                     </div>
-                                                </HoverCardContent>
-                                            </HoverCard>
+                                                )}
+                                                {userAndInstructor && pathAfterSlash === 'custom-photo' && (
+                                                    <div className='mb-20 opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg text-sm font-500 cursor-pointer whitespace-nowrap' onClick={() => handleRedirectAddClass(fileName)}>
+                                                        <span>
+                                                            Use for a course
+                                                        </span>
+                                                    </div>
+                                                )}
+                                                {userOnly && pathAfterSlash === 'custom-photo' && (
+                                                    <div className='mb-20 opacity-0 transform scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 text-xs bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg font-500 whitespace-nowrap cursor-pointer' onClick={() => handleRedirectApplication(fileName)}>
+                                                        <span>
+                                                            Use for application
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </figure>
                                     )
                                 })
