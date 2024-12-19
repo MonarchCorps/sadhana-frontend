@@ -25,7 +25,8 @@ function useRefreshToken() {
                 phoneNumber: response.data.phoneNumber,
                 address: response.data.address,
                 selectedCourses: response.data.selectedCourses,
-                account: response.data?.instructor?.account
+                account: response.data?.instructor?.account,
+                closeModal: response.data.closeModal
             }
         });
         return response.data.accessToken;

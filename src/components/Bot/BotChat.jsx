@@ -11,6 +11,8 @@ import IllustrationAnimation1 from '../../components/IllustrationAnimations/Illu
 import CurvedArrow from '../IllustrationAnimations/CurvedArrow/CurvedArrow'
 import toast from 'react-hot-toast'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Button } from '../ui/button'
+import useRefreshToken from '@/hooks/useRefreshToken'
 
 function BotChat() {
 
@@ -26,7 +28,9 @@ function BotChat() {
     const [isGenerating, setIsGenerating] = useState(false)
     const [chats, setChats] = useState([]);
     const [errMsg, setErrMsg] = useState('')
-        ;
+
+    const refresh = useRefreshToken();
+    ;
     // This isMounted is for the questions
     const [isMounted, setIsMounted] = useState(true)
     const [illIsMounted, setIllIsMounted] = useState(true);
@@ -93,12 +97,38 @@ function BotChat() {
 
     useHideScroll(handleDeleteBotChat.isPending)
 
+    const handleCloseModal = useMutation({
+        mutationFn: () => {
+            return axiosPrivate.post(`/close-modal`, {
+                value: true,
+                id: auth?._id
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true
+            });
+        },
+        onSuccess: (response) => {
+            refresh()
+            console.log(auth, response.data)
+            toast.success('Closed')
+        },
+        onError: (error) => {
+            console.log(error)
+            const errorMessage = error?.response?.data?.message || 'Failed to close';
+            toast.error(error.response ? errorMessage : 'No server response');
+        },
+    })
+
+    useHideScroll(handleDeleteBotChat.isPending)
+
     return (
         <>
             <Loading isLoading={handleDeleteBotChat.isPending} />
 
             {
-                open && illIsMounted && (
+                !auth?.closeModal && open && illIsMounted && (
                     <div className='fixed bottom-28 right-20 ahsm:right-32'>
                         <IllustrationAnimation1 />
                         <CurvedArrow color='#a45638' />
@@ -116,7 +146,10 @@ function BotChat() {
                         isLoading={isLoading} preview={preview} setPreview={setPreview} setImg={setImg} img={img} setChats={setChats} />
                 </div>
             )}
-            <div className='fixed bottom-5 right-4 z-10'> <BotButton handleOpen={handleOpen} open={open} /></div>
+            <div>
+                {!auth?.closeModal && <Button className={`fixed bottom-5 right-24 z-10 ${handleCloseModal.isPending ? 'opacity-50' : ''}`} onClick={() => handleCloseModal.mutate()} disabled={handleCloseModal.isPending}>{handleCloseModal.isPending ? 'Closing' : 'Close modal forever'}</Button>}
+                <div className='fixed bottom-5 right-4 z-10'> <BotButton handleOpen={handleOpen} open={open} /></div>
+            </div>
         </>
     )
 }
