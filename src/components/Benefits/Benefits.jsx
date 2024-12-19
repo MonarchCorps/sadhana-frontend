@@ -7,25 +7,25 @@ function Benefits() {
         {
             id: 1,
             heading: 'Yoga improves strength, balance & flexibility',
-            text: 'Semper magna dis ultricies sem penatibus fames at. Felis ipsum mi lorem natoque.',
+            text: 'It improves strength, balance, and flexibility, while also fostering mental clarity and emotional stability for overall well- being.',
             dur: 0.8
         },
         {
             id: 2,
             heading: 'Yoga helps with back pain relief',
-            text: 'Semper magna dis ultricies sem penatibus fames at. Felis ipsum mi lorem natoque.',
+            text: 'Gentle stretches and targeted poses help alleviate back pain, improve posture, and enhance flexibility for lasting relief.',
             dur: 1.2
         },
         {
             id: 3,
             heading: 'Yoga relaxes you, to help you sleep better',
-            text: 'Semper magna dis ultricies sem penatibus fames at. Felis ipsum mi lorem natoque.',
+            text: 'Mindful movement and deep breathing relax the body and mind, promoting restful sleep and reducing nighttime stress.',
             dur: 1.6
         },
         {
             id: 4,
             heading: 'Yoga helps you manage stress',
-            text: 'Semper magna dis ultricies sem penatibus fames at. Felis ipsum mi lorem natoque.',
+            text: 'Mindful breathing and movement help calm the mind, reduce tension, and promote relaxation, effectively managing stress.',
             dur: 1.85
         }
     ]
@@ -59,7 +59,7 @@ function Benefits() {
                         viewport={{ once: true }}
                         className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-4 hrmd:mb-2 sm:text-sm"
                     >
-                        Donec fermentum mattis blandit dignissim molestie. Odio penatibus erat habitant scelerisque.
+                        Through mindful movement and breath, the body strengthens while the mind finds clarity, balance, and resilience.
                     </motion.p>
                     <motion.button
                         initial={{ x: "13vw", opacity: 0 }}

@@ -27,10 +27,10 @@ function Home() {
                 <Threads />
                 <Benefits />
                 <Classes />
-                {/*<Wellness />
+                <Wellness />
                 <Trainer />
                 <Testimonials />
-                <Subscribe />  */}
+                <Subscribe />
             </main>
             <Footer />
         </>

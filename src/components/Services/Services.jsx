@@ -35,8 +35,7 @@ function Services() {
                     className='text-center w-full flex'
                 >
                     <p className='text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 max-w-prose mx-auto'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-                    </p>
+                        Yoga invites self-discovery, helping you connect with your body and mind, fostering inner peace, clarity, and personal growth.                    </p>
                 </motion.div>
                 <ServicesCard />
             </div>

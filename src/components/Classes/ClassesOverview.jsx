@@ -31,8 +31,7 @@ function ClassesOverview() {
                     viewport={{ once: true }}
                     className="text-[#3a3939] leading-[1.6] lg:text-base"
                 >
-                    Hendrerit per libero donec torquent aliquet tincidunt cubilia. Placerat maximus torquent turpis ante elit. Aptent mauris taciti dolor sapien tortor bibendum vehicula sagittis potenti suscipit felis.
-                </motion.p>
+                    Connecting the threads of life through yoga brings balance, harmony, and inner peace, uniting body, mind, and spirit for a fulfilling journey.                </motion.p>
                 <div className='w-16 h-[0.3rem] mr-4 bg-[#D6809C] mt-11'></div>
             </div>
         </div>

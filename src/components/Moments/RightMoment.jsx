@@ -22,7 +22,7 @@ function RightMoment() {
                     Each Moment Is An Opportunity To Be Kind To Yourself And Your Body
                 </h1>
                 <p className="text-[#f3f1f1] text-base leading-[1.5] hrmd:text-sm">
-                    Per sociosqu ultrices ante egestas elementum odio dignissim donec sed. Luctus tellus euismod netus felis phasellus mollis fusce. Condimentum diam parturient feugiat vitae consectetuer.
+                    A moment spent on yoga offers tranquility, mental clarity, and physical strength. It’s a time to reconnect with yourself, cultivate mindfulness, and restore balance, bringing peace to both body and mind.
                 </p>
             </motion.div>
         </div>

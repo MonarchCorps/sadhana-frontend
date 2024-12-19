@@ -18,7 +18,7 @@ function Footer() {
                             <img src={logo} alt="logo image" width='150px' height='150px' className='object-cover' />
                         </Link>
                         <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mt-6 ">
-                            Aptent eleifend sem pede consectetuer vel felis amet pharetra. Ipsum dapibus cubilia potenti elit risus erat ut.
+                            Sadhana offers expert-led yoga classes to enhance flexibility, strength, and mental clarity, promoting balance, peace, and personal growth.
                         </p>
                     </div>
                     <div className='grid grid-cols-3 fmd:grid-cols-2 fmd:gap-y-3 col-span-3'>

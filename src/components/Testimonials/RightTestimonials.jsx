@@ -16,19 +16,19 @@ function RightTestimonials() {
             id: 1,
             name: 'Selena Gomez',
             image: profileImage1,
-            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.',
+            description: 'Sadhana has been a transformative experience for me. The variety of yoga styles and expert instructors have helped me improve flexibility, strength, and mental clarity. I love the personalized approach, which makes each session feel unique and impactful.'
         },
         {
             id: 2,
             name: 'Bruce Gate',
             image: profileImage2,
-            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.',
+            description: 'I’ve been practicing yoga for years, and Sadhana has elevated my journey. The platform offers diverse classes catering to all levels, with professional instructors who provide clear, helpful guidance. my body stronger, and I feel more connected with myself after each session.'
         },
         {
             id: 3,
             name: 'John Wayne',
             image: profileImage3,
-            description: 'Orci mollis cursus aliquet gravida dui habitant facilisi. Vivamus semper posuere praesent facilisi cras nam quisque proin. Volutpat dictum nibh iaculis orci habitasse commodo erat lorem dapibus.',
+            description: 'Sadhana is more than just a yoga site; it’s a sanctuary for both body and mind. The trainers are incredibly knowledgeable, the classes are varied, and the platform is easy to navigate. It’s helped me manage stress, improve flexibility, and find inner peace.'
         },
     ]
 

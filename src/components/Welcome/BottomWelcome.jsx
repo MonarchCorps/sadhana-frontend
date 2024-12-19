@@ -20,11 +20,11 @@ function BottomWelcome() {
                         viewport={{ once: true }}
                         className='text-[1.18rem] text-[#3a3939] tracking-[0.13px] font-400'
                     >
-                        Pellentesque magna facilisis elit facilisi purus inceptos ut potenti aliquam ex lectus. Pretium hendrerit nostra commodo dignissim est nam leo torquent finibus ut.
+                        This mindfulness practice encourages deep relaxation, providing an inner sense of peace that lasts beyond the session.
                     </motion.h1>
                 </div>
                 <p className='text-base text-[#3a3939] font-400 mb-8'>
-                    Suscipit eleifend quam odio arcu duis habitant placerat. Praesent odio hendrerit semper id ut vitae aliquet dictum velit. Sociosqu nostra consequat ipsum facilisi dictumst dolor ad id mi.
+                    Through breath control and mindful movements, yoga cultivates inner peace, grounding the mind and soothing the body. The practice encourages awareness and presence, promoting a calm, balanced state that supports mental clarity and emotional well-being.
                 </p>
                 <div>
                     <p className='font-cuba'>

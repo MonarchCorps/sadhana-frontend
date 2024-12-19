@@ -16,8 +16,7 @@ function Wellness() {
                             Let the threads of life get connected with yoga
                         </h1>
                         <p className="text-[15px] leading-[1.69] font-400 opacity-80 mb-6 text-[#eee9e9] hrmd:text-sm sm:text-xs">
-                            At posuere potenti montes ligula risus. Metus suspendisse ornare senectus taciti molestie dis arcu duis. Fusce mus sit eget nibh curae id montes finibus venenatis hendrerit.
-                        </p>
+                            Let the threads of life intertwine through yoga, fostering balance, clarity, and peace, aligning mind, body, and spirit.                        </p>
                         <button className='text-sm h-14 w-36 hrmd:h-12 hrmd:w-32 hrmd:text-xs mr-2 bg-[#e5759a] rounded-full text-slate-50 shadow-inner p-1 mt-6'>Discover more</button>
                     </div>
                 </motion.div>

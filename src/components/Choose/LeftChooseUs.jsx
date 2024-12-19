@@ -37,7 +37,7 @@ function LeftChooseUs() {
                 viewport={{ once: true }}
                 className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 hrmd:text-sm"
             >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                Join our yoga site for expert-led courses, flexible sessions, and a supportive community. Experience peace, strength, and balance, whether you&apos;re a beginner or seasoned practitioner—whenever and wherever you are.
             </motion.p>
             <div>
                 {

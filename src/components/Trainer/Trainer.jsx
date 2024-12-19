@@ -17,9 +17,8 @@ function Trainer() {
                         <h1 className="text-[2.5rem] leading-[1.18] font-500 font-sans mb-6">
                             Our Professional Yoga Trainer
                         </h1>
-                        <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 ">
-                            Dis duis imperdiet feugiat ultrices tincidunt vulputate molestie. Nullam nisi odio id libero ad consectetuer lacus.
-                        </p>
+                        <p className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-7">
+                            Our professional yoga trainer brings expert guidance, personalized attention, and a deep understanding of yoga to help you achieve your wellness goals with precision and care.                        </p>
                         <Link
                             to='/instructor'
                             onClick={scrollTop}

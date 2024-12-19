@@ -28,8 +28,7 @@ function LeftThreads() {
                 viewport={{ once: true }}
                 className="text-[15px] leading-[1.69] text-[#3a3939] font-400 opacity-80 mb-6 md:text-base sm:text-sm sm:leading-[1.72]"
             >
-                At posuere potenti montes ligula risus. Metus suspendisse ornare senectus taciti molestie dis arcu duis. Fusce mus sit eget nibh curae id montes finibus venenatis hendrerit.
-            </motion.p>
+                Let the threads of life connect through yoga, fostering balance, inner peace, and clarity. With every practice, yoga harmonizes the body, mind, and soul, guiding you toward a more centered, fulfilling life.                     </motion.p>
             <motion.button
                 initial={{ y: "12vh", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}

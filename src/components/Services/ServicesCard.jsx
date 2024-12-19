@@ -13,7 +13,7 @@ function ServicesCard() {
         {
             id: 1,
             heading: 'Anxiety Relief',
-            text: 'Volutpat euismod erat fermentum bibendum est metus. Ultrices dictumst rhoncus dictum magnis.',
+            text: 'Anxiety melts away with mindful movement and deep breathing, bringing calm, clarity, and a sense of relief.',
             link: '',
             image: cardImage1,
             imageBg: '#927397',
@@ -24,7 +24,7 @@ function ServicesCard() {
         {
             id: 2,
             heading: 'Life Balancing',
-            text: 'Volutpat euismod erat fermentum bibendum est metus. Ultrices dictumst rhoncus dictum magnis.',
+            text: 'Life balancing comes through mindful practices, aligning body, mind, and spirit to create harmony, reduce stress, and foster inner peace.',
             link: '',
             image: cardImage2,
             imageBg: '#FFF',
@@ -36,7 +36,7 @@ function ServicesCard() {
         {
             id: 3,
             heading: 'Reduce Stress',
-            text: 'Volutpat euismod erat fermentum bibendum est metus. Ultrices dictumst rhoncus dictum magnis.',
+            text: 'Stress melts away through mindful practices, allowing the body and mind to relax, restore balance, and promote calm.',
             link: '',
             image: cardImage3,
             imageBg: '#927397',
@@ -47,7 +47,7 @@ function ServicesCard() {
         {
             id: 4,
             heading: 'Flexible Time',
-            text: 'Volutpat euismod erat fermentum bibendum est metus. Ultrices dictumst rhoncus dictum magnis.',
+            text: 'With flexible time, you can practice yoga whenever it suits you, making it easier to maintain balance in your life.',
             link: '',
             image: cardImage4,
             imageBg: '#927397',
@@ -58,7 +58,7 @@ function ServicesCard() {
         {
             id: 5,
             heading: 'Health Tips',
-            text: 'Volutpat euismod erat fermentum bibendum est metus. Ultrices dictumst rhoncus dictum magnis.',
+            text: 'Stay hydrated, eat balanced meals, practice mindfulness, rest well, and incorporate yoga for improved well-being.',
             link: '',
             image: cardImage5,
             imageBg: '#927397',
@@ -69,7 +69,7 @@ function ServicesCard() {
         {
             id: 6,
             heading: 'Life Consultation',
-            text: 'Volutpat euismod erat fermentum bibendum est metus. Ultrices dictumst rhoncus dictum magnis.',
+            text: 'Life consultation provides personalized guidance to overcome challenges and create balance for fulfillment.',
             link: '',
             image: cardImage6,
             imageBg: '#927397',
