@@ -78,7 +78,6 @@ function CustomPhoto() {
 
     const deletePhoto = useMutation({
         mutationFn: (id) => {
-            console.log(id)
             return axiosPrivate.delete('/custom-photo', {
                 data: {
                     photoId: id

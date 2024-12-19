@@ -54,7 +54,7 @@ function UserHomeDashboard() {
                 return Array.isArray(res?.data) ? res.data : [];
             }),
     })
-    console.log(classes)
+
     useEffect(() => {
         if (classes) {
             const idsInArray2 = new Set(auth?.selectedCourses.map(obj => obj.courseId));
