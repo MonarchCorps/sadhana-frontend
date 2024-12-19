@@ -89,7 +89,7 @@ function DropDownDetails() {
                     {links.map((link) => (
                         <MenuItem key={link.id}>
                             <Link to={link.link} onClick={scrollTop}>
-                                <Typography className='text-center text-[1.124rem] flex gap-3'>
+                                <Typography className='text-center text-[1.124rem] flex items-center gap-3'>
                                     {link?.icon}
                                     {link.name}
                                 </Typography>
@@ -97,7 +97,7 @@ function DropDownDetails() {
                         </MenuItem>
                     ))}
                     <MenuItem >
-                        <Typography className='text-center text-[1.124rem] flex gap-3' onClick={logout}>
+                        <Typography className='text-center text-[1.124rem] flex items-center gap-3' onClick={logout}>
                             <FaRightFromBracket />
                             Logout
                         </Typography>
