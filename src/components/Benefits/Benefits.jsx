@@ -31,8 +31,8 @@ function Benefits() {
     ]
 
     return (
-        <section className="bg-[url('./assets/images/BG4.jpg')] bg-no-repeat bg-left-bottom mt-24">
-            <div className="max-w-[92%] mx-auto pt-28 pb-24 flex hrmd:flex-col hrmd:pt-20 hrmd:pb-16 gap-10 items-center">
+        <section className="bg-[url('./assets/images/BG4.jpg')] bg-no-repeat bg-left-bottom mt-24 overflow-hidden">
+            <div className="max-w-[92%] mx-auto pt-28 pb-24 flex hrmd:flex-col hrmd:pt-20 hrmd:pb-16 gap-8 items-center">
                 <div className="w-[60%] hrmd:w-full">
                     <motion.h3
                         initial={{ x: "-10vw", opacity: 0 }}
