@@ -6,7 +6,7 @@ import useAuth from '../../../../../hooks/useAuth'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit'
 import SubmitButton from '../../../../../components/SubmitButton/SubmitButton'
 
-const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTimeChange, dayArray, setDayArray, isLoading, img, setImg, setPreview, ikUploadRef }) => {
+const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTimeChange, dayArray, setDayArray, img, setImg, setPreview, ikUploadRef }) => {
 
     const { auth } = useAuth();
 
@@ -32,7 +32,6 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
         setDayArray(selectedValues);
     };
 
-
     const options = [
         { value: 'All Days', label: 'All Days' },
         { value: 'Mon', label: 'Mon' },
@@ -50,7 +49,7 @@ const AddClassForm = ({ preview, handleChange, formData, handleSubmit, handleTim
         <>
             <form className="grid grid-cols-2 gap-3 mt-7 max-w-[41rem] mx-auto">
                 <div className='col-span-2 mb-3'>
-                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} isLoading={isLoading} imgName='thumbnailPhoto' />
+                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} imgName='thumbnailPhoto' />
                 </div>
 
                 <div className='flex flex-col w-full'>

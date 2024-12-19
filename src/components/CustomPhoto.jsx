@@ -56,14 +56,14 @@ function CustomPhoto() {
         700: 1
     }
 
-    const handleRedirectAddClass = (imageId) => {
+    const handleRedirectAddClass = (fileName) => {
         scrollTop()
-        navigate(`/dashboard/instructor-cp/add-class?photoId=${imageId}`)
+        navigate(`/dashboard/instructor-cp/add-class?photoId=${fileName}`)
     }
 
-    const handleRedirectApplication = (imageId) => {
+    const handleRedirectApplication = (fileName) => {
         scrollTop()
-        navigate(`/dashboard/student-cp/apply-instructor?photoId=${imageId}`)
+        navigate(`/dashboard/student-cp/apply-instructor?photoId=${fileName}`)
     }
 
     useEffect(() => {
@@ -118,7 +118,7 @@ function CustomPhoto() {
                         >
                             {
                                 loadedImages.map(photo => {
-                                    const fileId = photo?.customPhoto.split("/")[4].split("?")[0]
+                                    const fileName = photo?.customPhoto.split("/")[4].split("?")[0]
                                     return (
                                         <figure key={photo?._id} className='relative overflow-hidden'>
                                             <HoverCard
@@ -133,13 +133,9 @@ function CustomPhoto() {
                                                     <IKImage
                                                         key={photo?.customPhoto}
                                                         urlEndpoint={"https://ik.imagekit.io/4sbkuudrb"}
-                                                        path={fileId}
+                                                        path={fileName}
                                                         className='w-full h-auto mb-[1.875rem] bg-clip-padding break-inside-avoid rounded-md'
                                                         loading='lazy'
-                                                        lqip={{
-                                                            active: true,
-                                                            quality: 20
-                                                        }}
                                                     />
                                                 </HoverCardTrigger>
                                                 <HoverCardContent
@@ -167,14 +163,14 @@ function CustomPhoto() {
                                                     }
                                                     <div className='w-full justify-center grid grid-flow-col items-end gap-3 absolute bottom-0 left-0 right-0'>
                                                         {userAndInstructor && pathAfterSlash === 'custom-photo' && (
-                                                            <div className='bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg text-sm font-500 cursor-pointer whitespace-nowrap' onClick={() => handleRedirectAddClass(photo?._id)}>
+                                                            <div className='bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg text-sm font-500 cursor-pointer whitespace-nowrap' onClick={() => handleRedirectAddClass(fileName)}>
                                                                 <span>
                                                                     Use for a course
                                                                 </span>
                                                             </div>
                                                         )}
                                                         {userOnly && pathAfterSlash === 'custom-photo' && (
-                                                            <div className='bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg text-sm font-500 whitespace-nowrap cursor-pointer' onClick={() => handleRedirectApplication(photo?._id)}>
+                                                            <div className='bg-[#ffffff6a] border border-solid border-slate-900 p-2 rounded-lg text-sm font-500 whitespace-nowrap cursor-pointer' onClick={() => handleRedirectApplication(fileName)}>
                                                                 <span>
                                                                     Use for application
                                                                 </span>

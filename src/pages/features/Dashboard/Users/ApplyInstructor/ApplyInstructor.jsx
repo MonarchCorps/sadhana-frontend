@@ -6,7 +6,6 @@ import { useMutation } from '@tanstack/react-query'
 import useAuth from '../../../../../hooks/useAuth'
 import useHideScroll from '../../../../../hooks/useHideScroll'
 import useAxiosPrivate from '../../../../../hooks/useAxiosPrivate'
-import useFetchUrlImg from '../../../../../hooks/useFetchUrlImg'
 
 import ApplyInstructorForm from './ApplyInstructorForm'
 import Loading from '../../../../../components/Loaders/Loading'
@@ -22,7 +21,7 @@ function ApplyInstructor() {
     const ikUploadRef = useRef();
 
     const queryParams = new URLSearchParams(location.search)
-    const imageId = queryParams.get('photoId')
+    const imgFileName = queryParams.get('photoId')
 
     const [img, setImg] = useState({
         isLoading: false,
@@ -44,13 +43,20 @@ function ApplyInstructor() {
         }))
     }, [img])
 
-    const { isLoading } = useFetchUrlImg(imageId, setPreview, setFormData, 'bgImage')
-
     useEffect(() => {
-        if (preview !== null && imageId) {
+        if (imgFileName) {
+            setPreview(`https://ik.imagekit.io/4sbkuudrb/${imgFileName}`)
+            setImg(prev => ({
+                ...prev,
+                isLoading: false,
+                dbData: { filePath: imgFileName }
+            }))
+        }
+
+        if (preview !== null && imgFileName) {
             navigate('/dashboard/student-cp/apply-instructor')
         }
-    }, [imageId, navigate, preview])
+    }, [imgFileName, navigate, preview])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -88,6 +94,11 @@ function ApplyInstructor() {
                 bgImage: null,
             });
             setPreview(null);
+            setImg({
+                isLoading: false,
+                error: '',
+                dbData: {},
+            });
 
             toast.success('Applied successfully')
         },
@@ -111,7 +122,7 @@ function ApplyInstructor() {
                         <p className='mb-4 font-500 amd:text-sm ixsm:text-xs'>Let&apos;s get you started as an instructor, all we need is a few details 😊</p>
                     </div>
                     <div className='w-full'>
-                        <ApplyInstructorForm isLoading={isLoading} preview={preview} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}
+                        <ApplyInstructorForm preview={preview} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}
                             img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef}
                         />
                     </div>

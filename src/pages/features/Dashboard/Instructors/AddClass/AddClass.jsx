@@ -6,7 +6,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useAxiosPrivate from '../../../../../hooks/useAxiosPrivate'
 import useAuth from '../../../../../hooks/useAuth'
 import useHideScroll from '../../../../../hooks/useHideScroll'
-import useFetchUrlImg from '../../../../../hooks/useFetchUrlImg'
 
 import Loading from '../../../../../components/Loaders/Loading'
 import AddClassForm from './AddClassForm'
@@ -21,7 +20,7 @@ function AddClass() {
     const ikUploadRef = useRef();
 
     const queryParams = new URLSearchParams(location.search)
-    const imageId = queryParams.get('photoId')
+    const imgFileName = queryParams.get('photoId')
     const queryClient = useQueryClient()
 
     const [img, setImg] = useState({
@@ -51,8 +50,6 @@ function AddClass() {
         endTime: '',
     });
 
-    const { isLoading } = useFetchUrlImg(imageId, setPreview, setFormData, 'thumbnailPhoto')
-
     useEffect(() => {
         setFormData(prevData => ({
             ...prevData,
@@ -79,10 +76,19 @@ function AddClass() {
     }, [img])
 
     useEffect(() => {
-        if (preview !== null && imageId) {
+        if (imgFileName) {
+            setPreview(`https://ik.imagekit.io/4sbkuudrb/${imgFileName}`)
+            setImg(prev => ({
+                ...prev,
+                isLoading: false,
+                dbData: { filePath: imgFileName }
+            }))
+        }
+
+        if (preview !== null && imgFileName) {
             navigate('/dashboard/instructor-cp/add-class')
         }
-    }, [imageId, navigate, preview])
+    }, [imgFileName, navigate, preview])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -169,7 +175,7 @@ function AddClass() {
     return (
         <>
             <Loading isLoading={isPending} />
-            <section>
+            <section className='w-screen'>
                 <div className='pt-14 px-3 pb-3 size-full max-w-[58rem] hrmd:max-w-[85%] aism:max-w-[94%] mx-auto place-items-center grid'>
                     <div className="text-center  mx-auto">
                         <h1 className='text-3xl hrmd:text-2xl axsm:text-xl mb-4 font-500 font-sans'>
@@ -178,7 +184,7 @@ function AddClass() {
                         <p className='mb-4 font-500 hrmd:text-sm axsm:text-xs'>Alright off we go! Add a class 😊 and we&apos;ll get you started</p>
                     </div>
                     <div className="w-full">
-                        <AddClassForm preview={preview} handleChange={handleChange} formData={formData} handleSubmit={handleSubmit} handleTimeChange={handleTimeChange} dayArray={dayArray} setDayArray={setDayArray} isLoading={isLoading} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
+                        <AddClassForm preview={preview} handleChange={handleChange} formData={formData} handleSubmit={handleSubmit} handleTimeChange={handleTimeChange} dayArray={dayArray} setDayArray={setDayArray} img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} />
                     </div>
                 </div>
             </section>

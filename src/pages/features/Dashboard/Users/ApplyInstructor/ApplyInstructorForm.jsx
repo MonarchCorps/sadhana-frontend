@@ -5,18 +5,18 @@ import SubmitButton from '../../../../../components/SubmitButton/SubmitButton'
 import UploadImageKit from '../../../../../components/UploadImageKit/UploadImageKit'
 
 const ApplyInstructorForm = ({
-    isLoading, preview, formData, handleChange, handleSubmit,
+    preview, formData, handleChange, handleSubmit,
     img, setImg, setPreview, ikUploadRef
 }) => {
     const { auth } = useAuth();
 
-    const valid = formData.experience && formData.bgImage && !img.error && !img?.isLoading && !isLoading
+    const valid = formData.experience && formData.bgImage && !img.error && !img?.isLoading
 
     return (
         <>
             <form className='grid grid-cols-2 gap-6 place-items-center w-full' >
                 <div className='col-span-2 w-full'>
-                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} isLoading={isLoading} imgName='bgImage' />
+                    <UploadImageKit img={img} setImg={setImg} setPreview={setPreview} ikUploadRef={ikUploadRef} preview={preview} imgName='bgImage' />
                 </div>
                 <div className='flex flex-col w-full ixsm:col-span-2'>
                     <label htmlFor="username" className='text-sm mb-2 font-500'>Username</label>
